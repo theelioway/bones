@@ -4,7 +4,8 @@
 
 Universal api for Schema.org models done the elioWay.
 
-> "Dropping the pretence one thing is so different from another." **Tim Bushell**
+> Dropping the pretence one thing is so different from another.
+**Tim Bushell**
 
 
 ## Dev Steps
@@ -44,7 +45,6 @@ touch server.js
 sudo systemctl unmask mongodb
 Unit mongodb.service does not exist, proceeding anyway.
 sudo service mongod start
-
 ```
 
 
