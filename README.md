@@ -23,8 +23,19 @@ touch configs/database.js
 touch models/thing.js
 touch routes/thing.js
 touch server.js
+npm install --save-dev nodemon
 ```
 
+Add to package.json['scripts']
+
+```
+"devstart": "nodemon server.js"
+```
+
+Run the development server thusly:
+``bash
+npm run devstart
+```
 
 
 ## Usage
