@@ -1,11 +1,11 @@
 process.env.NODE_ENV = 'test';
 
 let mongoose = require("mongoose");
-let Thing = require('../models/thing');
+let Thing = require('../bones/models/thing');
 
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let app = require('../app');
+let app = require('../bones/app');
 let should = chai.should();
 
 chai.use(chaiHttp);
@@ -16,6 +16,9 @@ describe('Things', () => {
       done();
     });
   });
+  /*
+   * Test the /GET route
+   */
   describe('/GET thing', () => {
     it('it should GET no things', (done) => {
       chai.request(app)
@@ -26,7 +29,6 @@ describe('Things', () => {
           res.body.length.should.be.eql(0);
           done();
         });
-
     });
   });
   /*

@@ -7,7 +7,7 @@ module.exports = {
     port: 3000
   },
   test: {
-    db: 'mongodb://localhost/test_things',
+    db: 'mongodb://localhost:27017/test_things',
     port: 8888
   },
   production: {
