@@ -1,7 +1,7 @@
 'use strict';
 
 // database connection
-require('./configs/database');
+require('../configs/database');
 
 // dependencies
 const express = require('express');
@@ -22,10 +22,5 @@ app.use(bodyParser.urlencoded({
 // all routes are prefixed with /api
 app.use('/api', require('./routes/thing'));
 
-// set the port
-const port = parseInt(process.env.PORT, 10) || 3000;
-
-// start the server
-const server = app.listen(port, () => {
-  console.log(`App is running at: http://localhost:${server.address().port}`);
-});
+// export
+module.exports = app;
