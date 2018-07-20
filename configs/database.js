@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const dbName = 'thing';
 
 // connect to the database
-mongoose.connect(`mongodb://localhost/${dbName}`);
+mongoose.connect(`mongodb://localhost:27017/${dbName}`,  { useNewUrlParser: true });
 
 // get notified if the connection
 // was successful or not
