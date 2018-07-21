@@ -11,7 +11,7 @@ Simple, universal api for Schema.org models done the elioWay.
 
 ```bash
 git clone https://gitlab.com/elioschemers/bones/
-cd god
+cd bones
 npm install
 npm run devstart
 ```
@@ -30,6 +30,11 @@ sudo systemctl unmask mongodb
 Unit mongodb.service does not exist, proceeding anyway.
 sudo service mongod start
 ```
+
+## Posible additions:
+
+http://www.passportjs.org/
+https://github.com/hdngr/sriracha
 
 ## Credits
 

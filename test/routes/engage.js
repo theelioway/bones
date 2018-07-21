@@ -14,7 +14,9 @@ chai.use(chaiHttp);
 describe("Thing Routes", function() {
 
   before(function(done) {
-    mongoose.connect("mongodb://localhost:27017/elioTest", { useNewUrlParser: true });
+    mongoose.connect("mongodb://localhost:27017/elioTest", {
+      useNewUrlParser: true
+    });
     const db = mongoose.connection;
     db.on("error", console.error.bind(console, "connection error"));
     db.once("open", function() {
@@ -28,7 +30,18 @@ describe("Thing Routes", function() {
     });
   });
 
-  describe("/GET thing", function() {
+  describe("/GET nofuckingway/thing", function() {
+    it("should GET no Things when not engaged", function(done) {
+      chai.request(app)
+        .get("/nofuckingway/thing")
+        .end(function(err, res) {
+          res.should.have.status(404);
+          done();
+        });
+    });
+  });
+
+  describe("/GET engage/thing", function() {
     it("should GET no Things when there are no Things", function(done) {
       chai.request(app)
         .get("/engage/things")
@@ -40,6 +53,7 @@ describe("Thing Routes", function() {
         });
     });
   });
+
 
   afterEach(function() {
     // runs after each test in this block
