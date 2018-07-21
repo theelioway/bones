@@ -2,53 +2,29 @@
 
 # bones
 
-Universal api for Schema.org models done the elioWay.
+Simple, universal api for Schema.org models done the elioWay.
 
 > Dropping the pretence one thing is so different from another.
 **Tim Bushell**
 
-## Dev Steps
-
- * [https://www.djamseed.com/2016/03/30/building-restful-apis-with-express-and-mongodb/](https://www.djamseed.com/2016/03/30/building-restful-apis-with-express-and-mongodb/)
+## Seeing is believing
 
 ```bash
-mkdir bones
-cd bones
-npm install --save express body-parser mongoose
-mkdir configs
-mkdir -p src/models
-mkdir -p src/routes
-touch configs/database.js
-touch src/models/thing.js
-touch src/routes/thing.js
-touch src/server.js
-touch src/app.js
-npm install --save-dev nodemon
-```
-
-Add to package.json['scripts']
-
-```
-"devstart": "nodemon server.js"
-```
-
-Run the development server thusly:
-``bash
+git clone https://gitlab.com/elioschemers/bones/
+cd god
+npm install
 npm run devstart
 ```
 
 ## Usage
 
 ```bash
-```
-
-## Seeing is believing
-
-```bash
+curl http://localhost:3000/engage/thing post {name: 'Thing 1'}
 ```
 
 ## Mongo issues
 
+Doesn't start or can't find it
 ```
 sudo systemctl unmask mongodb
 Unit mongodb.service does not exist, proceeding anyway.
@@ -56,3 +32,17 @@ sudo service mongod start
 ```
 
 ## Credits
+
+* [https://expressjs.com/](https://expressjs.com/)
+* [http://mongoosejs.com/](http://mongoosejs.com/)
+* [https://mochajs.org/](https://mochajs.org/)
+* [http://www.chaijs.com/](http://www.chaijs.com/)
+* [http://sinonjs.org/](http://sinonjs.org/)
+* [https://github.com/underscopeio/sinon-mongoose](https://github.com/underscopeio/sinon-mongoose)
+
+
+## These were helpful
+
+ * [https://www.djamseed.com/2016/03/30/building-restful-apis-with-express-and-mongodb/](https://www.djamseed.com/2016/03/30/building-restful-apis-with-express-and-mongodb/)
+* [https://medium.com/nongaap/beginners-guide-to-writing-mongodb-mongoose-unit-tests-using-mocha-chai-ab5bdf3d3b1d](https://medium.com/nongaap/beginners-guide-to-writing-mongodb-mongoose-unit-tests-using-mocha-chai-ab5bdf3d3b1d)
+* [https://scotch.io/tutorials/test-a-node-restful-api-with-mocha-and-chai](https://scotch.io/tutorials/test-a-node-restful-api-with-mocha-and-chai)

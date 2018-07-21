@@ -7,7 +7,7 @@ const Thing = require("../models/thing");
 const router = express.Router();
 
 // routes ending with /thing
-router.route("/thing")
+router.route("/things")
   .post((req, res) => {
 
     const thing = new Thing({

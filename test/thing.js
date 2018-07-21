@@ -18,23 +18,20 @@ describe("Thing Routes", function() {
     const db = mongoose.connection;
     db.on("error", console.error.bind(console, "connection error"));
     db.once("open", function() {
-      // console.log("We are connected to test database!");
       done();
     });
-    // console.log("before");
   });
 
   beforeEach(function(done) {
     Thing.remove({}, (err) => {
       done();
     });
-    // console.log("beforeEach");
   });
 
   describe("/GET thing", function() {
     it("should GET no Things when there are no Things", function(done) {
       chai.request(app)
-        .get("/api/thing")
+        .get("/engage/things")
         .end(function(err, res) {
           res.should.have.status(200);
           res.body.should.be.a("array");
@@ -46,14 +43,12 @@ describe("Thing Routes", function() {
 
   afterEach(function() {
     // runs after each test in this block
-    // console.log("afterEach");
   });
 
   after(function(done) {
     mongoose.connection.db.dropDatabase(function() {
       mongoose.connection.close(done);
     });
-    // console.log("after");
   });
 
 });

@@ -1,7 +1,6 @@
 "use strict";
 
-// database connection
-require("../configs/database");
+require("./database");
 
 const app = require("./app")
 
