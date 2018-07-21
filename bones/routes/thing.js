@@ -1,13 +1,13 @@
-'use strict'
+"use strict"
 
-const express = require('express');
+const express = require("express");
 
-const Thing = require('../models/thing');
+const Thing = require("../models/thing");
 
 const router = express.Router();
 
 // routes ending with /thing
-router.route('/thing')
+router.route("/thing")
   .post((req, res) => {
 
     const thing = new Thing({
@@ -24,7 +24,7 @@ router.route('/thing')
       }
 
       return res.json({
-        message: 'New thing created!'
+        message: "New thing created!"
       });
     });
 
@@ -42,7 +42,7 @@ router.route('/thing')
   })
 
 // routes starting with /todos/:id
-router.route('/thing/:id')
+router.route("/thing/:id")
   .get((req, res) => {
     Thing.findById(req.params.id, (err, task) => {
       if (err) {
@@ -62,7 +62,7 @@ router.route('/thing/:id')
      if (err){
        return res.send(err);
      }
-     return res.json({ message: 'Thing updated successfully' });
+     return res.json({ message: "Thing updated successfully" });
    });
  })
   .delete((req, res) => {
@@ -70,7 +70,7 @@ router.route('/thing/:id')
       if (err){
         return res.send(err);
       }
-      return res.json({ message: 'Thing has been removed!' });
+      return res.json({ message: "Thing has been removed!" });
     });
   });
 

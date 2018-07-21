@@ -1,11 +1,8 @@
-'use strict';
-
-// database connection
-require('../configs/database');
+"use strict";
 
 // dependencies
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
 
 // create the express app
 const app = express();
@@ -20,7 +17,7 @@ app.use(bodyParser.urlencoded({
 
 // register all routers
 // all routes are prefixed with /api
-app.use('/api', require('./routes/thing'));
+app.use("/api", require("./routes/thing"));
 
 // export
 module.exports = app;

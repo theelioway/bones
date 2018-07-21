@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 
-const app = require('./app')
+// database connection
+require("../configs/database");
 
-var env = process.env.NODE_ENV || 'development';
-var config = require('../configs/settings')[env];
+const app = require("./app")
 
 // set the port
-const port = parseInt(process.env.PORT, 10) || config.port;
+const port = parseInt(process.env.PORT, 10) || 3000;
 
 // start the server
 const server = app.listen(port, () => {
