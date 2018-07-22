@@ -1,6 +1,6 @@
 // slugify field
-const slug = require('mollusc');
-const uniquefy = require('../../lib/uniquefy');
+const slug = require("mollusc");
+const uniquefy = require("../../lib/uniquefy");
 
 module.exports = exports = function adon(schema, options) {
 
@@ -16,14 +16,14 @@ module.exports = exports = function adon(schema, options) {
     },
   });
 
-  schema.pre('save', function(next) {
+  schema.pre("save", function(next) {
     this.slug = slug(this.alternateName);
     this.seoKeywords = uniquefy.uniquefy(this.slug);
     next();
   });
 
   if (options && options.index) {
-    schema.path('slug').index(options.index);
+    schema.path("slug").index(options.index);
   }
 
 }

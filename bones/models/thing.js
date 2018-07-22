@@ -2,8 +2,7 @@
 
 const mongoose = require("mongoose");
 
-mongoose.plugin(require('./adon'));
-
+mongoose.plugin(require("./adon"));
 
 const schema = new mongoose.Schema({
   name: {
@@ -32,4 +31,17 @@ const schema = new mongoose.Schema({
   }
 });
 
+// schema.methods.findSimilarTypes = function(cb) {
+//   return this.model('Animal').find({
+//     type: this.type
+//   }, cb);
+// };
+
 module.exports = mongoose.model("thing", schema);
+
+// var dog = new thing({
+//   type: 'dog'
+// })
+// dog.findSimilarTypes(function(err, dogs) {
+//   console.log(dogs); // woof
+// });
