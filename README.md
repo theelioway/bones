@@ -31,11 +31,18 @@ Unit mongodb.service does not exist, proceeding anyway.
 sudo service mongod start
 ```
 
-## Posible additions:
+## These might be helpful
 
 * [http://www.passportjs.org/](http://www.passportjs.org/)
 * [https://github.com/hdngr/sriracha](https://github.com/hdngr/sriracha)
 * [https://www.npmjs.com/package/mollusc](https://github.com/hdngr/sriracha)
+
+## These were helpful
+
+* [https://www.codementor.io/olatundegaruba/nodejs-restful-apis-in-10-minutes-q0sgsfhbd](https://www.codementor.io/olatundegaruba/nodejs-restful-apis-in-10-minutes-q0sgsfhbd)
+* [https://www.djamseed.com/2016/03/30/building-restful-apis-with-express-and-mongodb/](https://www.djamseed.com/2016/03/30/building-restful-apis-with-express-and-mongodb/)
+* [https://medium.com/nongaap/beginners-guide-to-writing-mongodb-mongoose-unit-tests-using-mocha-chai-ab5bdf3d3b1d](https://medium.com/nongaap/beginners-guide-to-writing-mongodb-mongoose-unit-tests-using-mocha-chai-ab5bdf3d3b1d)
+* [https://scotch.io/tutorials/test-a-node-restful-api-with-mocha-and-chai](https://scotch.io/tutorials/test-a-node-restful-api-with-mocha-and-chai)
 
 ## Credits
 
@@ -45,10 +52,3 @@ sudo service mongod start
 * [http://www.chaijs.com/](http://www.chaijs.com/)
 * [http://sinonjs.org/](http://sinonjs.org/)
 * [https://github.com/underscopeio/sinon-mongoose](https://github.com/underscopeio/sinon-mongoose)
-
-
-## These were helpful
-
- * [https://www.djamseed.com/2016/03/30/building-restful-apis-with-express-and-mongodb/](https://www.djamseed.com/2016/03/30/building-restful-apis-with-express-and-mongodb/)
- * [https://medium.com/nongaap/beginners-guide-to-writing-mongodb-mongoose-unit-tests-using-mocha-chai-ab5bdf3d3b1d](https://medium.com/nongaap/beginners-guide-to-writing-mongodb-mongoose-unit-tests-using-mocha-chai-ab5bdf3d3b1d)
- * [https://scotch.io/tutorials/test-a-node-restful-api-with-mocha-and-chai](https://scotch.io/tutorials/test-a-node-restful-api-with-mocha-and-chai)
