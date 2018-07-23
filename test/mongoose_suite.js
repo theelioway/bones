@@ -10,29 +10,29 @@
 // //   });
 // // }
 
-let mongoose = require('mongoose');
+let mongoose = require('mongoose')
 
-exports.moogooseTestSuite = function(name, tests) {
-  describe(name, function() {
-    before(function(done) {
+exports.moogooseTestSuite = function (name, tests) {
+  describe(name, function () {
+    before(function (done) {
       mongoose.connect('mongodb://localhost:27017/elioTest', {
         useNewUrlParser: true
-      });
-      const db = mongoose.connection;
-      db.on('error', console.error.bind(console, 'connection error'));
-      db.once('open', function() {
-        done();
+      })
+      const db = mongoose.connection
+      db.on('error', console.error.bind(console, 'connection error'))
+      db.once('open', function () {
+        done()
         // console.log('Mongoose here');
-      });
+      })
 
-      mongoose.plugin(require('../bones/models/adon'));
-    });
-    tests();
-    after(function(done) {
-      mongoose.connection.db.dropDatabase(function() {
-        mongoose.connection.close(done);
+      mongoose.plugin(require('../bones/models/adon'))
+    })
+    tests()
+    after(function (done) {
+      mongoose.connection.db.dropDatabase(function () {
+        mongoose.connection.close(done)
         // console.log('Mongoose gone');
-      });
-    });
-  });
+      })
+    })
+  })
 }
