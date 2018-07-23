@@ -1,17 +1,16 @@
 'use strict'
-let assert = require('assert');
-let sinon = require('sinon');
-let mongoose = require('mongoose');
-let mocks = require('./mocks/thing');
-require('sinon-mongoose');
+let assert = require('assert')
+let sinon = require('sinon')
+let mongoose = require('mongoose')
+let mocks = require('./mocks/thing')
+require('sinon-mongoose')
 
-mongoose.plugin(require("../../bones/models/adon"));
-var Thing = require("../../bones/models/thing");
+mongoose.plugin(require('../../bones/models/adon'))
+var Thing = require('../../bones/models/thing')
 
-describe('Model adon methods', function() {
-
-  it('findsByDisambiguating', function(done) {
-    var ThingMock = sinon.mock(Thing);
+describe('Model adon methods', function () {
+  it('findsByDisambiguating', function (done) {
+    var ThingMock = sinon.mock(Thing)
 
     ThingMock
       .expects('findOne')
@@ -21,19 +20,17 @@ describe('Model adon methods', function() {
       .chain('exec')
       .yields(null, 'RESULT')
 
-    Thing.findByDisambiguating('DISAMBIGUATING DESCRIPTION', function(err, result) {
+    Thing.findByDisambiguating('DISAMBIGUATING DESCRIPTION', function (err, result) {
       ThingMock.verify()
       ThingMock.restore()
       assert.equal(result, 'RESULT')
       done()
     })
   })
-
 })
 
-describe('Model adon statics', function() {
-
-  it('engages', function(done) {
+describe('Model adon statics', function () {
+  it('engages', function (done) {
     var thingMock = sinon.mock(new Thing(mocks.thing))
     var thing = thingMock.object
 
@@ -45,7 +42,7 @@ describe('Model adon statics', function() {
       .chain('exec')
       .yields(null, 'RESULT')
 
-    thing.engage(function(err, result) {
+    thing.engage(function (err, result) {
       thingMock.verify()
       thingMock.restore()
       assert.equal(result, 'RESULT')
@@ -53,7 +50,7 @@ describe('Model adon statics', function() {
     })
   })
 
-  it('disengages', function(done) {
+  it('disengages', function (done) {
     var thingMock = sinon.mock(new Thing(mocks.thing))
     var thing = thingMock.object
 
@@ -65,7 +62,7 @@ describe('Model adon statics', function() {
       .chain('exec')
       .yields(null, 'RESULT')
 
-    thing.disengage(function(err, result) {
+    thing.disengage(function (err, result) {
       thingMock.verify()
       thingMock.restore()
       assert.equal(result, 'RESULT')

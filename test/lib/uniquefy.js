@@ -1,9 +1,9 @@
 // Test the
-let chai = require("chai");
+let chai = require('chai');
 
 var uniquefy = require('../../lib/uniquefy')
 
-let should = chai.should();
+chai.should();
 
 describe('uniquefy function', function() {
   it('should deslug a slug or str', function() {

@@ -1,13 +1,13 @@
-"use strict";
+'use strict'
 
-require("./database");
+require('./database')
 
-const app = require("./app")
+const app = require('./app')
 
 // set the port
-const port = parseInt(process.env.PORT, 10) || 3000;
+const port = parseInt(process.env.PORT, 10) || 3000
 
 // start the server
-const server = app.listen(port, function() {
-  console.log(`App is running at: http://localhost:${server.address().port}`);
-});
+const server = app.listen(port, function () {
+  console.log(`App is running at: http://localhost:${server.address().port}`)
+})
