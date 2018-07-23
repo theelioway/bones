@@ -1,84 +1,30 @@
 'use strict'
-var assert = require('assert');
-var sinon = require('sinon');
-var mongoose = require('mongoose');
-require('sinon-mongoose');
 
-mongoose.plugin(require("../../bones/models/adon"));
-require('../../bones/models/thing');
+let chai = require("chai");
+var suites = require("../mongoose_suite");
 
-let thing1 = {
-  name: "Thing 1",
-  alternateName: "This is really Thing 1",
-  description: "This describes Thing 1",
-  disambiguatingDescription: "This disambiguates Thing 1",
-  engaged: false
-}
-
-describe('Callbacks example', function() {
-  var Thing = mongoose.model('thing');
-
-  it('#findByDisambiguating', function(done) {
-    var ThingMock = sinon.mock(Thing);
-
-    ThingMock.expects('findOne')
-      .withArgs({
-        slug: 'disambiguating-description'
-      })
-      .chain('exec')
-      .yields(null, 'RESULT')
-
-    Thing.findByDisambiguating('DISAMBIGUATING DESCRIPTION', function(err, result) {
-      ThingMock.verify()
-      ThingMock.restore()
-      assert.equal(result, 'RESULT')
-      done()
-    })
-  })
+let should = chai.should();
 
 
-  it('#engage', function(done) {
-    var thingMock = sinon.mock(
-      new Thing(thing1)
-    )
-    var thing = thingMock.object
+var Thing = require("../../bones/models/thing");
 
-    thingMock
-      .expects('update')
-      .withArgs({
-        engaged: true
-      })
-      .chain('exec')
-      .yields(null, 'RESULT')
+describe('Thing Model', function() {
 
-    thing.engage(function(err, result) {
-      thingMock.verify()
-      thingMock.restore()
-      assert.equal(result, 'RESULT')
-      done()
-    })
-  })
+  it('should validate', function() {
+    var mocks = require('./mocks/thing');
+    var thing = new Thing(mocks.thing);
+    thing.save();
+    thing.name.should.eql(mocks.thing.name);
+    thing.alternateName.should.eql(mocks.thing.alternateName);
+    thing.disambiguatingDescription.should.eql(mocks.thing.disambiguatingDescription);
+    thing.description.should.eql(mocks.thing.description);
+  });
 
+  // it('should validate', function() {
+  //   var mock_thing = require('./mocks/thing');
+  //   var thing = new Thing(mock_thing);
+  //   thing.validate();
+  //   assert.isUndefined(thing.errors);
+  // });
 
-  it('#disengage', function(done) {
-    var thingMock = sinon.mock(
-      new Thing(thing1)
-    );
-    var thing = thingMock.object
-
-    thingMock
-      .expects('update')
-      .withArgs({
-        engaged: false
-      })
-      .chain('exec')
-      .yields(null, 'RESULT')
-
-    thing.disengage(function(err, result) {
-      thingMock.verify()
-      thingMock.restore()
-      assert.equal(result, 'RESULT')
-      done()
-    })
-  })
 })
