@@ -45,10 +45,33 @@ suites.moogooseTestSuite("Thing Routes", function() {
     });
   });
 
-  describe("/POST engage/:thing", function() {
-    it("should ADD a Thing", function(done) {
+  describe("/GET engage/:thing", function() {
+    it("should GET many Things when there are many Things", function(done) {
       // hint - don't use the same thing mock for these tests which
       // can run sychronously causing unique issues.
+      var many_things = [{
+          name: 'should GET many Things',
+          disambiguatingDescription: 'should GET many Things',
+        },
+        {
+          name: 'when there are many Things',
+          disambiguatingDescription: 'when there are many Things',
+        }
+      ]
+      Thing.create(many_things);
+      chai.request(app)
+        .get("/engage/thing/")
+        .end(function(err, res) {
+          res.should.have.status(200);
+          res.body.should.be.a("array");
+          res.body.length.should.be.eql(2);
+          done();
+        });
+    });
+  });
+
+  describe("/POST engage/:thing", function() {
+    it("should ADD a Thing", function(done) {
       var mock_thing = {
         name: 'should ADD a Thing',
         disambiguatingDescription: 'should ADD a Thing',
