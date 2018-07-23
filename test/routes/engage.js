@@ -23,6 +23,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
       chai.request(app)
         .get('/nonexistent-route/thing')
         .end(function (err, res) {
+          should.be.null(err)
           res.should.have.status(404)
           done()
         })
@@ -34,6 +35,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
       chai.request(app)
         .get('/engage/thing')
         .end(function (err, res) {
+          should.be.null(err)
           res.should.have.status(200)
           res.body.should.be.a('array')
           res.body.length.should.be.eql(0)
@@ -59,6 +61,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
       chai.request(app)
         .get('/engage/thing/')
         .end(function (err, res) {
+          should.be.null(err)
           res.should.have.status(200)
           res.body.should.be.a('array')
           res.body.length.should.be.eql(2)
@@ -69,7 +72,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
 
   describe('/POST engage/:thing', function () {
     it('should ADD a Thing', function (done) {
-      var mock_thing = {
+      var mockThing = {
         name: 'should ADD a Thing',
         disambiguatingDescription: 'should ADD a Thing',
         alternateName: 'should ADD a Thing',
@@ -77,14 +80,15 @@ suites.moogooseTestSuite('Thing Routes', function () {
       }
       chai.request(app)
         .post('/engage/thing')
-        .send(mock_thing)
+        .send(mockThing)
         .end(function (err, res) {
+          should.be.null(err)
           res.should.have.status(200)
           res.should.be.json
-          res.body.name.should.eql(mock_thing.name)
-          res.body.disambiguatingDescription.should.eql(mock_thing.disambiguatingDescription)
-          res.body.alternateName.should.eql(mock_thing.alternateName)
-          res.body.description.should.eql(mock_thing.description)
+          res.body.name.should.eql(mockThing.name)
+          res.body.disambiguatingDescription.should.eql(mockThing.disambiguatingDescription)
+          res.body.alternateName.should.eql(mockThing.alternateName)
+          res.body.description.should.eql(mockThing.description)
           res.body.slug.should.eql('should-add-a-thing')
           res.body.seoKeywords.should.eql('add thing')
           res.body.engaged.should.be.false
@@ -96,16 +100,17 @@ suites.moogooseTestSuite('Thing Routes', function () {
 
   describe('/POST engage/:thing', function () {
     it('should ADD a Thing once', function (done) {
-      var mock_thing = {
+      var mockThing = {
         name: 'should ADD a Thing once',
         disambiguatingDescription: 'should ADD a Thing once'
       }
-      var thing = new Thing(mock_thing)
+      var thing = new Thing(mockThing)
       thing.save()
       chai.request(app)
         .post('/engage/thing')
-        .send(mock_thing)
+        .send(mockThing)
         .end(function (err, res) {
+          should.be.null(err)
           res.should.have.status(200)
           res.should.be.json
           res.body.message.should.eql('A record with this alternative name already exists.')
@@ -118,19 +123,20 @@ suites.moogooseTestSuite('Thing Routes', function () {
     it('should GET a Thing', function (done) {
       // hint - don't use the same thing mock for these tests which
       // can run sychronously causing unique errors.
-      var mock_thing = {
+      var mockThing = {
         name: 'should GET a Thing',
         disambiguatingDescription: 'should GET a Thing'
       }
-      var thing = new Thing(mock_thing)
+      var thing = new Thing(mockThing)
       thing.save()
       chai.request(app)
         .get(`/engage/thing/${thing._id}`)
         .end(function (err, res) {
+          should.be.null(err)
           res.should.have.status(200)
           res.should.be.json
-          res.body.name.should.eql(mock_thing.name)
-          res.body.disambiguatingDescription.should.eql(mock_thing.disambiguatingDescription)
+          res.body.name.should.eql(mockThing.name)
+          res.body.disambiguatingDescription.should.eql(mockThing.disambiguatingDescription)
           res.body.slug.should.eql('should-get-a-thing')
           res.body.seoKeywords.should.eql('thing')
           res.body.engaged.should.be.false
@@ -142,24 +148,25 @@ suites.moogooseTestSuite('Thing Routes', function () {
 
   describe('/PUT engage/:thing', function () {
     it('should UPDATE a Thing', function (done) {
-      var mock_thing = {
+      var mockThing = {
         name: 'should UPDATE a Thing',
         disambiguatingDescription: 'should UPDATE a Thing'
       }
-      var thing = new Thing(mock_thing)
+      var thing = new Thing(mockThing)
       thing.save()
-      var update_thing = {
+      var updateThing = {
         name: 'Thing should be UPDATED',
         disambiguatingDescription: 'Thing should be UPDATED'
       }
       chai.request(app)
         .put(`/engage/thing/${thing._id}`)
-        .send(update_thing)
+        .send(updateThing)
         .end(function (err, res) {
+          should.be.null(err)
           res.should.have.status(200)
           res.should.be.json
-          res.body.name.should.eql(update_thing.name)
-          res.body.disambiguatingDescription.should.eql(update_thing.name)
+          res.body.name.should.eql(updateThing.name)
+          res.body.disambiguatingDescription.should.eql(updateThing.name)
           done()
         })
     })
@@ -167,15 +174,16 @@ suites.moogooseTestSuite('Thing Routes', function () {
 
   describe('/DELETE engage/:thing', function () {
     it('should DELETE a Thing', function (done) {
-      var mock_thing = {
+      var mockThing = {
         name: 'should DELETE a Thing',
         disambiguatingDescription: 'should DELETE a Thing'
       }
-      var thing = new Thing(mock_thing)
+      var thing = new Thing(mockThing)
       thing.save()
       chai.request(app)
         .delete(`/engage/thing/${thing._id}`)
         .end(function (err, res) {
+          should.be.null(err)
           res.should.have.status(200)
           res.should.be.json
           res.body.message.should.eql('Thing successfully deleted')
