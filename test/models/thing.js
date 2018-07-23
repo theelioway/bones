@@ -6,8 +6,8 @@ chai.should()
 
 var Thing = require('../../bones/models/thing')
 
-describe('Thing Model', function() {
-  it('should validate', function() {
+describe('Thing Model', function () {
+  it('should validate', function () {
     var mocks = require('./mocks/thing')
     var thing = new Thing(mocks.thing)
     thing.save()
