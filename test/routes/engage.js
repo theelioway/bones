@@ -89,7 +89,6 @@ suites.moogooseTestSuite("Thing Routes", function() {
         .send(thing1)
         .end(function(err, res) {
           res.body.message.should.eql('A record with this alternative name already exists.');
-          res.body._id.should.not.be.null;
         })
       chai.request(app)
         .get("/engage/thing")
