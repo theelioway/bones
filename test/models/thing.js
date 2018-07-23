@@ -1,34 +1,30 @@
-"use strict";
-// 
-// const mongoose = require("mongoose");
-//
-// mongoose.plugin(require('./adon'));
-//
-// const schema = new mongoose.Schema({
-//   name: {
-//     type: String,
-//     maxlength: [127, "A 127 character or less name of the item."],
-//     required: [true, "The name is required."]
-//   },
-//   alternateName: {
-//     type: String,
-//     maxlength: [255, "A 255 character or less alias for the item."]
-//   },
-//   description: {
-//     type: String,
-//     required: [false, "A description of the item which not required."]
-//   },
-//   disambiguatingDescription: {
-//     type: String
-//   },
-//   engaged: {
-//     type: Boolean,
-//     default: false
-//   },
-//   created: {
-//     type: Date,
-//     default: Date.now
-//   }
-// });
-//
-// module.exports = mongoose.model("thing", schema);
+'use strict'
+
+let chai = require("chai");
+var suites = require("../mongoose_suite");
+
+let should = chai.should();
+
+
+var Thing = require("../../bones/models/thing");
+
+describe('Thing Model', function() {
+
+  it('should validate', function() {
+    var mocks = require('./mocks/thing');
+    var thing = new Thing(mocks.thing);
+    thing.save();
+    thing.name.should.eql(mocks.thing.name);
+    thing.alternateName.should.eql(mocks.thing.alternateName);
+    thing.disambiguatingDescription.should.eql(mocks.thing.disambiguatingDescription);
+    thing.description.should.eql(mocks.thing.description);
+  });
+
+  // it('should validate', function() {
+  //   var mock_thing = require('./mocks/thing');
+  //   var thing = new Thing(mock_thing);
+  //   thing.validate();
+  //   assert.isUndefined(thing.errors);
+  // });
+
+})

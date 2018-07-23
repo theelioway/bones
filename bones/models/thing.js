@@ -2,8 +2,6 @@
 
 const mongoose = require("mongoose");
 
-mongoose.plugin(require('./adon'));
-
 
 const schema = new mongoose.Schema({
   name: {
@@ -13,23 +11,23 @@ const schema = new mongoose.Schema({
   },
   alternateName: {
     type: String,
-    maxlength: [255, "A 255 character or less alias for the item."]
+    maxlength: [255, "A 255 character or less alias for the item."],
+    required: [false, "A description of the item which not required."]
+  },
+  disambiguatingDescription: {
+    type: String,
+    maxlength: [255, "A 255 character or less alias for the item."],
+    required: [true, "The disambiguating description is required."]
   },
   description: {
     type: String,
     required: [false, "A description of the item which not required."]
-  },
-  disambiguatingDescription: {
-    type: String
-  },
-  engaged: {
-    type: Boolean,
-    default: false
   },
   created: {
     type: Date,
     default: Date.now
   }
 });
+
 
 module.exports = mongoose.model("thing", schema);

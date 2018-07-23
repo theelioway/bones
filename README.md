@@ -18,8 +18,33 @@ npm run devstart
 
 ## Usage
 
+Get all Things
 ```bash
-curl -i -X PUT -H 'Content-Type: application/json' -d '{"numberofsaves": "272"}' http://localhost:3001/api/v1/projects/5593c8792fee421039c0afe6
+curl -X GET http://localhost:3000/engage/thing
+```
+
+Add a Thing
+```bash
+curl -X POST http://localhost:3000/engage/thing \
+    -d name="Thing 1" \
+    -d disambiguatingDescription="Disambiguating the first thing we ever added"
+```
+
+Get a Thing
+```bash
+curl -X GET http://localhost:3000/engage/thing/5b55beed33fa1d4ed364c85f
+```
+
+Update a Thing
+```bash
+curl -X PUT http://localhost:3000/engage/thing/5b55beed33fa1d4ed364c85f \
+    -d alternateName="Thing 1 is the King of Things" \
+    -d description="There is a thing, then there is Thing 1. No two things are the same. Thing 1 is best."
+```
+
+Remove Thing 1 by ID
+```bash
+curl -X DELETE http://localhost:3000/engage/thing/5b55beed33fa1d4ed364c85f
 ```
 
 ## Mongo issues

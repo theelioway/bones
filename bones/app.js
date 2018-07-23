@@ -14,8 +14,9 @@ app.use(bodyParser.urlencoded({
   .use(bodyParser.json());
 
 // register all routers
-// all routes are prefixed with /engage
-app.use("/engage", require("./routes/engage"));
+var routes = require("./routes"); //importing route
+routes(app); //register the route
+
 
 // export
 module.exports = app;
