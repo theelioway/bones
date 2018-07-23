@@ -17,7 +17,7 @@ module.exports = exports = function adon(schema, options) {
   });
 
   schema.pre("save", function(next) {
-    this.slug = slug(this.alternateName);
+    this.slug = slug(this.disambiguatingDescription);
     this.seoKeywords = uniquefy.uniquefy(this.slug);
     next();
   });
@@ -25,5 +25,13 @@ module.exports = exports = function adon(schema, options) {
   if (options && options.index) {
     schema.path("slug").index(options.index);
   }
+
+  schema.static('findByDisambiguating', function(disambiguatingDescription, callback) {
+    return this.findOne({
+        slug: slug(disambiguatingDescription)
+      })
+      .exec(callback);
+  });
+
 
 }

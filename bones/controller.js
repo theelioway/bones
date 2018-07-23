@@ -1,11 +1,8 @@
 "use strict";
 var mongoose = require("mongoose");
 
-require("./models/thing");
-
-var Thing = mongoose.model("thing");
-
 exports.list_all_things = function(req, res) {
+  var Thing = require(`./models/${req.params.thing}`);
   Thing.find({}, function(err, thing) {
     if (err)
       res.send(err);
@@ -14,11 +11,20 @@ exports.list_all_things = function(req, res) {
 };
 
 exports.create_a_thing = function(req, res) {
+  var Thing = require(`./models/${req.params.thing}`);
   var new_thing = new Thing(req.body);
   new_thing.save(function(err, thing) {
-    if (err)
-      res.send(err);
-    res.json(thing);
+    if (err) {
+      if (err.code == 11000) {
+        return res.json({
+          "message": "A record with this alternative name already exists."
+        });
+      } else {
+        res.send(err);
+      }
+    }
+    var j = res.json(thing);
+    return j;
   });
 };
 
