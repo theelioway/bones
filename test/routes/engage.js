@@ -46,7 +46,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
     it('should GET many Things when there are many Things', function (done) {
       // hint - don't use the same thing mock for these tests which
       // can run sychronously causing unique issues.
-      var many_things = [{
+      var manyThings = [{
         name: 'should GET many Things',
         disambiguatingDescription: 'should GET many Things'
       },
@@ -55,7 +55,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
         disambiguatingDescription: 'when there are many Things'
       }
       ]
-      Thing.create(many_things)
+      Thing.create(manyThings)
       chai.request(app)
         .get('/engage/thing/')
         .end(function (err, res) {
