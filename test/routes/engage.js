@@ -14,6 +14,7 @@ chai.use(chaiHttp)
 suites.moogooseTestSuite('Thing Routes', function () {
   beforeEach(function (done) {
     Thing.remove({}, (err) => {
+      should.not.exist(err)
       done()
     })
   })
@@ -23,7 +24,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
       chai.request(app)
         .get('/nonexistent-route/thing')
         .end(function (err, res) {
-          should.be.null(err)
+          should.not.exist(err)
           res.should.have.status(404)
           done()
         })
@@ -35,7 +36,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
       chai.request(app)
         .get('/engage/thing')
         .end(function (err, res) {
-          should.be.null(err)
+          should.not.exist(err)
           res.should.have.status(200)
           res.body.should.be.a('array')
           res.body.length.should.be.eql(0)
@@ -61,7 +62,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
       chai.request(app)
         .get('/engage/thing/')
         .end(function (err, res) {
-          should.be.null(err)
+          should.not.exist(err)
           res.should.have.status(200)
           res.body.should.be.a('array')
           res.body.length.should.be.eql(2)
@@ -82,7 +83,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
         .post('/engage/thing')
         .send(mockThing)
         .end(function (err, res) {
-          should.be.null(err)
+          should.not.exist(err)
           res.should.have.status(200)
           res.should.be.json
           res.body.name.should.eql(mockThing.name)
@@ -110,7 +111,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
         .post('/engage/thing')
         .send(mockThing)
         .end(function (err, res) {
-          should.be.null(err)
+          should.not.exist(err)
           res.should.have.status(200)
           res.should.be.json
           res.body.message.should.eql('A record with this alternative name already exists.')
@@ -132,7 +133,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
       chai.request(app)
         .get(`/engage/thing/${thing._id}`)
         .end(function (err, res) {
-          should.be.null(err)
+          should.not.exist(err)
           res.should.have.status(200)
           res.should.be.json
           res.body.name.should.eql(mockThing.name)
@@ -162,7 +163,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
         .put(`/engage/thing/${thing._id}`)
         .send(updateThing)
         .end(function (err, res) {
-          should.be.null(err)
+          should.not.exist(err)
           res.should.have.status(200)
           res.should.be.json
           res.body.name.should.eql(updateThing.name)
@@ -183,7 +184,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
       chai.request(app)
         .delete(`/engage/thing/${thing._id}`)
         .end(function (err, res) {
-          should.be.null(err)
+          should.not.exist(err)
           res.should.have.status(200)
           res.should.be.json
           res.body.message.should.eql('Thing successfully deleted')
