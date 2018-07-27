@@ -1,4 +1,5 @@
 ![](elio-bones-logo.png)
+
 Simple, cruddy Rest API for Schema.org models done the elioWay.
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
