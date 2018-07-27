@@ -1,5 +1,4 @@
-![](elio-bones-logo.png)
-
+![](apple-touch-icon.png)
 # bones
 
 Simple, cruddy Rest API for Schema.org models done the elioWay.
@@ -84,3 +83,5 @@ sudo service mongod start
 * [http://sinonjs.org/](http://sinonjs.org/)
 * [https://github.com/underscopeio/sinon-mongoose](https://github.com/underscopeio/sinon-mongoose)
 * [https://www.npmjs.com/package/mollusc](https://www.npmjs.com/package/mollusc)
+
+![](elio-bones-logo.png)

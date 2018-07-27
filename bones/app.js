@@ -1,6 +1,4 @@
 'use strict'
-
-// dependencies
 const express = require('express')
 const bodyParser = require('body-parser')
 
@@ -13,7 +11,6 @@ app.use(bodyParser.urlencoded({
 }))
   .use(bodyParser.json())
 
-// register all routers
 var routes = require('./routes') // importing route
 routes(app) // register the route
 

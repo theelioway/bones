@@ -1,6 +1,4 @@
 'use strict'
-
-// dependencies
 const mongoose = require('mongoose')
 
 // connect to the database
