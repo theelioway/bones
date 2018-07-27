@@ -1,6 +1,4 @@
-![](apple-touch-icon.png)
-# bones
-
+![](elio-bones-logo.png)
 Simple, cruddy Rest API for Schema.org models done the elioWay.
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
@@ -84,4 +82,4 @@ sudo service mongod start
 * [https://github.com/underscopeio/sinon-mongoose](https://github.com/underscopeio/sinon-mongoose)
 * [https://www.npmjs.com/package/mollusc](https://www.npmjs.com/package/mollusc)
 
-![](elio-bones-logo.png)
+![](apple-touch-icon.png)
