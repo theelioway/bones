@@ -1,7 +1,7 @@
 // require('sinon')
 // require('sinon-mongoose')
 
-let Thing = require('../../bones/models/thing')
+let Thing = require('@elioway/spider/schemas/2018.6.28/models/Thing')
 
 let chai = require('chai')
 let chaiHttp = require('chai-http')
@@ -22,7 +22,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
   describe('/GET nonexistent-route/:thing', function () {
     it('should 404', function (done) {
       chai.request(app)
-        .get('/nonexistent-route/thing')
+        .get('/nonexistent-route/Thing')
         .end(function (err, res) {
           should.not.exist(err)
           res.should.have.status(404)
@@ -34,7 +34,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
   describe('/GET engage/:thing', function () {
     it('should GET no Things when there are no Things', function (done) {
       chai.request(app)
-        .get('/engage/thing')
+        .get('/engage/Thing')
         .end(function (err, res) {
           should.not.exist(err)
           res.should.have.status(200)
@@ -60,7 +60,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
       ]
       Thing.create(manyThings)
       chai.request(app)
-        .get('/engage/thing/')
+        .get('/engage/Thing/')
         .end(function (err, res) {
           should.not.exist(err)
           res.should.have.status(200)
@@ -80,7 +80,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
         description: 'should ADD a Thing'
       }
       chai.request(app)
-        .post('/engage/thing')
+        .post('/engage/Thing')
         .send(mockThing)
         .end(function (err, res) {
           should.not.exist(err)
@@ -108,7 +108,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
       var thing = new Thing(mockThing)
       thing.save()
       chai.request(app)
-        .post('/engage/thing')
+        .post('/engage/Thing')
         .send(mockThing)
         .end(function (err, res) {
           should.not.exist(err)
@@ -131,7 +131,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
       var thing = new Thing(mockThing)
       thing.save()
       chai.request(app)
-        .get(`/engage/thing/${thing._id}`)
+        .get(`/engage/Thing/${thing._id}`)
         .end(function (err, res) {
           should.not.exist(err)
           res.should.have.status(200)
@@ -160,7 +160,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
         disambiguatingDescription: 'Thing should be UPDATED'
       }
       chai.request(app)
-        .put(`/engage/thing/${thing._id}`)
+        .put(`/engage/Thing/${thing._id}`)
         .send(updateThing)
         .end(function (err, res) {
           should.not.exist(err)
@@ -182,7 +182,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
       var thing = new Thing(mockThing)
       thing.save()
       chai.request(app)
-        .delete(`/engage/thing/${thing._id}`)
+        .delete(`/engage/Thing/${thing._id}`)
         .end(function (err, res) {
           should.not.exist(err)
           res.should.have.status(200)

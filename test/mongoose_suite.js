@@ -24,8 +24,6 @@ exports.moogooseTestSuite = function (name, tests) {
         done()
         // console.log('Mongoose here');
       })
-
-      mongoose.plugin(require('../bones/models/adon'))
     })
     tests()
     after(function (done) {

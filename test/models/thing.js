@@ -4,7 +4,7 @@ let chai = require('chai')
 
 chai.should()
 
-var Thing = require('../../bones/models/thing')
+let Thing = require('@elioway/spider/schemas/2018.6.28/models/Thing')
 
 describe('Thing Model', function () {
   it('should validate', function () {

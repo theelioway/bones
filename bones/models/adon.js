@@ -19,6 +19,22 @@ module.exports = exports = function adon (schema, options) {
     }
   })
 
+  // name: {
+  //   type: String,
+  //   maxlength: [127, 'A 127 character or less name of the item.'],
+  //   required: [true, 'The name is required.']
+  // },
+  // alternateName: {
+  //   type: String,
+  //   maxlength: [255, 'A 255 character or less alias for the item.'],
+  //   required: [false, 'A description of the item which not required.']
+  // },
+  // disambiguatingDescription: {
+  //   type: String,
+  //   maxlength: [255, 'A 255 character or less alias for the item.'],
+  //   required: [true, 'The disambiguating description is required.']
+  // },
+
   schema.pre('save', function (next) {
     this.slug = slug(this.disambiguatingDescription)
     this.seoKeywords = uniquefy.uniquefy(this.slug)
