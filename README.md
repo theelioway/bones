@@ -33,7 +33,7 @@ So why do I have sinner modules requiring a bones module? Because I'm dumb.
 
 Okay, but this is what tests are for. The solution to the test solves a design flaw.
 
-So this branch holds the error.
+This branch holds the error and my fixes.
 
 // We want to be able to do this:
 ```ejs
@@ -48,12 +48,17 @@ Moving adon from bones/models to sinners/root fixes everything. very few changes
 
 So then I moved adon into sinners and got the tests working with adon as a module in the root if spiders.
 
-Now we'll:
+## Seeing is believing
+
 ```bash
-npm update spider
+git clone https://gitlab.com/elioschemers/bones/
+git checkout schoolboyerror
+npm install
+npm test
+npm run devstart
 ```
 
-
+## Curling is believing
 
 Get all Things
 ```bash
