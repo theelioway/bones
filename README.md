@@ -5,10 +5,33 @@
 > Dropping the pretence one thing is so different from another.
 **Tim Bushell**
 
-Simple, cruddy REST API for Schema.org models done the elioWay.
+REST API for Schema.org mongoose schema spidered the elioWay.
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+## Requirements
+
+* [mongo server](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+
+### Mongo issues
+
+Post Install: Doesn't start or can't find it
+```bash
+sudo mongo
+```
+Enter your sudo password then:
+
+```shell
+show dbs
+```
+If this works, you're good to go.
+
+If you get an error like "I can't see a server":
+```
+sudo systemctl unmask mongodb
+Unit mongodb.service does not exist, proceeding anyway.
+sudo service mongod start
+```
 ## Seeing is believing
 
 ```bash
@@ -17,21 +40,7 @@ cd bones
 npm install
 npm run devstart
 ```
-
-## Usage
-
-
-## Seeing is believing
-
-```bash
-git clone https://gitlab.com/elioschemers/bones/
-git checkout schoolboyerror
-npm install
-npm test
-npm run devstart
-```
-
-## Curling is believing
+## Curling is seeing
 
 Get all Things
 ```bash
@@ -60,15 +69,6 @@ curl -X PUT http://localhost:3030/engage/Thing/5b55beed33fa1d4ed364c85f \
 Remove Thing by ID
 ```bash
 curl -X DELETE http://localhost:3030/engage/Thing/5b55beed33fa1d4ed364c85f
-```
-
-## Mongo issues
-
-Post Install: Doesn't start or can't find it
-```
-sudo systemctl unmask mongodb
-Unit mongodb.service does not exist, proceeding anyway.
-sudo service mongod start
 ```
 
 ## Credits
