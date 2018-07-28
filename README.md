@@ -40,7 +40,20 @@ So this branch holds the error.
 <%= _NAME %>.plugin(require('adon'))
 ```
 
-So we moved adon as a main module into spider. Significantly it sits above schema. This is how we shall proceed. 
+So we moved adon as a main module into spider. Significantly it sits above schema. This is how we shall proceed.
+
+Here we go.
+
+Moving adon from bones/models to sinners/root fixes everything. very few changes. big change.
+
+So then I moved adon into sinners and got the tests working with adon as a module in the root if spiders.
+
+Now we'll:
+```bash
+npm update spider
+```
+
+
 
 Get all Things
 ```bash
