@@ -21,6 +21,27 @@ npm run devstart
 
 ## Usage
 
+Welcome to this special README on this branch only. So the problem is this.
+
+bones is an agnostic rest api which will be functioned (the elioWay) based on Schema.org `Things`
+
+sinner is a webscraper which builds mongoose schemas based on Schema.org `Things`
+
+Clearly... bones is dependant on sinner. I even have **sinner** as a dependencies in package.
+
+So why do I have sinner modules requiring a bones module? Because I'm dumb.
+
+Okay, but this is what tests are for. The solution to the test solves a design flaw.
+
+So this branch holds the error.
+
+// We want to be able to do this:
+```ejs
+<%= _NAME %>.plugin(require('adon'))
+```
+
+So we moved adon as a main module into spider. Significantly it sits above schema. This is how we shall proceed. 
+
 Get all Things
 ```bash
 curl -X GET http://localhost:3000/engage/Thing
