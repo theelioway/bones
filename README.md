@@ -2,13 +2,12 @@
 
 # bones
 
+> Dropping the pretence one thing is so different from another.
+**Tim Bushell**
+
 Simple, cruddy Rest API for Schema.org models done the elioWay.
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
-
-> Dropping the pretence one thing is so different from another.
-**Tim Bushell**
 
 ## Seeing is believing
 
