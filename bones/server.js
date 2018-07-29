@@ -8,5 +8,5 @@ const port = parseInt(process.env.PORT, 10) || 3030
 
 // start the server
 const server = app.listen(port, function () {
-  console.log(`App is running at: http://localhost:${server.address().port}`)
+  console.log(`API is RESTing at: http://localhost:${server.address().port}`)
 })

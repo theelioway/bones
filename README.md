@@ -97,4 +97,8 @@ curl -X DELETE http://localhost:3030/engage/Thing/5b55beed33fa1d4ed364c85f
 * [https://github.com/underscopeio/sinon-mongoose](https://github.com/underscopeio/sinon-mongoose)
 * [https://www.npmjs.com/package/mollusc](https://www.npmjs.com/package/mollusc)
 
+## License
+
+MIT © [Tim Bushell]()
+
 ![](apple-touch-icon.png)
