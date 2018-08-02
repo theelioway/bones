@@ -2,15 +2,14 @@
 
 var schemaVer = '2018.6.28'
 
-//
-//
-// exports.schema = function (req, res) {
-//   var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
-//   Thing.find({}, function (err, thing) {
-//     if (err) { res.send(err) }
-//     res.json(Thing.schema)
-//   })
-// }
+
+exports.schema = function (req, res) {
+  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
+  Thing.find({}, function (err, thing) {
+    if (err) { res.send(err) }
+    res.json(Thing.schema)
+  })
+}
 
 
 exports.list_all_things = function (req, res) {
