@@ -4,11 +4,9 @@ var schemaVer = '2018.6.28'
 
 
 exports.schema = function (req, res) {
+  console.log("schema")
   var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
-  Thing.find({}, function (err, thing) {
-    if (err) { res.send(err) }
-    res.json(Thing.schema)
-  })
+  res.json(Thing.schema.paths)
 }
 
 
