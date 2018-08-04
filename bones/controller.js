@@ -1,10 +1,10 @@
 'use strict'
 
-var schemaVer = '2018.6.28'
+// var schemaVer = '2018.6.28'
+var schemaVer = 'ThingOnAString'
 
 
 exports.schema = function (req, res) {
-  console.log("schema")
   var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
   res.json(Thing.schema.paths)
 }
@@ -28,6 +28,7 @@ exports.create_a_thing = function (req, res) {
           message: 'A record with this alternative name already exists.'
         })
       } else {
+        console.log(err)
         res.send(err)
       }
     }
