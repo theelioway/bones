@@ -50,8 +50,8 @@ curl -X GET http://localhost:3030/engage/Thing
 Add a Thing
 ```bash
 curl -X POST http://localhost:3030/engage/Thing \
-    -d name='Thing 1' \
-    -d disambiguatingDescription='Disambiguating the first thing we ever added'
+    -d name='Thing Red' \
+    -d disambiguatingDescription='Thing is red'
 ```
 
 Get a Thing
@@ -68,7 +68,7 @@ curl -X PUT http://localhost:3030/engage/Thing/5b55beed33fa1d4ed364c85f \
 
 Remove Thing by ID
 ```bash
-curl -X DELETE http://localhost:3030/engage/Thing/5b55beed33fa1d4ed364c85f
+curl -X DELETE http://localhost:3030/engage/Thing/5b617b518598fe12ae92d634
 ```
 
 ## Credits
