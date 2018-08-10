@@ -1,7 +1,7 @@
 'use strict'
 
 // var schemaVer = '2018.6.28'
-var schemaVer = 'ThingOnAString'
+var schemaVer = 'ThingOnAShoeString'
 
 
 var makeSafe = function(res) {
