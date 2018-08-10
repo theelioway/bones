@@ -28,7 +28,7 @@ exports.list_all_things = function(req, res) {
       res.send({error:err})
 		}
 		else {
-			res.send({note:docs})
+			res.send({things:thing})
     }
   })
 }
@@ -46,11 +46,12 @@ exports.create_a_thing = function(req, res) {
         })
       } else {
         console.log(err)
-        res.send(err)
+        res.send({error:err})
       }
     }
-    var j = res.json(thing)
-    return j
+		else {
+			res.send({thing:thing})
+    }
   })
 }
 
@@ -60,9 +61,11 @@ exports.read_a_thing = function(req, res) {
   var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
   Thing.findById(req.params.thingId, function(err, thing) {
     if (err) {
-      res.send(err)
+      res.send({error:err})
     }
-    res.json(thing)
+		else {
+			res.send({thing:thing})
+    }
   })
 }
 
@@ -76,9 +79,11 @@ exports.update_a_thing = function(req, res) {
     new: true
   }, function(err, thing) {
     if (err) {
-      res.send(err)
+      res.send({error:err})
     }
-    res.json(thing)
+		else {
+			res.send({thing:thing})
+    }
   })
 }
 
@@ -90,10 +95,10 @@ exports.delete_a_thing = function(req, res) {
     _id: req.params.thingId
   }, function(err, thing) {
     if (err) {
-      res.send(err)
+      res.send({error:err})
     }
-    res.json({
-      message: 'Thing successfully deleted'
-    })
+		else {
+			res.send({thing:'Thing successfully deleted'})
+    }
   })
 }
