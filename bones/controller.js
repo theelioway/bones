@@ -25,9 +25,11 @@ exports.list_all_things = function(req, res) {
   var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
   Thing.find({}, function(err, thing) {
     if (err) {
-      res.send(err)
+      res.send({error:err})
+		}
+		else {
+			res.send({note:docs})
     }
-    res.json(thing)
   })
 }
 
