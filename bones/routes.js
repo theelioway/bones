@@ -13,4 +13,5 @@ module.exports = function (app) {
 
   app.route('/schema/:thing')
   .get(controller.schema)
+  
 }
