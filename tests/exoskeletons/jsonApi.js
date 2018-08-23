@@ -1,7 +1,7 @@
 // Test the
 let chai = require('chai')
 
-var japiofy = require('../lib/japiofy')
+var jsonApi = require('../../bones/exoskeletons/jsonApi')
 
 chai.should()
 
@@ -23,7 +23,7 @@ var gud = {
 
 describe('japiofy function', function() {
   it('Make bones standard output conform to JSONAPI', function() {
-    var japiofied = japiofy.jsonApiOrgify(bad, "Thing")
-    japiofied.should.deep.eql(gud)
+    var jsonApied = jsonApi.outOf(bad, "Thing")
+    jsonApied.should.deep.eql(gud)
   })
 })

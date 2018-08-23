@@ -1,19 +1,39 @@
 // require('sinon')
 // require('sinon-mongoose')
 
-let Thing = require('@elioway/spider/schemas/ThingOnAShoeString/models/Thing')
+let Thing = require('@elioway/spider/schemas/TestVersion/models/Thing')
 
 let chai = require('chai')
 let chaiHttp = require('chai-http')
 let app = require('../bones/app')
-let suites = require('./mongoose_suite')
+let suites = require('./utils/mongoose_suite')
 let should = chai.should()
+
+const mockRequire = require("mock-require");
+const importFresh = require("import-fresh");
+
+// set up config overrides
+process.env.NODE_CONFIG = JSON.stringify({
+  BONES: {
+    endoskeleton: "TestVersion",
+    exoskeleton: "default",
+  }
+});
+
+const testConfig = importFresh("config");
+expect(
+  testConfig.get("BONES.exoskeleton"),
+  "config value not set to 1"
+).to.equal("default");
+
+mockRequire("config", testConfig);
 
 chai.use(chaiHttp)
 
-suites.moogooseTestSuite('bones.app', function () {
+suites.moogooseTestSuite('bones.default.app', function () {
   describe('bones.routes', function () {
     describe('bones.controller', function () {
+
       beforeEach(function (done) {
         Thing.remove({}, (err) => {
           should.not.exist(err)
@@ -197,6 +217,7 @@ suites.moogooseTestSuite('bones.app', function () {
             })
         })
       })
+
     })
   })
 })
