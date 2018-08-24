@@ -4,8 +4,11 @@
 // test.
 
 before(function (done) {
+  process.env.ENDOSKELETON = 'TestVersion'
+  process.env.EXOSKELETON = 'boney'
+  process.env.TESTDATABASENAME = 'testElioDb'
+  process.env.MONGODB = 'mongodb://localhost:27017/'
   done()
-  // console.log('Tests have started');
 })
 
 beforeEach(function () {
@@ -17,6 +20,5 @@ afterEach(function () {
 })
 
 after(function (done) {
-  done()
   // console.log('Tests have completed');
 })

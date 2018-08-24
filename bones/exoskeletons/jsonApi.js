@@ -1,15 +1,29 @@
 'use strict'
-var config = require('config');
 
 function isDict(v) {
     return typeof v==='object' && v!==null && !(v instanceof Array) && !(v instanceof Date);
 }
 
-var jsonApiOfThing = function(thing, typeOfThing) {
+// http://jsonapi.org/format/#status
+// {
+//   'data': {
+//     'type': 'articles',
+//     'id': '1',
+//     'attributes': {
+//       // ... this article's attributes
+//     },
+//     'relationships': {
+//       // ... this article's relationships
+//     }
+//   }
+// }
+
+
+function jsonApiExoSkeleton(thing, typeOfThing) {
   let newData = {}
   console.log(thing)
   newData['type'] = typeOfThing
-  newData['id'] = thing["_id"]
+  newData['id'] = thing['_id']
   newData['attributes'] = {}
   for (var key in thing) {
     if (
@@ -23,17 +37,43 @@ var jsonApiOfThing = function(thing, typeOfThing) {
   return newData
 }
 
-var jsonApiListOfThings = function(thing, typeOfThing) {
+var jsonApiOfThing = function(Thing, thing, typeOfThing) {
+  return {
+    'jsonapi': {
+      'version': '1.0'
+    },
+    'data': jsonApiExoSkeleton(thing, typeOfThing),
+    'meta': Thing.schema.paths
+  }
+}
+
+var jsonApiListOfThings = function(Thing, thing, typeOfThing) {
   let list = []
   for (let record in thing) {
     list.push(
-      jsonApiOrgify(thing[record], typeOfThing)
+      jsonApiExoSkeleton(thing[record], typeOfThing)
     )
   }
-  return list
+  return {
+    'jsonapi': {
+      'version': '1.0'
+    },
+    'data': list,
+    'meta': Thing.schema.paths
+  }
+}
+
+var jsonApiMetaOfThing = function(Thing) {
+  return {
+    'jsonapi': {
+      'version': '1.0'
+    },
+    'meta': Thing.schema.paths
+  }
 }
 
 module.exports = {
-  outOf: jsonApiOfThing,
-  listOutOf: jsonApiListOfThings,
+  'outOf': jsonApiOfThing,
+  'listOutOf': jsonApiListOfThings,
+  'metaOf': jsonApiMetaOfThing
 }

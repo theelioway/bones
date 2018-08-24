@@ -1,29 +1,13 @@
 // require('sinon')
 // require('sinon-mongoose')
 
-let Thing = require('@elioway/spider/schemas/TestVersion/models/Thing')
+let Thing = require('@elioway/spider/endoskeletons/TestVersion/models/Thing')
 
 let chai = require('chai')
 let chaiHttp = require('chai-http')
 let app = require('../bones/app')
 let suites = require('./utils/mongoose_suite')
 let should = chai.should()
-
-// set up config overrides
-process.env.NODE_CONFIG = JSON.stringify({
-  BONES: {
-    endoskeleton: "TestVersion",
-    exoskeleton: "default",
-  }
-});
-
-const testConfig = importFresh("config");
-expect(
-  testConfig.get("BONES.exoskeleton"),
-  "config value not set to 1"
-).to.equal("default");
-
-mockRequire("config", testConfig);
 
 chai.use(chaiHttp)
 

@@ -9,13 +9,12 @@
 // //     });
 // //   });
 // // }
-
 let mongoose = require('mongoose')
 
 exports.moogooseTestSuite = function (name, tests) {
   describe(name, function () {
     before(function (done) {
-      mongoose.connect('mongodb://localhost:27017/bonesTest', {
+      mongoose.connect(process.env.MONGODB + process.env.TESTDATABASENAME, {
         useNewUrlParser: true
       })
       const db = mongoose.connection
