@@ -3,15 +3,12 @@ const exoSkeleton = require('./skeleton')
 
 // TODO: Must be a smoother way. Should this function wrap the others?
 var makeSafe = function(res, method) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  res.header('Access-Control-Allow-Methods', method)
+
   return res
 }
 
 // TODO: This is overkill surely. Get rid of this ugly code.
-var schemaRoots = function(req) {
-  let schemaName = req.params.thing
+var singularPronoun = function(schemaName) {
   if (schemaName.endsWith('s')) {
     schemaName = schemaName.slice(0, -1)
   }
@@ -24,6 +21,23 @@ var schemaRoots = function(req) {
 //   var Thing = require(`${endoSkeleton}/${schemaName}`)
 //   return Thing, schemaName
 // }
+function somethingLikeThis(method, req, res) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  res.header('Access-Control-Allow-Methods', method)
+  let endoSkeleton = `@elioway/spider/endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
+  let schemaName = req.params.thing
+  if (schemaName.endsWith('s')) {
+    schemaName = schemaName.slice(0, -1)
+  }
+  schemaName = schemaName.charAt(0).toUpperCase() + schemaName.slice(1)
+  var Thing = require(`${endoSkeleton}/${schemaName}`)
+  meta = {
+    schemaName: schemaName,
+    Thing: Thing,
+  }
+}
+
 
 exports.schema = function(req, res) {
   let endoSkeleton = `@elioway/spider/endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
@@ -36,18 +50,25 @@ exports.schema = function(req, res) {
 }
 
 exports.list_all_things = function(req, res) {
+  let method = 'GET'
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  res.header('Access-Control-Allow-Methods', method)
+
   let endoSkeleton = `@elioway/spider/endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
-  console.log('BONES.controller: endoSkeleton: ' + endoSkeleton)
-  res = makeSafe(res, 'GET')
-  var schemaName = schemaRoots(req)
+  var schemaName = singularPronoun(req.params.thing)
   var Thing = require(`${endoSkeleton}/${schemaName}`)
+  var meta = {
+    schemaName: schemaName,
+    Thing: Thing,
+  }
   Thing.find({}, function(err, things) {
     if (err) {
       res.send({
         errors: [err]
       })
     } else {
-      res.send(exoSkeleton.listOutOf(Thing, things, schemaName))
+      res.send(exoSkeleton.listOutOf(meta, things))
     }
   })
   // console.log(`request: list_all_things type ${schemaName}`)
