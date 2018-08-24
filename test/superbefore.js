@@ -4,10 +4,7 @@
 // test.
 
 before(function (done) {
-  process.env.ENDOSKELETON = 'TestVersion'
-  process.env.EXOSKELETON = 'boney'
-  process.env.TESTDATABASENAME = 'testElioDb'
-  process.env.MONGODB = 'mongodb://localhost:27017/'
+  require('dotenv').config()
   done()
 })
 
@@ -19,6 +16,6 @@ afterEach(function () {
   // runs after each test in this block
 })
 
-after(function (done) {
+after(function () {
   // console.log('Tests have completed');
 })

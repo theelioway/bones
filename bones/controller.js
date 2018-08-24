@@ -1,6 +1,7 @@
 'use strict'
+require('dotenv').config()
 const exoSkeleton = require('./skeleton')
-const endoSkeleton = `@elioway/spider/endoskeletons/` + process.env.ENDOSKELETON + `/models`
+const endoSkeleton = `@elioway/spider/endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
 
 
 // TODO: Must be a smoother way. Should this function wrap the others?
@@ -116,7 +117,7 @@ exports.delete_a_thing = function(req, res) {
         errors: [err]
       })
     } else {
-      res.send(exoSkeleton.metaOf(Thing))
+      res.send(exoSkeleton.deleteOf(Thing))
     }
   })
 }

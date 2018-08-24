@@ -75,5 +75,6 @@ var jsonApiMetaOfThing = function(Thing) {
 module.exports = {
   'outOf': jsonApiOfThing,
   'listOutOf': jsonApiListOfThings,
-  'metaOf': jsonApiMetaOfThing
+  'metaOf': jsonApiMetaOfThing,
+  'deleteOf': jsonApiMetaOfThing
 }
