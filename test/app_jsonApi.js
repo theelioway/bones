@@ -13,33 +13,22 @@ const should = chai.should()
 
 chai.use(chaiHttp)
 
-suites.moogooseTestSuite('bones.app.boney', function() {
-  describe('bones.routes.boney', function() {
-    describe('bones.controller.boney', function() {
+suites.moogooseTestSuite('bones.app.jsonApi', function() {
+  describe('bones.routes.jsonApi', function() {
+    describe('bones.controller.jsonApi', function() {
 
       this.app = null
 
       beforeEach(function(done) {
-        process.env['ENDOSKELETON'] = 'TestVersion'
-        process.env['EXOSKELETON'] = 'boney'
+        process.env['ENDOSKELETON'] = 'ThingOnAShoeString'
+        process.env['EXOSKELETON'] = 'jsonApiV1.0'
         this.app = importFresh('../bones/app')
+        console.log(process.env['EXOSKELETON'])
         Thing.remove({}, (err) => {
           should.not.exist(err)
           done()
         })
       })
-      //
-      // describe('/GET nonexistent-route/:thing', function() {
-      //   it('should 404', function(done) {
-      //     chai.request(this.app)
-      //       .get('/nonexistent-route/Thing')
-      //       .end(function(err, res) {
-      //         should.not.exist(err)
-      //         res.should.have.status(404)
-      //         done()
-      //       })
-      //   })
-      // })
       //
       // describe('/GET engage/:thing', function() {
       //   it('should GET no Things when there are no Things', function(done) {
@@ -48,12 +37,13 @@ suites.moogooseTestSuite('bones.app.boney', function() {
       //       .end(function(err, res) {
       //         should.not.exist(err)
       //         res.should.have.status(200)
-      //         res.body.should.be.an('array')
+      //         res.body.data.should.be.an('array')
       //         let b = []
       //         b.should.be.an('array')
       //         b.length.should.be.eql(0)
-      //         res.body.should.deep.equal(b)
-      //         res.body.length.should.be.eql(0)
+      //         res.body.data.should.deep.equal(b)
+      //         res.body.data.length.should.be.eql(0)
+      //         res.body.meta.should.not.be.null
       //         done()
       //       })
       //   })
@@ -78,8 +68,9 @@ suites.moogooseTestSuite('bones.app.boney', function() {
             .end(function(err, res) {
               should.not.exist(err)
               res.should.have.status(200)
-              res.body.should.be.a('array')
-              res.body.length.should.be.eql(2)
+              res.body.data.should.be.a('array')
+              res.body.data.length.should.be.eql(2)
+              res.body.meta.should.not.be.null
               done()
             })
         })
@@ -100,14 +91,11 @@ suites.moogooseTestSuite('bones.app.boney', function() {
       //         should.not.exist(err)
       //         res.should.have.status(200)
       //         res.should.be.json
-      //         res.body.name.should.eql(mockThing.name)
-      //         res.body.disambiguatingDescription.should.eql(mockThing.disambiguatingDescription)
-      //         res.body.alternateName.should.eql(mockThing.alternateName)
-      //         res.body.description.should.eql(mockThing.description)
-      //         res.body.slug.should.eql('should-add-a-thing')
-      //         res.body.seoKeywords.should.eql('add thing')
-      //         res.body.engaged.should.be.eql('false')
-      //         res.body._id.should.not.be.null
+      //         res.body.data.id.should.not.be.null
+      //         res.body.data.type.should.eql('Thing')
+      //         res.body.data.attributes.name.should.eql(mockThing.name)
+      //         res.body.data.attributes.disambiguatingDescription.should.eql(mockThing.disambiguatingDescription)
+      //         res.body.meta.should.not.be.null
       //         done()
       //       })
       //   })
@@ -129,12 +117,11 @@ suites.moogooseTestSuite('bones.app.boney', function() {
       //         should.not.exist(err)
       //         res.should.have.status(200)
       //         res.should.be.json
-      //         res.body.name.should.eql(mockThing.name)
-      //         res.body.disambiguatingDescription.should.eql(mockThing.disambiguatingDescription)
-      //         res.body.slug.should.eql('should-get-a-thing')
-      //         res.body.seoKeywords.should.eql('thing')
-      //         res.body.engaged.should.be.eql('false')
-      //         res.body._id.should.not.be.null
+      //         res.body.data.id.should.not.be.null
+      //         res.body.data.type.should.eql('Thing')
+      //         res.body.data.attributes.name.should.eql(mockThing.name)
+      //         res.body.data.attributes.disambiguatingDescription.should.eql(mockThing.disambiguatingDescription)
+      //         res.body.meta.should.not.be.null
       //         done()
       //       })
       //   })
@@ -159,8 +146,11 @@ suites.moogooseTestSuite('bones.app.boney', function() {
       //         should.not.exist(err)
       //         res.should.have.status(200)
       //         res.should.be.json
-      //         res.body.name.should.eql(updateThing.name)
-      //         res.body.disambiguatingDescription.should.eql(updateThing.name)
+      //         res.body.data.id.should.not.be.null
+      //         res.body.data.type.should.eql('Thing')
+      //         res.body.data.attributes.name.should.eql(updateThing.name)
+      //         res.body.data.attributes.disambiguatingDescription.should.eql(updateThing.disambiguatingDescription)
+      //         res.body.meta.should.not.be.null
       //         done()
       //       })
       //   })
@@ -180,7 +170,7 @@ suites.moogooseTestSuite('bones.app.boney', function() {
       //         should.not.exist(err)
       //         res.should.have.status(200)
       //         res.should.be.json
-      //         res.body.msg.should.eql('Thing successfully deleted')
+      //         res.body.meta.should.not.be.null
       //         done()
       //       })
       //   })

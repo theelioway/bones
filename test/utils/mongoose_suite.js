@@ -10,12 +10,11 @@
 // //   });
 // // }
 let mongoose = require('mongoose')
-require('dotenv').config()
 
 exports.moogooseTestSuite = function (name, tests) {
   describe(name, function () {
     before(function (done) {
-      let cnnStr = '' + process.env['MONGODB'] + process.env['DATABASENAME']
+      let cnnStr = '' + process.env['MONGODB'] + "testDb"
       mongoose.connect(cnnStr, {
         useNewUrlParser: true
       })
@@ -23,14 +22,12 @@ exports.moogooseTestSuite = function (name, tests) {
       db.on('error', console.error.bind(console, 'connection error'))
       db.once('open', function () {
         done()
-        // console.log('Mongoose here');
       })
     })
     tests()
     after(function (done) {
       mongoose.connection.db.dropDatabase(function () {
         mongoose.connection.close(done)
-        // console.log('Mongoose gone');
       })
     })
   })

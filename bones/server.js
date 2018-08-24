@@ -1,12 +1,12 @@
 'use strict'
 
-require('dotenv').config()
+require('dotenv').config();
 
 require('./database')
 const app = require('./app')
 
 // set the port
-const port = parseInt(process.env.PORT, 10) || process.env['PORT']
+const port = parseInt(process.env['PORT'], 10)
 
 
 // start the server

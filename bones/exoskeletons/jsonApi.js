@@ -1,9 +1,5 @@
 'use strict'
 
-function isDict(v) {
-    return typeof v==='object' && v!==null && !(v instanceof Array) && !(v instanceof Date);
-}
-
 // http://jsonapi.org/format/#status
 // {
 //   'data': {
@@ -18,10 +14,13 @@ function isDict(v) {
 //   }
 // }
 
+function isDict(v) {
+    return typeof v==='object' && v!==null && !(v instanceof Array) && !(v instanceof Date);
+}
 
 function jsonApiExoSkeleton(thing, typeOfThing) {
   let newData = {}
-  console.log(thing)
+  // console.log('jsonApiExoSkeleton:' + thing)
   newData['type'] = typeOfThing
   newData['id'] = thing['_id']
   newData['attributes'] = {}
