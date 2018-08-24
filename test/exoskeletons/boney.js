@@ -6,6 +6,7 @@ const Thing = require('@elioway/spider/endoskeletons/TestVersion/models/Thing')
 const boney = require('../../bones/exoskeletons/boney')
 
 var bad_data = require('../utils/bad_data.json')
+// mock the moongoose object .toObject() method
 bad_data['toObject'] = function () {
   return bad_data
 }

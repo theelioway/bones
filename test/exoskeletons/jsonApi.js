@@ -7,6 +7,7 @@ const jsonApi = require('../../bones/exoskeletons/jsonApi')
 
 var gud_data = require('../utils/gud_data.json')
 var bad_data = require('../utils/bad_data.json')
+// mock the moongoose object .toObject() method
 bad_data['toObject'] = function () {
   return bad_data
 }
