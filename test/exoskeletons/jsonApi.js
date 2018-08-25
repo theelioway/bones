@@ -1,7 +1,6 @@
 'use strict'
 const chai = require('chai')
 chai.should()
-
 const Thing = require('@elioway/spider/endoskeletons/TestVersion/models/Thing')
 const jsonApi = require('../../bones/exoskeletons/jsonApi')
 
