@@ -93,13 +93,11 @@ curl -X DELETE http://localhost:3030/engage/Thing/5b617b518598fe12ae92d634
 * [http://mongoosejs.com/](http://mongoosejs.com/)
 * [https://mochajs.org/](https://mochajs.org/)
 * [http://www.chaijs.com/](http://www.chaijs.com/)
-* [http://sinonjs.org/](http://sinonjs.org/)
-* [https://github.com/underscopeio/sinon-mongoose](https://github.com/underscopeio/sinon-mongoose)
 * [https://www.npmjs.com/package/mollusc](https://www.npmjs.com/package/mollusc)
 
 ## License
 
-MIT [Tim Bushell]()
+MIT [Tim Bushell](tcbushell@gmail.com)
 
 [elioway](https://gitlab.com/elioway/way/blob/master/README.md)
 
