@@ -1,10 +1,3 @@
-// require('sinon')
-// require('sinon-mongoose')
-/*
-// 'use strict'  // < Things it doesn't like without...
-// importFresh('/home/tim/repo/dev/elio/elioData/bones/bones/app.js') < ...this
-*/
-
 require('dotenv').config()
 
 const Thing = require('@elioway/spider/endoskeletons/TestVersion/models/Thing')
@@ -22,25 +15,9 @@ suites.moogooseTestSuite('bones.adon.boney', function() {
     describe('bones.controller.adon.boney', function() {
 
       beforeEach(function(done) {
-        /*
-        // Need these to ensure that our methods load the variables for
-        // testing this skeleton.
-        */
         process.env['ENDOSKELETON'] = "TestVersion"
         process.env['EXOSKELETON'] = "boney"
-        /*
-        // Need this otherwise it uses the cached one and doesn't use this
-        // new env settings. Try of any method
-        */
         importFresh('../bones/controller')
-        /*
-        // But you don't need to import this fresh because when controller
-        // imports this, it does so because it is using the boney exoskeleton.
-        // `importFresh('../bones/exoskeletons/boney')`  <-- don't need this
-        */
-        /*
-        // Delete all records to ensure the same starting point.
-        */
         Thing.remove({}, (err) => {
           should.not.exist(err)
           done()
@@ -54,11 +31,6 @@ suites.moogooseTestSuite('bones.adon.boney', function() {
             disambiguatingDescription: 'should ADD a Thing once'
           }
           var thing = new Thing(mockThing)
-          // Need to have the tests as a callback function of the mongoose
-          // method so that mongoose has a chance to deliver its payload before
-          // you test whether the payload has been delivered because believe me,
-          // it probably won't have been delivered if you just go ahead and
-          // immediately use chai to make that request. See?
           thing.save(function() {
             chai.request(importFresh('../bones/app.js'))
               .post('/engage/Thing')

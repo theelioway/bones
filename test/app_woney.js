@@ -1,6 +1,3 @@
-// require('sinon')
-// require('sinon-mongoose')
-
 require('dotenv').config();
 
 const Thing = require('@elioway/spider/endoskeletons/TestVersion/models/Thing')
