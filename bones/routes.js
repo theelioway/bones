@@ -12,5 +12,5 @@ module.exports = function (app) {
     .delete(controller.delete_a_thing)
 
   app.route('/schema/:thing')
-  .get(controller.schema)
+    .get(controller.schema)
 }

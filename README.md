@@ -99,7 +99,7 @@ curl -X DELETE http://localhost:3030/engage/Thing/5b617b518598fe12ae92d634
 
 ## License
 
-MIT © [Tim Bushell]()
+MIT [Tim Bushell]()
 
 [elioway](https://gitlab.com/elioway/way/blob/master/README.md)
 
