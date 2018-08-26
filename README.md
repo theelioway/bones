@@ -32,14 +32,34 @@ sudo systemctl unmask mongodb
 Unit mongodb.service does not exist, proceeding anyway.
 sudo service mongod start
 ```
-## Seeing is believing
+
+## Install
 
 ```bash
 git clone https://gitlab.com/elioschemers/bones/
 cd bones
 npm install
+```
+
+### Config
+
+Create a `.env` file in the root directory. It should have the following
+settings:
+
+```
+ENDOSKELETON='ThingOnAShoeString'|see spider app for more options
+EXOSKELETON='boney'|'jsonApi'|write one!
+DATABASENAME='elioWay'
+MONGODB='mongodb://localhost:27017/'
+ALLOWED_HOST='http://localhost:4200'
+PORT=3030
+```
+
+## Seeing is believing
+```
 npm run devstart
 ```
+
 ## Curling is seeing
 
 Get all Things
