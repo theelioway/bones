@@ -1,4 +1,8 @@
 'use strict'
+
+/**
+ * Export the controllers as routes.
+ */
 module.exports = function (app) {
   var controller = require('./controller')
 
@@ -8,7 +12,7 @@ module.exports = function (app) {
 
   app.route('/engage/:thing/:thingId')
     .get(controller.read_a_thing)
-    .put(controller.update_a_thing)
+    .patch(controller.update_a_thing)
     .delete(controller.delete_a_thing)
 
   app.route('/schema/:thing')

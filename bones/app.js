@@ -2,20 +2,31 @@
 require('request')
 const express = require('express')
 const bodyParser = require('body-parser')
-const cors = require('cors')({origin: true})
+const cors = require('cors')({
+  origin: true
+})
 
-// create the express app
+/**
+ * Create the express app.
+ */
 const app = express()
-app.use(cors)
 
-// configure the body-parser to accept urlencoded bodies and json data
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
-  .use(bodyParser.json())
+/**
+ * Configure the body-parser to accept urlencoded bodies and json data
+ */
+app
+  .use(cors)
+  .use(bodyParser.urlencoded({
+    extended: true
+  }))
+  .use(bodyParser.json({
+    type: 'application/vnd.api+json'
+  }))
 
-var routes = require('./routes') // importing route
-routes(app) // register the route
+var routes = require('./routes')  // importing routes
+routes(app)  // register the route
 
-// export
+/**
+ * Export the app
+ */
 module.exports = app
