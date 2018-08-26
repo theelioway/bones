@@ -1,8 +1,8 @@
 /**
  * jsonApi exoSkeleton for transforming requests and responses to this REST standard.
- */
- 'use strict'
  * http://jsonapi.org/format/#status
+ */
+'use strict'
 const boney = require('./boney')
 
 /**
@@ -97,7 +97,7 @@ var jsonApiMetaOfThing = function(meta) {
 }
 
 /**
- * Every route ends with a mongoose call, but under jsonApi its starts by
+ * Every route ends with a mongoose call, but under jsonApi itsstarts by
  * adding the required headers, then calls the standard `boney.anatomyOf`
  * wrapper.
  * @param {string} method HTTP method as a string which we can add to HEADERs.
