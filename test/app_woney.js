@@ -109,8 +109,6 @@ suites.moogooseTestSuite('bones.app.boney', function() {
 
       describe('/GET engage/:thing/:id', function() {
         it('should GET a Thing', function(done) {
-          // hint - don't use the same thing mock for these tests which
-          // can run sychronously causing unique errors.
           var mockThing = {
             name: 'should GET a boney Thing',
             disambiguatingDescription: 'should GET a boney Thing'

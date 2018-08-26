@@ -45,8 +45,6 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
 
       describe('/GET engage/:thing', function() {
         it('should GET many Things when there are many Things', function(done) {
-          // hint - don't use the same thing mock for these tests which
-          // can run sychronously causing unique issues.
           var manyThings = [{
               name: 'should GET many jsonApi Things',
               disambiguatingDescription: 'should GET many jsonApi Things'
@@ -101,8 +99,6 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
 
       describe('/GET engage/:thing/:id', function() {
         it('should GET a Thing', function(done) {
-          // hint - don't use the same thing mock for these tests which
-          // can run sychronously causing unique errors.
           var mockThing = {
             name: 'should GET a jsonApi Thing',
             disambiguatingDescription: 'should GET a jsonApi Thing'

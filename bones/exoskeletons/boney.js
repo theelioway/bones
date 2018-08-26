@@ -1,14 +1,38 @@
+/**
+ * exoSkeleton with few transformations because `boney` is bone's default REST format.
+ *
+ * Despite not doing very much, this module is required because all routes
+ * must call one of the exoSkeletons. `boney` is therefore a good template
+ * for creating a new exoSkeleton.
+ */
 'use strict'
 const utils = require('./utils')
 
+/**
+ * Prepare the boney request data ready to be passed into a mongoose method.
+ * @param {Object} req An http request.
+ * @returns {json} The data prepped for a boney response.
+ */
 function Acquire(req) {
   return req.body
 }
 
+/**
+ * Prepare a single data object correctly for the boney format.
+ * @param {json} meta Info about the request, including the Thing's schema.
+ * @param {Object} data mongoose data object.
+ * @returns {json} The data prepped for a boney response.
+ */
 var OfThing = function(meta, data) {
   return data.toObject()
 }
 
+/**
+ * Prepare a GET all response correctly for the boney format.
+ * @param {json} meta Info about the request, including the Thing's schema.
+ * @param {Object} data mongoose list object.
+ * @returns {json} The list prepped for a boney response.
+ */
 var ListOfThings = function(meta, data) {
   let list = []
   for (let record in data) {
@@ -19,14 +43,34 @@ var ListOfThings = function(meta, data) {
   return list
 }
 
+/**
+ * Prepare a SCHEMA route's response correctly for the boney format.
+ * @param {json} meta Info about the request, including the Thing's schema.
+ * @returns {json} The Thing schema.
+ */
 var MetaOfThing = function(meta) {
   return meta.Thing.schema.paths
 }
 
+/**
+ * Prepare a DELETE route's response correctly for the boney format.
+ * @param {json} meta Info about the request, including the Thing's schema.
+ * @param {Object} data mongoose data object.
+ * @returns {json} A message for a boney response.
+ */
 var DeleteOfThing = function(meta, data) {
   return {msg: 'Thing successfully deleted'}
 }
 
+/**
+ * Every route ends with a mongoose call, but starts with this wrapper which
+ * picks out all the relevant params and building the requirements for the
+ * `mongooseCall`.
+ * @param {string} method HTTP method as a string which we can add to HEADERs.
+ * @param {Object} req HTTP request object.
+ * @param {Object} res HTTP response object.
+ * @param {calback} mongooseCall mongoose data object.
+ */
 function AnatomyOf(method, req, res, mongooseCall) {
   let endoSkeleton = `@elioway/spider/endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
   var schemaName = utils.singularPronoun(req.params.thing)
@@ -38,6 +82,9 @@ function AnatomyOf(method, req, res, mongooseCall) {
   mongooseCall(req, res, Thing, meta)
 }
 
+/**
+ * Export these methods with standardized method names.
+ */
 module.exports = {
   'acquire': Acquire,
   'outOf': OfThing,
