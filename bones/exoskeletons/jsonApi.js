@@ -98,7 +98,7 @@ var jsonApiMetaOfThing = function(meta) {
 
 /**
  * Every route ends with a mongoose call, but under jsonApi itsstarts by
- * adding the required headers, then calls the standard `boney.anatomyOf`
+ * adding the required headers, then calls the standard `boney.thenMongoose`
  * wrapper.
  * @param {string} method HTTP method as a string which we can add to HEADERs.
  * @param {Object} req HTTP request object.
@@ -109,7 +109,7 @@ function jsonApiAnatomyOf(method, req, res, mongooseCall) {
   res.setHeader('Access-Control-Allow-Origin', process.env['ALLOWED_HOST'])
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   res.header('Access-Control-Allow-Methods', method)
-  boney.anatomyOf(method, req, res, mongooseCall)
+  boney.thenMongoose(method, req, res, mongooseCall)
 }
 
 /**
@@ -121,5 +121,5 @@ module.exports = {
   'listOutOf': jsonApiListOfThings,
   'metaOf': jsonApiMetaOfThing,
   'deleteOf': jsonApiMetaOfThing,
-  'anatomyOf': jsonApiAnatomyOf,
+  'thenMongoose': jsonApiAnatomyOf,
 }

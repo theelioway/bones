@@ -63,7 +63,7 @@ var DeleteOfThing = function(meta, data) {
 }
 
 /**
- * Every route ends with a mongoose call, but starts with this wrapper which
+ * Every route requires a mongoose call, but this wrapper first which
  * picks out all the relevant params and building the requirements for the
  * `mongooseCall`.
  * @param {string} method HTTP method as a string which we can add to HEADERs.
@@ -71,7 +71,7 @@ var DeleteOfThing = function(meta, data) {
  * @param {Object} res HTTP response object.
  * @param {calback} mongooseCall mongoose data object.
  */
-function AnatomyOf(method, req, res, mongooseCall) {
+function MongooseCall(method, req, res, mongooseCall) {
   let endoSkeleton = `@elioway/spider/endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
   var schemaName = utils.singularPronoun(req.params.thing)
   var Thing = require(`${endoSkeleton}/${schemaName}`)
@@ -91,5 +91,5 @@ module.exports = {
   'listOutOf': ListOfThings,
   'metaOf': MetaOfThing,
   'deleteOf': DeleteOfThing,
-  'anatomyOf': AnatomyOf,
+  'thenMongoose': MongooseCall,
 }

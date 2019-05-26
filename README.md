@@ -36,7 +36,7 @@ sudo service mongod start
 ## Install
 
 ```bash
-git clone https://gitlab.com/elioschemers/bones/
+git clone https://gitlab.com/eliodata/bones/
 cd bones
 npm install
 ```

@@ -6,7 +6,7 @@ const exoSkeleton = require(exoSkeletonPath)
  * GET schema route.
  */
 exports.schema = function(req, res) {
-  exoSkeleton.anatomyOf('GET', req, res, function(req, res, Thing, meta) {
+  exoSkeleton.thenMongoose('GET', req, res, function(req, res, Thing, meta) {
     res.send(exoSkeleton.metaOf(meta))
   })
   // console.log('BONES: schema')
@@ -16,7 +16,7 @@ exports.schema = function(req, res) {
  * GET all route.
  */
 exports.list_all_things = function(req, res) {
-  exoSkeleton.anatomyOf('GET', req, res, function(req, res, Thing, meta) {
+  exoSkeleton.thenMongoose('GET', req, res, function(req, res, Thing, meta) {
     Thing.find(function(err, things) {
       if (err) {
         res.send({
@@ -34,7 +34,7 @@ exports.list_all_things = function(req, res) {
  * GET by id route.
  */
 exports.read_a_thing = function(req, res) {
-  exoSkeleton.anatomyOf('GET', req, res, function(req, res, Thing, meta) {
+  exoSkeleton.thenMongoose('GET', req, res, function(req, res, Thing, meta) {
     Thing.findById(req.params.thingId, function(err, thing) {
       if (err) {
         res.send({
@@ -52,7 +52,7 @@ exports.read_a_thing = function(req, res) {
  * POST route
  */
 exports.create_a_thing = function(req, res) {
-  exoSkeleton.anatomyOf('POST', req, res, function(req, res, Thing, meta) {
+  exoSkeleton.thenMongoose('POST', req, res, function(req, res, Thing, meta) {
     let newThing = new Thing(exoSkeleton.acquire(req))
     newThing.save(function(err, thing) {
       if (err) {
@@ -77,7 +77,7 @@ exports.create_a_thing = function(req, res) {
  * PATCH route.
  */
 exports.update_a_thing = function(req, res) {
-  exoSkeleton.anatomyOf('PATCH', req, res, function(req, res, Thing, meta) {
+  exoSkeleton.thenMongoose('PATCH', req, res, function(req, res, Thing, meta) {
     Thing.findOneAndUpdate({
       _id: req.params.thingId
     }, exoSkeleton.acquire(req), {
@@ -99,7 +99,7 @@ exports.update_a_thing = function(req, res) {
  * DELETE route.
  */
 exports.delete_a_thing = function(req, res) {
-  exoSkeleton.anatomyOf('DELETE', req, res, function(req, res, Thing, meta) {
+  exoSkeleton.thenMongoose('DELETE', req, res, function(req, res, Thing, meta) {
     Thing.deleteOne({
       _id: req.params.thingId
     }, function(err, thing) {
