@@ -127,6 +127,6 @@ curl -X DELETE http://localhost:3030/engage/Thing/5b617b518598fe12ae92d634
 
 MIT [Tim Bushell](tcbushell@gmail.com)
 
-[elioWay](https://gitlab.com/elioway/theElioWay/blob/master/README.md)
+[elioWay](https://gitlab.com/elioway/elio/blob/master/README.md)
 
 ![](apple-touch-icon.png)
