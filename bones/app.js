@@ -16,15 +16,19 @@ const app = express()
  */
 app
   .use(cors)
-  .use(bodyParser.urlencoded({
-    extended: true
-  }))
-  .use(bodyParser.json({
-    type: 'application/vnd.api+json'
-  }))
+  .use(
+    bodyParser.urlencoded({
+      extended: true
+    })
+  )
+  .use(
+    bodyParser.json({
+      type: 'application/vnd.api+json'
+    })
+  )
 
-var routes = require('./routes')  // importing routes
-routes(app)  // register the route
+var routes = require('./routes') // importing routes
+routes(app) // register the route
 
 /**
  * Export the app

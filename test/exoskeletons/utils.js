@@ -3,7 +3,6 @@ const chai = require('chai')
 chai.should()
 const utils = require('../../bones/exoskeletons/utils')
 
-
 describe('exoskeleton.utils', function() {
   it('.singularPronoun() show remove plural things', function() {
     var utiled = utils.singularPronoun('Things')

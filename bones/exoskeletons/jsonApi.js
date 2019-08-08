@@ -32,11 +32,7 @@ function _jsonApiExoSkeleton(meta, data) {
   newData['id'] = data._id
   newData['attributes'] = {}
   for (var key in data.toObject()) {
-    if (
-      key !== '_id' &&
-      key !== '__v' &&
-      key !== 'toObject'
-    ) {
+    if (key !== '_id' && key !== '__v' && key !== 'toObject') {
       newData['attributes'][key] = data[key]
     }
   }
@@ -51,11 +47,11 @@ function _jsonApiExoSkeleton(meta, data) {
  */
 var jsonApiOfThing = function(meta, data) {
   return {
-    'jsonapi': {
-      'version': '1.0'
+    jsonapi: {
+      version: '1.0'
     },
-    'data': _jsonApiExoSkeleton(meta, data),
-    'meta': meta.Thing.schema.paths
+    data: _jsonApiExoSkeleton(meta, data),
+    meta: meta.Thing.schema.paths
   }
 }
 
@@ -68,16 +64,14 @@ var jsonApiOfThing = function(meta, data) {
 var jsonApiListOfThings = function(meta, data) {
   let list = []
   for (let record in data) {
-    list.push(
-      _jsonApiExoSkeleton(meta, data[record])
-    )
+    list.push(_jsonApiExoSkeleton(meta, data[record]))
   }
   return {
-    'jsonapi': {
-      'version': '1.0'
+    jsonapi: {
+      version: '1.0'
     },
-    'data': list,
-    'meta': meta.Thing.schema.paths
+    data: list,
+    meta: meta.Thing.schema.paths
   }
 }
 
@@ -89,10 +83,10 @@ var jsonApiListOfThings = function(meta, data) {
  */
 var jsonApiMetaOfThing = function(meta) {
   return {
-    'jsonapi': {
-      'version': '1.0'
+    jsonapi: {
+      version: '1.0'
     },
-    'meta': meta.Thing.schema.paths
+    meta: meta.Thing.schema.paths
   }
 }
 
@@ -107,7 +101,10 @@ var jsonApiMetaOfThing = function(meta) {
  */
 function jsonApiAnatomyOf(method, req, res, mongooseCall) {
   res.setHeader('Access-Control-Allow-Origin', process.env['ALLOWED_HOST'])
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
   res.header('Access-Control-Allow-Methods', method)
   boney.thenMongoose(method, req, res, mongooseCall)
 }
@@ -116,10 +113,10 @@ function jsonApiAnatomyOf(method, req, res, mongooseCall) {
  * Export these methods with standardized method names.
  */
 module.exports = {
-  'acquire': jsonApiAcquire,
-  'outOf': jsonApiOfThing,
-  'listOutOf': jsonApiListOfThings,
-  'metaOf': jsonApiMetaOfThing,
-  'deleteOf': jsonApiMetaOfThing,
-  'thenMongoose': jsonApiAnatomyOf,
+  acquire: jsonApiAcquire,
+  outOf: jsonApiOfThing,
+  listOutOf: jsonApiListOfThings,
+  metaOf: jsonApiMetaOfThing,
+  deleteOf: jsonApiMetaOfThing,
+  thenMongoose: jsonApiAnatomyOf
 }
