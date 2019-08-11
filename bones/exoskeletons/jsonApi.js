@@ -48,10 +48,10 @@ function _jsonApiExoSkeleton(meta, data) {
 var jsonApiOfThing = function(meta, data) {
   return {
     jsonapi: {
-      version: '1.0'
+      version: '1.0',
     },
     data: _jsonApiExoSkeleton(meta, data),
-    meta: meta.Thing.schema.paths
+    meta: meta.Thing.schema.paths,
   }
 }
 
@@ -68,10 +68,10 @@ var jsonApiListOfThings = function(meta, data) {
   }
   return {
     jsonapi: {
-      version: '1.0'
+      version: '1.0',
     },
     data: list,
-    meta: meta.Thing.schema.paths
+    meta: meta.Thing.schema.paths,
   }
 }
 
@@ -84,14 +84,29 @@ var jsonApiListOfThings = function(meta, data) {
 var jsonApiMetaOfThing = function(meta) {
   return {
     jsonapi: {
-      version: '1.0'
+      version: '1.0',
     },
-    meta: meta.Thing.schema.paths
+    meta: meta.Thing.schema.paths,
   }
 }
 
 /**
- * Every route ends with a mongoose call, but under jsonApi itsstarts by
+ * Prepare a SCHEMA and DELETE route's response correctly for the jsonApi format.
+ * @param {json} meta Info about the request, including the Thing's schema.
+ * @param {string} errMsg The error message.
+ * @returns {json} The Thing schema.
+ */
+var jsonApiErrorOfThing = function(meta, errMsg) {
+  return {
+    jsonapi: {
+      version: '1.0',
+    },
+    errors: [`${meta.schemaName} ${errMsg}`],
+  }
+}
+
+/**
+ * Every route ends with a mongoose call, but under jsonApi it starts by
  * adding the required headers, then calls the standard `boney.thenMongoose`
  * wrapper.
  * @param {string} method HTTP method as a string which we can add to HEADERs.
@@ -103,7 +118,7 @@ function jsonApiAnatomyOf(method, req, res, mongooseCall) {
   res.setHeader('Access-Control-Allow-Origin', process.env['ALLOWED_HOST'])
   res.header(
     'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
+    'Origin, X-Requested-With, Content-Type, Accept',
   )
   res.header('Access-Control-Allow-Methods', method)
   boney.thenMongoose(method, req, res, mongooseCall)
@@ -118,5 +133,6 @@ module.exports = {
   listOutOf: jsonApiListOfThings,
   metaOf: jsonApiMetaOfThing,
   deleteOf: jsonApiMetaOfThing,
-  thenMongoose: jsonApiAnatomyOf
+  errorOf: jsonApiErrorOfThing,
+  thenMongoose: jsonApiAnatomyOf,
 }

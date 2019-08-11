@@ -13,5 +13,5 @@ var singularPronoun = function(schemaName) {
 }
 
 module.exports = {
-  singularPronoun: singularPronoun
+  singularPronoun: singularPronoun,
 }

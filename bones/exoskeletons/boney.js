@@ -13,7 +13,7 @@ const utils = require('./utils')
  * @param {Object} req An http request.
  * @returns {json} The data prepped for a boney response.
  */
-function Acquire(req) {
+var Acquire = function(req) {
   return req.body
 }
 
@@ -57,7 +57,17 @@ var MetaOfThing = function(meta) {
  * @returns {json} A message for a boney response.
  */
 var DeleteOfThing = function(meta, data) {
-  return { msg: 'Thing successfully deleted' }
+  return { msg: `${meta.schemaName} successfully deleted` }
+}
+
+/**
+ * Prepare an error report
+ * @param {json} meta Info about the request, including the Thing's schema.
+ * @param {string} error message.
+ * @returns {json} An error message for a boney response.
+ */
+var ErrorOfThing = function(meta, errMsg) {
+  return { msg: `${meta.schemaName} ${errMsg}` }
 }
 
 /**
@@ -69,14 +79,14 @@ var DeleteOfThing = function(meta, data) {
  * @param {Object} res HTTP response object.
  * @param {calback} mongooseCall mongoose data object.
  */
-function MongooseCall(method, req, res, mongooseCall) {
+var MongooseCall = function(method, req, res, mongooseCall) {
   let endoSkeleton =
-    `@elioway/spider/endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
+    `../endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
   var schemaName = utils.singularPronoun(req.params.thing)
   var Thing = require(`${endoSkeleton}/${schemaName}`)
   var meta = {
     schemaName: schemaName,
-    Thing: Thing
+    Thing: Thing,
   }
   mongooseCall(req, res, Thing, meta)
 }
@@ -90,5 +100,6 @@ module.exports = {
   listOutOf: ListOfThings,
   metaOf: MetaOfThing,
   deleteOf: DeleteOfThing,
-  thenMongoose: MongooseCall
+  errorOf: ErrorOfThing,
+  thenMongoose: MongooseCall,
 }
