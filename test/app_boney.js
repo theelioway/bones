@@ -73,7 +73,8 @@ suites.moogooseTestSuite('bones.app.boney', function() {
       })
 
       it('boney should GET many Things when there are many Things', function(done) {
-        var manyThings = [{
+        var manyThings = [
+          {
             name: 'should GET many boney Things',
             disambiguatingDescription: 'should GET many boney Things',
           },
@@ -133,7 +134,9 @@ suites.moogooseTestSuite('bones.app.boney', function() {
             should.not.exist(err)
             res.should.have.status(404)
             res.should.be.json
-            res.body.msg.should.eql('Thing Cast to ObjectId failed for value "nosuchthing" at path "_id" for model "thing"')
+            res.body.msg.should.eql(
+              'Thing Cast to ObjectId failed for value "nosuchthing" at path "_id" for model "thing"',
+            )
             done()
           })
       })
@@ -164,6 +167,30 @@ suites.moogooseTestSuite('bones.app.boney', function() {
           })
       })
 
+      it('adon should ADD a Thing once', function(done) {
+        var mockThing = {
+          name: 'should ADD a Thing once',
+          disambiguatingDescription: 'should ADD a Thing once',
+        }
+        var thing = new Thing(mockThing)
+        thing.save(function() {
+          chai
+            .request(importFresh('../bones/app.js'))
+            .post('/engage/Thing')
+            .set('content-type', 'application/vnd.api+json')
+            .send(mockThing)
+            .end(function(err, res) {
+              should.not.exist(err)
+              res.should.have.status(409)
+              res.should.be.json
+              res.body.msg.should.eql(
+                'Thing E11000 duplicate key error collection: bonesappboneyDb.things index: slug_1 dup key: { : "should-add-a-thing-once" }',
+              )
+              done()
+            })
+        })
+      })
+
       it('boney should catch ADD a Thing errors', function(done) {
         let mockThing = {
           disambiguatingDescription: 'should ADD a boney Thing',
@@ -177,7 +204,9 @@ suites.moogooseTestSuite('bones.app.boney', function() {
             should.not.exist(err)
             res.should.have.status(400)
             res.should.be.json
-            res.body.msg.should.eql('Thing thing validation failed: name: Path `name` is required.')
+            res.body.msg.should.eql(
+              'Thing thing validation failed: name: Path `name` is required.',
+            )
             done()
           })
       })
@@ -231,7 +260,9 @@ suites.moogooseTestSuite('bones.app.boney', function() {
               should.not.exist(err)
               res.should.have.status(404)
               res.should.be.json
-              res.body.msg.should.eql('Thing Cast to ObjectId failed for value "nosuchthing" at path "_id" for model "thing"')
+              res.body.msg.should.eql(
+                'Thing Cast to ObjectId failed for value "nosuchthing" at path "_id" for model "thing"',
+              )
               done()
             })
         })
@@ -274,7 +305,9 @@ suites.moogooseTestSuite('bones.app.boney', function() {
               should.not.exist(err)
               res.should.have.status(404)
               res.should.be.json
-              res.body.msg.should.eql('Thing Cast to ObjectId failed for value "nosuchthing" at path "_id" for model "thing"')
+              res.body.msg.should.eql(
+                'Thing Cast to ObjectId failed for value "nosuchthing" at path "_id" for model "thing"',
+              )
               done()
             })
         })

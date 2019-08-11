@@ -3,11 +3,10 @@ const slug = require('mollusc')
 var uniquefy = require('../../lib/uniquefy')
 
 /**
-* The spiderGodLevel mongoose plugin adon.
-* **All** models plug into adon.
-*/
+ * The spiderGodLevel mongoose plugin adon.
+ * **All** models plug into adon.
+ */
 module.exports = exports = function adon(schema, options) {
-
   schema.add({
     slug: {
       type: String,
@@ -60,6 +59,4 @@ module.exports = exports = function adon(schema, options) {
       slug: slug(disambiguatingDescription),
     }).exec(callback)
   })
-
-
 }

@@ -2,7 +2,6 @@
 let exoSkeletonPath = './exoskeletons/' + process.env['EXOSKELETON']
 const exoSkeleton = require(exoSkeletonPath)
 
-
 /**
  * A useful error handling wrapper.
  */
@@ -15,7 +14,6 @@ function errHandler(err, res, meta) {
     res.status(400).send(exoSkeleton.errorOf(meta, err.message))
   }
 }
-
 
 /**
  * GET schema route.
@@ -32,10 +30,9 @@ exports.schema = function(req, res) {
  */
 exports.list_all_things = function(req, res) {
   exoSkeleton.thenMongoose('GET', req, res, function(req, res, Thing, meta) {
-    Thing.find()
-      .then(things => {
-        res.send(exoSkeleton.listOutOf(meta, things))
-      })
+    Thing.find().then(things => {
+      res.send(exoSkeleton.listOutOf(meta, things))
+    })
   })
   // console.log(`request: list_all_things type ${schemaName}`)
 }
@@ -63,7 +60,8 @@ exports.create_a_thing = function(req, res) {
   exoSkeleton.thenMongoose('POST', req, res, function(req, res, Thing, meta) {
     let acquireThingsData = exoSkeleton.acquire(req)
     let newThing = new Thing(acquireThingsData)
-    newThing.save()
+    newThing
+      .save()
       .then(thing => {
         res.send(exoSkeleton.outOf(meta, thing))
       })
@@ -79,17 +77,21 @@ exports.create_a_thing = function(req, res) {
  */
 exports.update_a_thing = function(req, res) {
   exoSkeleton.thenMongoose('PATCH', req, res, function(req, res, Thing, meta) {
-    Thing.findOneAndUpdate({
+    Thing.findOneAndUpdate(
+      {
         _id: req.params.thingId,
       },
-      exoSkeleton.acquire(req), {
+      exoSkeleton.acquire(req),
+      {
         new: true,
-      }
-    ).then(thing => {
-      res.send(exoSkeleton.outOf(meta, thing))
-    }).catch(err => {
-      errHandler(err, res, meta)
-    })
+      },
+    )
+      .then(thing => {
+        res.send(exoSkeleton.outOf(meta, thing))
+      })
+      .catch(err => {
+        errHandler(err, res, meta)
+      })
   })
   // console.log('BONES: update_a_thing')
 }
@@ -100,8 +102,8 @@ exports.update_a_thing = function(req, res) {
 exports.delete_a_thing = function(req, res) {
   exoSkeleton.thenMongoose('DELETE', req, res, function(req, res, Thing, meta) {
     Thing.deleteOne({
-        _id: req.params.thingId
-      })
+      _id: req.params.thingId,
+    })
       .then(thing => {
         res.send(exoSkeleton.deleteOf(meta, thing))
       })

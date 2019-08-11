@@ -12,7 +12,6 @@
 const importFresh = require('import-fresh')
 const mongoose = require('mongoose')
 
-
 exports.moogooseTestSuite = function(testname, tests) {
   describe(testname, function() {
     before(function(done) {
