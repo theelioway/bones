@@ -28,7 +28,9 @@ exports.moogooseTestSuite = function(testname, tests) {
         done()
       })
     })
+
     tests()
+
     after(function(done) {
       mongoose.connection.db.dropDatabase(function() {
         mongoose.connection.close(done)
