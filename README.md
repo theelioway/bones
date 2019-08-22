@@ -6,12 +6,12 @@
 
 REST API for Schema.org mongoose models spidered the elioWay.
 
-- [bones Documentation](https://elioway.gitlab.io/eliodata/bones)
+- [bones Documentation](https://elioway.gitlab.io/eliothing/bones)
 
 ## Seeing is believing
 
 ```bash
-git clone https://gitlab.com/eliodata/bones/
+git clone https://gitlab.com/eliothing/bones/
 ```
 
 ### Config
@@ -35,8 +35,8 @@ PORT=3030
 
 ### `yarn format`
 
-- [bones Quickstart](https://elioway.gitlab.io/eliodata/bones/quickstart.html)
-- [bones Credits](https://elioway.gitlab.io/eliodata/bones/credits.html)
+- [bones Quickstart](https://elioway.gitlab.io/eliothing/bones/quickstart.html)
+- [bones Credits](https://elioway.gitlab.io/eliothing/bones/credits.html)
 
 ![](apple-touch-icon.png)
 
