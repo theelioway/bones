@@ -4,5 +4,9 @@
 
 **bones** REST API for Schema.org mongoose schema spidered the elioWay.
 
-<div><a href="installing.html" class="elioButton">Installing</a>
-  <a href="quickstart.html" class="elioButton">Quickstart</a></div>
+<div><a href="installing.html">
+  <button>Installing</button>
+</a>
+    <a href="quickstart.html">
+  <button>Quickstart</button>
+</a></div>
