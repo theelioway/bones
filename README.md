@@ -1,6 +1,6 @@
 ![](elio-bones-logo.png)
 
-# bones ![experimental](https://elioway.gitlab.io/img/experimental.png "experimental")
+# bones ![experimental](https://elioway.gitlab.io/static/experimental.png "experimental")
 
 > Dropping the pretence one thing is so different from another. **the ElioWay**
 
@@ -11,7 +11,7 @@ REST API for Schema.org mongoose models spidered the elioWay.
 ## Seeing is believing
 
 ```bash
-git clone https://gitlab.com/eliothing/bones/
+git clone https://gitlab.com/eliothing/bones.git
 ```
 
 ### Config

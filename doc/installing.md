@@ -7,11 +7,11 @@
 ## Installation
 
 ```shell
-cd elio
-git clone http://gitlab.com/eliothing/
+cd elioway
+git clone https://gitlab.com/elioway/eliothing.git
 cd eliothing
 git clone https://gitlab.com/eliothing/bones.git
 cd bones
-yarn
-yarn devstart
+npm i|yarn
+npm|yarn devstart
 ```
