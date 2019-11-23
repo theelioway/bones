@@ -12,3 +12,9 @@
     <a href="quickstart.html">
   <button>Quickstart</button>
 </a></div>
+
+## Full Documentation
+
+- [Installing](installing.html)
+- [Quickstart](quickstart.html)
+- [mongo-db](mongo-db.html)
