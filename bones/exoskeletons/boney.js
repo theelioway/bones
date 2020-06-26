@@ -1,5 +1,5 @@
 /**
- * exoSkeleton with few transformations because `boney` is bone's default REST format.
+ * exoSkeleton with few transformations because `boney` is bone's default API format.
  *
  * Despite not doing very much, this module is required because all routes
  * must call one of the exoSkeletons. `boney` is therefore a good template
