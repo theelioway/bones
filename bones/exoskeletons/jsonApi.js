@@ -45,7 +45,7 @@ function _jsonApiExoSkeleton(meta, data) {
  * @param {Object} data mongoose data object.
  * @returns {json} The data prepped for a jsonApi response.
  */
-var jsonApiOfThing = function(meta, data) {
+var jsonApiOfThing = function (meta, data) {
   return {
     jsonapi: {
       version: '1.0',
@@ -61,7 +61,7 @@ var jsonApiOfThing = function(meta, data) {
  * @param {Object} data mongoose list object.
  * @returns {json} The list prepped for a jsonApi response.
  */
-var jsonApiListOfThings = function(meta, data) {
+var jsonApiListOfThings = function (meta, data) {
   let list = []
   for (let record in data) {
     list.push(_jsonApiExoSkeleton(meta, data[record]))
@@ -81,7 +81,7 @@ var jsonApiListOfThings = function(meta, data) {
  * @param {Object} data mongoose data object.
  * @returns {json} The Thing schema.
  */
-var jsonApiMetaOfThing = function(meta) {
+var jsonApiMetaOfThing = function (meta) {
   return {
     jsonapi: {
       version: '1.0',
@@ -96,7 +96,7 @@ var jsonApiMetaOfThing = function(meta) {
  * @param {string} errMsg The error message.
  * @returns {json} The Thing schema.
  */
-var jsonApiErrorOfThing = function(meta, errMsg) {
+var jsonApiErrorOfThing = function (meta, errMsg) {
   return {
     jsonapi: {
       version: '1.0',

@@ -3,7 +3,7 @@
 /**
  * Export the controllers as routes.
  */
-module.exports = function(app) {
+module.exports = function (app) {
   var controller = require('./controller')
 
   app

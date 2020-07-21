@@ -13,7 +13,7 @@ const utils = require('./utils')
  * @param {Object} req An http request.
  * @returns {json} The data prepped for a boney response.
  */
-var Acquire = function(req) {
+var Acquire = function (req) {
   return req.body
 }
 
@@ -23,7 +23,7 @@ var Acquire = function(req) {
  * @param {Object} data mongoose data object.
  * @returns {json} The data prepped for a boney response.
  */
-var OfThing = function(meta, data) {
+var OfThing = function (meta, data) {
   return data.toObject()
 }
 
@@ -33,7 +33,7 @@ var OfThing = function(meta, data) {
  * @param {Object} data mongoose list object.
  * @returns {json} The list prepped for a boney response.
  */
-var ListOfThings = function(meta, data) {
+var ListOfThings = function (meta, data) {
   let list = []
   for (let record in data) {
     list.push(OfThing(meta, data[record]))
@@ -46,7 +46,7 @@ var ListOfThings = function(meta, data) {
  * @param {json} meta Info about the request, including the Thing's schema.
  * @returns {json} The Thing schema.
  */
-var MetaOfThing = function(meta) {
+var MetaOfThing = function (meta) {
   return meta.Thing.schema.paths
 }
 
@@ -56,7 +56,7 @@ var MetaOfThing = function(meta) {
  * @param {Object} data mongoose data object.
  * @returns {json} A message for a boney response.
  */
-var DeleteOfThing = function(meta, data) {
+var DeleteOfThing = function (meta, data) {
   return { msg: `${meta.schemaName} successfully deleted` }
 }
 
@@ -66,7 +66,7 @@ var DeleteOfThing = function(meta, data) {
  * @param {string} error message.
  * @returns {json} An error message for a boney response.
  */
-var ErrorOfThing = function(meta, errMsg) {
+var ErrorOfThing = function (meta, errMsg) {
   return { msg: `${meta.schemaName} ${errMsg}` }
 }
 
@@ -79,7 +79,7 @@ var ErrorOfThing = function(meta, errMsg) {
  * @param {Object} res HTTP response object.
  * @param {calback} mongooseCall mongoose data object.
  */
-var MongooseCall = function(method, req, res, mongooseCall) {
+var MongooseCall = function (method, req, res, mongooseCall) {
   let endoSkeleton =
     `../endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
   var schemaName = utils.singularPronoun(req.params.thing)

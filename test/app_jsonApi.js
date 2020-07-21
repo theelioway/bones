@@ -10,9 +10,9 @@ const should = chai.should()
 
 chai.use(chaiHttp)
 
-suites.moogooseTestSuite('bones.app.jsonApi', function() {
-  describe('bones.controller.jsonApi', function() {
-    beforeEach(function(done) {
+suites.moogooseTestSuite('bones.app.jsonApi', function () {
+  describe('bones.controller.jsonApi', function () {
+    beforeEach(function (done) {
       process.env['ENDOSKELETON'] = 'ThingOnAShoeString'
       process.env['EXOSKELETON'] = 'jsonApi'
       importFresh('../bones/controller')
@@ -22,12 +22,12 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
       })
     })
 
-    describe('/GET engage/:thing', function() {
-      it('jsonApi should GET no Things when there are no Things', function(done) {
+    describe('/GET engage/:thing', function () {
+      it('jsonApi should GET no Things when there are no Things', function (done) {
         chai
           .request(importFresh('../bones/app'))
           .get('/engage/Thing')
-          .end(function(err, res) {
+          .end(function (err, res) {
             should.not.exist(err)
             res.should.have.status(200)
             res.body.data.should.be.an('array')
@@ -42,8 +42,8 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
       })
     })
 
-    describe('/GET engage/:thing', function() {
-      it('jsonApi should GET many Things when there are many Things', function(done) {
+    describe('/GET engage/:thing', function () {
+      it('jsonApi should GET many Things when there are many Things', function (done) {
         var manyThings = [
           {
             name: 'should GET many jsonApi Things',
@@ -54,11 +54,11 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
             disambiguatingDescription: 'when there are many jsonApi Things',
           },
         ]
-        Thing.create(manyThings, function() {
+        Thing.create(manyThings, function () {
           chai
             .request(importFresh('../bones/app'))
             .get('/engage/Thing/')
-            .end(function(err, res) {
+            .end(function (err, res) {
               should.not.exist(err)
               res.should.have.status(200)
               res.body.data.should.be.a('array')
@@ -70,18 +70,18 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
       })
     })
 
-    describe('/GET engage/:thing/:id', function() {
-      it('jsonApi should GET a Thing', function(done) {
+    describe('/GET engage/:thing/:id', function () {
+      it('jsonApi should GET a Thing', function (done) {
         var mockThing = {
           name: 'should GET a jsonApi Thing',
           disambiguatingDescription: 'should GET a jsonApi Thing',
         }
         var thing = new Thing(mockThing)
-        thing.save(function() {
+        thing.save(function () {
           chai
             .request(importFresh('../bones/app'))
             .get(`/engage/Thing/${thing._id}`)
-            .end(function(err, res) {
+            .end(function (err, res) {
               should.not.exist(err)
               res.should.have.status(200)
               res.should.be.json
@@ -98,8 +98,8 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
       })
     })
 
-    describe('/POST engage/:thing', function() {
-      it('jsonApi should ADD a Thing', function(done) {
+    describe('/POST engage/:thing', function () {
+      it('jsonApi should ADD a Thing', function (done) {
         var mockThing = {
           data: {
             type: 'thing',
@@ -114,7 +114,7 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
           .post('/engage/Thing')
           .set('content-type', 'application/vnd.api+json')
           .send(mockThing)
-          .end(function(err, res) {
+          .end(function (err, res) {
             should.not.exist(err)
             res.should.have.status(200)
             res.should.be.json
@@ -132,14 +132,14 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
       })
     })
 
-    describe('/PATCH engage/:thing', function() {
-      it('jsonApi should UPDATE a Thing', function(done) {
+    describe('/PATCH engage/:thing', function () {
+      it('jsonApi should UPDATE a Thing', function (done) {
         var mockThing = {
           name: 'should UPDATE a jsonApi Thing',
           disambiguatingDescription: 'should UPDATE a jsonApi Thing',
         }
         var thing = new Thing(mockThing)
-        thing.save(function() {
+        thing.save(function () {
           var updateThing = {
             data: {
               type: 'thing',
@@ -154,7 +154,7 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
             .patch(`/engage/Thing/${thing._id}`)
             .set('content-type', 'application/vnd.api+json')
             .send(updateThing)
-            .end(function(err, res) {
+            .end(function (err, res) {
               should.not.exist(err)
               res.should.have.status(200)
               res.should.be.json
@@ -174,18 +174,18 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
       })
     })
 
-    describe('/DELETE engage/:thing', function() {
-      it('jsonApi should DELETE a Thing', function(done) {
+    describe('/DELETE engage/:thing', function () {
+      it('jsonApi should DELETE a Thing', function (done) {
         var mockThing = {
           name: 'should DELETE a jsonApi Thing',
           disambiguatingDescription: 'should DELETE a jsonApi Thing',
         }
         var thing = new Thing(mockThing)
-        thing.save(function() {
+        thing.save(function () {
           chai
             .request(importFresh('../bones/app'))
             .delete(`/engage/Thing/${thing._id}`)
-            .end(function(err, res) {
+            .end(function (err, res) {
               should.not.exist(err)
               res.should.have.status(200)
               res.should.be.json

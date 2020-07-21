@@ -14,8 +14,8 @@ let mockThing = {
   description: 'This describes Thing 1',
 }
 
-describe('Model adon methods', function() {
-  it('findsByDisambiguating', function(done) {
+describe('Model adon methods', function () {
+  it('findsByDisambiguating', function (done) {
     var ThingMock = sinon.mock(Thing)
 
     ThingMock.expects('findOne')
@@ -25,7 +25,7 @@ describe('Model adon methods', function() {
       .chain('exec')
       .yields(null, 'RESULT')
 
-    Thing.findByDisambiguating('DISAMBIGUATING DESCRIPTION', function(
+    Thing.findByDisambiguating('DISAMBIGUATING DESCRIPTION', function (
       err,
       result,
     ) {
@@ -38,8 +38,8 @@ describe('Model adon methods', function() {
   })
 })
 
-describe('Model adon statics', function() {
-  it('engages', function(done) {
+describe('Model adon statics', function () {
+  it('engages', function (done) {
     var thingMock = sinon.mock(new Thing(mockThing))
     var thing = thingMock.object
 
@@ -51,7 +51,7 @@ describe('Model adon statics', function() {
       .chain('exec')
       .yields(null, 'RESULT')
 
-    thing.engage(function(err, result) {
+    thing.engage(function (err, result) {
       thingMock.verify()
       thingMock.restore()
       assert.equal(result, 'RESULT')
@@ -60,7 +60,7 @@ describe('Model adon statics', function() {
     })
   })
 
-  it('disengages', function(done) {
+  it('disengages', function (done) {
     var thingMock = sinon.mock(new Thing(mockThing))
     var thing = thingMock.object
 
@@ -72,7 +72,7 @@ describe('Model adon statics', function() {
       .chain('exec')
       .yields(null, 'RESULT')
 
-    thing.disengage(function(err, result) {
+    thing.disengage(function (err, result) {
       thingMock.verify()
       thingMock.restore()
       assert.equal(result, 'RESULT')
