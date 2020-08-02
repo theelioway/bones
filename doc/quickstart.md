@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
-- mongodb installed?[No!](https://elioway.gitlab.io/eliothing/bones/mongo-db.html)
-- **bones** installed?[No!](https://elioway.gitlab.io/eliothing/bones/installing.html)
+- mongodb installed?[No!](https://elioway.gitlab.io/eliobones/bones/mongo-db.html)
+- **bones** installed?[No!](https://elioway.gitlab.io/eliobones/bones/installing.html)
 
 ### Config
 
