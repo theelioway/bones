@@ -5,8 +5,8 @@
  * must call one of the exoSkeletons. `boney` is therefore a good template
  * for creating a new exoSkeleton.
  */
-'use strict'
-const utils = require('./utils')
+"use strict"
+const utils = require("./utils")
 
 /**
  * Prepare the boney request data ready to be passed into a mongoose method.
@@ -81,7 +81,7 @@ var ErrorOfThing = function (meta, errMsg) {
  */
 var MongooseCall = function (method, req, res, mongooseCall) {
   let endoSkeleton =
-    `../endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
+    `../endoskeletons/` + process.env["ENDOSKELETON"] + `/models`
   var schemaName = utils.singularPronoun(req.params.thing)
   var Thing = require(`${endoSkeleton}/${schemaName}`)
   var meta = {

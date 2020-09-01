@@ -1,21 +1,21 @@
-'use strict'
+"use strict"
 
 /**
  * Export the controllers as routes.
  */
 module.exports = function (app) {
-  var controller = require('./controller')
+  var controller = require("./controller")
 
   app
-    .route('/engage/:thing')
+    .route("/engage/:thing")
     .get(controller.list_all_things)
     .post(controller.create_a_thing)
 
   app
-    .route('/engage/:thing/:thingId')
+    .route("/engage/:thing/:thingId")
     .get(controller.read_a_thing)
     .patch(controller.update_a_thing)
     .delete(controller.delete_a_thing)
 
-  app.route('/schema/:thing').get(controller.schema)
+  app.route("/schema/:thing").get(controller.schema)
 }
