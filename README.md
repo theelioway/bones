@@ -1,6 +1,6 @@
-![](elio-bones-logo.png)
+![](https://elioway.gitlab.io/eliobones/elio-bones-logo.png)
 
-# bones ![experimental](https://elioway.gitlab.io/static/experimental.png "experimental")
+# bones ![experimental](https://elioway.gitlab.io/artwork/icon/experimental/favicon.png "experimental")
 
 > "Can you get this done by Wednesday?" **Rosalind Codrington**
 
