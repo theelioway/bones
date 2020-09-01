@@ -2,7 +2,7 @@
 
 # bones ![experimental](https://elioway.gitlab.io/artwork/icon/experimental/favicon.png "experimental")
 
-DEPRECATED: Use <https://gitlab.com/eliobones/bones-mongoose.git>
+_DEPRECATED: Use <https://gitlab.com/eliobones/bones-mongoose.git>_
 
 REST API for <https://schema.org> mongoose models spidered the elioWay.
 

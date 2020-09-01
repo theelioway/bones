@@ -19,7 +19,7 @@
 
 ## These might be helpful
 
-- 
+-
 - [sriracha:express and mongoose admin backend](https://github.com/hdngr/sriracha)
 - [mangostana:mongoose documents relationships](https://www.npmjs.com/package/mangostana)
 - [lucasfcosta:Testing-NodeJS-APIs](https://lucasfcosta.com/2017/04/06/Testing-NodeJS-APIs.html)
