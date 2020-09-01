@@ -2,9 +2,9 @@
 
 # bones ![experimental](https://elioway.gitlab.io/artwork/icon/experimental/favicon.png "experimental")
 
-> "Can you get this done by Wednesday?" **Rosalind Codrington**
+DEPRECATED: Use <https://gitlab.com/eliobones/bones-mongoose.git>
 
-REST API for Schema.org mongoose models spidered the elioWay.
+REST API for <https://schema.org> mongoose models spidered the elioWay.
 
 - [bones Documentation](https://elioway.gitlab.io/eliobones/bones)
 

@@ -7,7 +7,7 @@
 - [mochajs](https://mochajs.org/)
 - [chaijs](http://www.chaijs.com/)
 - [mollusc](https://www.npmjs.com/package/mollusc)
-- [wikimedia:Death*Comes_to_the_Banquet_Table*](https://commons.wikimedia.org/wiki/File:Death_Comes_to_the_Banquet_Table_-_Memento_Mori_-_Martinelli_NOMA.jpg)
+- [wikimedia:Death_Comes_to_the_Banquet_Table_](https://commons.wikimedia.org/wiki/File:Death_Comes_to_the_Banquet_Table_-_Memento_Mori_-_Martinelli_NOMA.jpg)
 
 ## These were helpful
 
@@ -19,7 +19,7 @@
 
 ## These might be helpful
 
-- [passportjs:node authentication](http://www.passportjs.org/)
+- 
 - [sriracha:express and mongoose admin backend](https://github.com/hdngr/sriracha)
 - [mangostana:mongoose documents relationships](https://www.npmjs.com/package/mangostana)
 - [lucasfcosta:Testing-NodeJS-APIs](https://lucasfcosta.com/2017/04/06/Testing-NodeJS-APIs.html)
