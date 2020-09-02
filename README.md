@@ -1,6 +1,6 @@
 ![](https://elioway.gitlab.io/eliobones/elio-bones-logo.png)
 
-# bones ![experimental](https://elioway.gitlab.io/artwork/icon/experimental/favicon.png "experimental")
+# bones ![experimental](/artwork/icon/experimental/favicon.png "experimental")
 
 _DEPRECATED: Use <https://gitlab.com/eliobones/bones-mongoose.git>_
 

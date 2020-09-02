@@ -4,7 +4,7 @@
 
 **bones** REST API for <https://schema.org> mongoose schema spidered the elioWay.
 
-![experimental](https://elioway.gitlab.io/artwork/icon/experimental/favicon.png "experimental")
+![experimental](/artwork/icon/experimental/favicon.png "experimental")
 
 <div><a href="installing.html">
   <button>Installing</button>
