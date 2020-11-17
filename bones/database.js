@@ -1,15 +1,8 @@
 "use strict";
-
 const mongoose = require("mongoose");
 
-const {
-  MONGODB_URL
-} = process.env;
-
-console.log(`Found connection string: ${MONGODB_URL}`)
-
-function dbconnect() {
-  mongoose.connect(MONGODB_URL, {
+function dbconnect(mongoDbUrl) {
+  mongoose.connect(mongoDbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
