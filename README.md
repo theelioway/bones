@@ -2,9 +2,7 @@
 
 # bones ![experimental](/artwork/icon/experimental/favicon.png "experimental")
 
-_DEPRECATED: Use <https://gitlab.com/eliobones/bones-mongoose.git>_
-
-REST API for <https://schema.org> mongoose models spidered the elioWay.
+Reusable Code for **elioBones** projects.
 
 - [bones Documentation](https://elioway.gitlab.io/eliobones/bones)
 
