@@ -1,8 +1,6 @@
 # Installing adon
 
-## Prerequisites
-
-- [mongodb](mongo-db.html)
+- [Prerequisites](./prerequisites)
 
 ## Installation
 

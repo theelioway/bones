@@ -1,11 +1,8 @@
 # Quickstart adon
 
-## Prerequisites
+- [Prerequisites](./prerequisites)
 
-- mongodb installed?[No!](https://elioway.gitlab.io/eliobones/bones/mongo-db.html)
-- **bones** installed?[No!](https://elioway.gitlab.io/eliobones/bones/installing.html)
-
-### Config
+## Config
 
 Create a `.env` file in the root directory. It should have the following settings:
 
