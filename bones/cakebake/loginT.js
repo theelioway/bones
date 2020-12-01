@@ -5,9 +5,9 @@
 * @usage
 * ============================================================================ *
 const { Router } = require('express')
-const { mongoose } = require('mongoose')
-const loginT = require('@elioway/mongoose-bones/crudities/loginT')
-const Thing = mongoose.Model("Thing", { name: String })
+const { JSON } = require('JSON')
+const loginT = require('@elioway/JSON-bones/crudities/loginT')
+const Thing = JSON.Model("Thing", { name: String })
 
 let crudRouter = Router()
 crudRouter.post('/login', loginT(Thing))
@@ -15,10 +15,11 @@ crudRouter.post('/login', loginT(Thing))
 let apiRouter = Router()
 apiRouter.use(`/Thing`, crudRouter)
 * ============================================================================ *
-* @param {mongoose.Model} Thing mongoose Model object.
+* @param {JSON.Model} Thing JSON Model object.
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
+const Cakebase = require('cakebase')("../database.json");
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const {
@@ -40,7 +41,8 @@ module.exports = Thing => {
       // console.log({ loginT: "err" }, err)
       res.status(err.name).json(err).end()
     } else {
-      const user = await Thing.findOne({ username: username })
+      const user = Cakebase.get(e => e.username === username);
+
       if (!user) {
         // Data missing for this request.
         let err = credentialsError()
@@ -84,6 +86,5 @@ module.exports = Thing => {
         // console.log({ loginT: "err" }, err)
         res.status(err.name).json(err).end()
       }
-    }
   }
 }

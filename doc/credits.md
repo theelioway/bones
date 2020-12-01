@@ -27,6 +27,7 @@
 - <https://www.npmjs.com/package/mongoose-mpath>
 - [joi schema definitions](https://hapi.dev/module/joi/)
 - <https://github.com/DigiPie/mocha-chai-mongoose/tree/master/server/src/config>
+- <https://rethinkdb.com/faq>
 
 ## Artwork
 

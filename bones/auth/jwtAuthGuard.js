@@ -1,8 +1,11 @@
 "use strict"
+var Datastore = require('nedb');
+var things = new Datastore();
 const passport = require("passport")
 const passportJWT = require("passport-jwt")
 const jwt = require("jsonwebtoken")
 const { JWT_SECRET } = process.env
+const { getError } = require("../utils/responseMessages")
 
 const jwtOpts = {
   jwtFromRequest: passportJWT.ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -12,13 +15,12 @@ module.exports = T => {
   // console.log({ jwtAuthGuard: "jwtOpts"}, jwtOpts)
   passport.use(
     new passportJWT.Strategy(jwtOpts, (jwtPayload, callback) => {
-      T.findById(jwtPayload.id)
-        .then(user => {
-          return callback(null, user)
-        })
-        .catch(err => {
-          return callback(err)
-        })
+    await things.findOne({ _id: jwtPayload.id }, function(e, thing) {
+      if (e) {
+        return callback(e)
+      } else {
+        return callback(null, thing)
+      }
     })
   )
   return passport.authenticate("jwt", { session: false })

@@ -2,7 +2,7 @@
 
 # bones ![experimental](/artwork/icon/experimental/favicon.png "experimental")
 
-Reusable Code for **elioBones** projects.
+Bare bones Node API. Reusable Code for **elioBones** projects.
 
 - [bones Documentation](https://elioway.gitlab.io/eliobones/bones)
 

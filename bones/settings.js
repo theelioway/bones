@@ -2,7 +2,7 @@
 // "const jwtAuthGuard = require("./auth/jwtAuthGuard")
 const unGuarded = require("./auth/unGuarded")
 const { PermitLevels, BasePermits, AnonPermits } = require("./auth/permits")
-const { MONGODB_URL, BONES, BONES_DEPTH, EXTRA_PRIMITIVE, SITE_ID } = process.env
+const { BONES, BONES_DEPTH, EXTRA_PRIMITIVE, SITE_ID } = process.env
 
 module.exports = {
   guard: unGuarded,
@@ -24,7 +24,6 @@ module.exports = {
   bones: BONES.split(",").filter(b => b),
   depth: BONES_DEPTH || 0,
   extraPrimitive: EXTRA_PRIMITIVE.split(",").filter(b => b),
-  mongoDbUrl: MONGODB_URL || "mongodb://127.0.0.1:27017/elioway",
   siteId: SITE_ID,
   slim: [
     // hooks

@@ -5,7 +5,7 @@
 * @usage
 * ============================================================================ *
 const { Router } = require('express')
-const schemaT = require('@elioway/mongoose-bones/bones/crudities/schemaT')
+const schemaT = require('@elioway/JSON-bones/bones/crudities/schemaT')
 
 let routerSchema = Router()
 routerSchema.get('/', schemaT())
@@ -13,7 +13,7 @@ routerSchema.get('/', schemaT())
 let apiRouter = Router()
 apiRouter.use(`/:engage`, metaRouter)
 * ============================================================================ *
-* @param {mongoose.Model} Thing mongoose Model object.
+* @param {JSON.Model} Thing JSON Model object.
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
@@ -34,20 +34,20 @@ module.exports = () => {
     // console.log({ schemaT: "reqParams" }, req.params)
     let thingType = req.params.engage
     let thingBuilder = new ThingBuilder(
-      getSchema("9.0/schemaorg-all-http"),
+      "9.0/schemaorg-all-http",
       schemaDomainUrl
     )
     let things = thingBuilder.things([thingType], sanitizeOptions(req.query))
     let schemedT = things[thingType]
-    let thinner = Object.keys(settings.slim)
-      .filter(skimkey => skimkey !== "_id")
-      .reduce(function (acc, slimkey) {
-        if (schemedT[slimkey]) {
-          acc[slimkey] = schemedT[slimkey]
-        }
-        return acc
-      }, {})
+    // let thinner = Object.keys(settings.slim)
+    //   .filter(skimkey => skimkey !== "_id")
+    //   .reduce(function (acc, slimkey) {
+    //     if (schemedT[slimkey]) {
+    //       acc[slimkey] = schemedT[slimkey]
+    //     }
+    //     return acc
+    //   }, {})
     // console.log({ schemaT: "thinner" }, thinner)
-    res.send(thinner)
+    res.send(schemedT)
   }
 }

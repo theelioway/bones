@@ -1,4 +1,6 @@
 "use strict"
+var Datastore = require('nedb');
+var things = new Datastore();
 const passport = require("passport")
 const passportCustom = require("passport-custom")
 const settings = require("../settings")
@@ -8,12 +10,8 @@ module.exports = T => {
   passport.use(
     "unguarded",
     new passportCustom.Strategy((req, callback) => {
-      // console.log({ unGuarded: "req"}, req.params)
-      // console.log({ unGuarded: "callback"}, callback)
       let myThing = null
-      // console.log({ ______APP______: "SITE_ID"}, SITE_ID)
-      T.findById(SITE_ID, (e, thing) => {
-        // console.log({ unGuarded: "thing"}, thing)
+      await things.findOne({ _id: SITE_ID }, function(e, thing) {
         if (e) {
           return callback(e)
         } else {

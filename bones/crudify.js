@@ -1,18 +1,18 @@
 /**
-* @file Subroute with endpoints to handle mongoose.Model cruddy operations, the elioWay.
+* @file Subroute with endpoints to handle JSON.Model cruddy operations, the elioWay.
 * @author Tim Bushell
 *
 * @usage
 * ============================================================================ *
 const { Router } = require('express')
-const { mongoose } = require('mongoose')
-const crudify = require('@elioway/mongoose-bones/crudify')
-const ThingModel = mongoose.Model("Thing", { name: String })
+const { JSON } = require('JSON')
+const crudify = require('@elioway/JSON-bones/crudify')
+const ThingModel = JSON.Model("Thing", { name: String })
 let apiRouter = Router()
 apiRouter.use(`/Thing`, crudify(ThingModel))
 * ============================================================================ *
 *
-* @param {mongoose.Model} T the Thing mongoose Model object.
+* @param {JSON.Model} T the Thing JSON Model object.
 * @returns {express.Router}
 */
 "use strict"

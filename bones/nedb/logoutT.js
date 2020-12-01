@@ -5,9 +5,9 @@
 * @usage
 * ============================================================================ *
 const { Router } = require('express')
-const { mongoose } = require('mongoose')
-const logoutT = require('@elioway/mongoose-bones/crudities/logoutT')
-const Thing = mongoose.Model("Thing", { name: String })
+const { JSON } = require('JSON')
+const logoutT = require('@elioway/JSON-bones/crudities/logoutT')
+const Thing = JSON.Model("Thing", { name: String })
 
 let crudRouter = Router()
 crudRouter.post('/logout', logoutT(Thing))
@@ -15,10 +15,12 @@ crudRouter.post('/logout', logoutT(Thing))
 let apiRouter = Router()
 apiRouter.use(`/Thing`, crudRouter)
 * ============================================================================ *
-* @param {mongoose.Model} Thing mongoose Model object.
+* @param {JSON.Model} Thing JSON Model object.
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
+var Datastore = require('nedb');
+var things = new Datastore();
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const { logoutSuccess } = require("../utils/responseMessages")

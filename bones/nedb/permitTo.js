@@ -5,18 +5,20 @@
 * @usage
 * ============================================================================ *
 const { Router } = require('express')
-const { mongoose } = require('mongoose')
-const permitTo = require("@@elioway/mongoose-bones/bones/crudities/permitTo")
-const deleteT = require('@elioway/mongoose-bones/bones/crudities/deleteT')
-const T = mongoose.Model("Thing", { name: String })
+const { JSON } = require('JSON')
+const permitTo = require("@@elioway/JSON-bones/bones/crudities/permitTo")
+const deleteT = require('@elioway/JSON-bones/bones/crudities/deleteT')
+const T = JSON.Model("Thing", { name: String })
 let apiRouter = Router()
 apiRouter.delete(`/Thing/:_id`, permitTo("delete", T), deleteT(T))
 * ============================================================================ *
 * @param {String} action seeking permission for.
-* @param {mongoose.Model} Thing mongoose Model object.
+* @param {JSON.Model} Thing JSON Model object.
 * @returns {express.Router}
 */
 "use strict"
+var Datastore = require('nedb');
+var things = new Datastore();
 const { PermitLevels } = require("../auth/permits")
 const { getError, permissionError } = require("../utils/responseMessages")
 
@@ -27,7 +29,7 @@ module.exports = (action, Thing) => {
     // console.log({ permitTo: "reqParams" }, req.params)
     // console.log({ permitTo: 'action' }, action)
     // console.log({ permitTo: "localsThing" }, res.locals.thing)
-    await Thing.findById(req.params._id, (e, thing) => {
+    await things.findOne({ _id: req.params._id }, function(e, thing) {
       if (e) {
         // General error getting this Thing.
         let err = getError(e)

@@ -9,7 +9,7 @@
 const utils = require("./utils")
 
 /**
- * Prepare the boney request data ready to be passed into a mongoose method.
+ * Prepare the boney request data ready to be passed into a JSON method.
  * @param {Object} req An http request.
  * @returns {json} The data prepped for a boney response.
  */
@@ -20,7 +20,7 @@ var Acquire = function (req) {
 /**
  * Prepare a single data object correctly for the boney format.
  * @param {json} meta Info about the request, including the Thing's schema.
- * @param {Object} data mongoose data object.
+ * @param {Object} data JSON data object.
  * @returns {json} The data prepped for a boney response.
  */
 var OfThing = function (meta, data) {
@@ -30,7 +30,7 @@ var OfThing = function (meta, data) {
 /**
  * Prepare a GET all response correctly for the boney format.
  * @param {json} meta Info about the request, including the Thing's schema.
- * @param {Object} data mongoose list object.
+ * @param {Object} data JSON list object.
  * @returns {json} The list prepped for a boney response.
  */
 var ListOfThings = function (meta, data) {
@@ -53,7 +53,7 @@ var MetaOfThing = function (meta) {
 /**
  * Prepare a DELETE route's response correctly for the boney format.
  * @param {json} meta Info about the request, including the Thing's schema.
- * @param {Object} data mongoose data object.
+ * @param {Object} data JSON data object.
  * @returns {json} A message for a boney response.
  */
 var DeleteOfThing = function (meta, data) {
@@ -71,15 +71,15 @@ var ErrorOfThing = function (meta, errMsg) {
 }
 
 /**
- * Every route requires a mongoose call, but this wrapper first which
+ * Every route requires a JSON call, but this wrapper first which
  * picks out all the relevant params and building the requirements for the
- * `mongooseCall`.
+ * `JSONCall`.
  * @param {string} method HTTP method as a string which we can add to HEADERs.
  * @param {Object} req HTTP request object.
  * @param {Object} res HTTP response object.
- * @param {calback} mongooseCall mongoose data object.
+ * @param {calback} JSONCall JSON data object.
  */
-var MongooseCall = function (method, req, res, mongooseCall) {
+var MongooseCall = function (method, req, res, JSONCall) {
   let endoSkeleton =
     `../endoskeletons/` + process.env["ENDOSKELETON"] + `/models`
   var schemaName = utils.singularPronoun(req.params.thing)
@@ -88,7 +88,7 @@ var MongooseCall = function (method, req, res, mongooseCall) {
     schemaName: schemaName,
     Thing: Thing,
   }
-  mongooseCall(req, res, Thing, meta)
+  JSONCall(req, res, Thing, meta)
 }
 
 /**

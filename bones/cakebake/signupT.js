@@ -5,9 +5,9 @@
 * @usage
 * ============================================================================ *
 const { Router } = require('express')
-const { mongoose } = require('mongoose')
-const signupT = require('@elioway/mongoose-bones/bones/crudities/signupT')
-const ThingModel = mongoose.Model("Thing", { name: String, ...etc })
+const { JSON } = require('JSON')
+const signupT = require('@elioway/JSON-bones/bones/crudities/signupT')
+const ThingModel = JSON.Model("Thing", { name: String, ...etc })
 
 let crudRouter = Router()
 crudRouter.post('/', signupT(ThingModel))
@@ -15,10 +15,12 @@ crudRouter.post('/', signupT(ThingModel))
 let apiRouter = Router()
 apiRouter.use(`/:Thing`, crudRouter)
 * ============================================================================ *
-* @param {mongoose.Model} Thing mongoose Model object.
+* @param {JSON.Model} Thing JSON Model object.
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
+const Cakebase = require('cakebase')("../database.json");
+var things = new Datastore();
 const bcrypt = require("bcryptjs")
 const {
   signUpError,
@@ -51,20 +53,10 @@ module.exports = Thing => {
       signupT.created = Date.now()
       signupT.password = hash
       signupT.thing = thingType
-      await Thing.create(signupT, (e, signedupT) => {
-        if (e) {
-          // General error signing up this Thing.
-          let err = signUpError(e)
-          // console.log({ signupT: "err" }, err)
-          res.status(err.name).json(err)
-        } else {
-          let rtnT = signedupT.toObject()
-          // No hashed password in response: Useless and ugly.
-          delete rtnT.password
-          rtnT.permits = Object.fromEntries(signedupT.permits)
-          res.status(201).send(rtnT)
-        }
-      })
+      let signedupT = Cakebase.set(signupT)
+      // No hashed password in response: Useless and ugly.
+      delete signedupT.password
+      res.status(201).send(signedupT)
     }
   }
 }

@@ -5,9 +5,9 @@
 * @usage
 * ============================================================================ *
 const { Router } = require('express')
-const { mongoose } = require('mongoose')
-const deleteT = require('@elioway/mongoose-bones/bones/crudities/deleteT')
-const ThingModel = mongoose.Model("Thing", { name: String })
+const { JSON } = require('JSON')
+const deleteT = require('@elioway/JSON-bones/bones/crudities/deleteT')
+const ThingModel = JSON.Model("Thing", { name: String })
 
 let crudRouter = Router()
 crudRouter.delete('/:_id', deleteT(ThingModel, { "delete": OWNER }))
@@ -15,29 +15,27 @@ crudRouter.delete('/:_id', deleteT(ThingModel, { "delete": OWNER }))
 let apiRouter = Router()
 apiRouter.use(`/Thing`, crudRouter)
 * ============================================================================ *
-* @param {mongoose.Model} Thing mongoose Model object.
+* @param {JSON.Model} Thing JSON Model object.
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
+var Datastore = require('nedb');
+var things = new Datastore();
 const {
   deleteError,
   deleteSuccess,
   thingTypeError,
 } = require("../utils/responseMessages")
-const { isPermitted, thingTypeMatched } = require("../utils/validations")
+const { thingTypeMatched } = require("../utils/validations")
 
 module.exports = Thing => {
   return async (req, res) => {
-    // console.log({ deleteT: "reqBody" }, req.body)
-    // console.log({ deleteT: "reqParams" }, req.params)
-    // console.log({ deleteT: "localsThing" }, res.locals.thing)
     let thingType = req.params.engage
-    await Thing.findById(req.params._id, (e, deletedableT) => {
+    await things.findOne({ _id: req.params._id }, function(e, deletedableT) {
       // console.log({ deleteT: "deletedableT" }, deletedableT)
       if (e) {
         // General error finding this Thing.
         let err = deleteError(e)
-        // console.log({ deleteT: "err" }, err)
         res.status(err.name).json(err)
       } else if (!thingTypeMatched(deletedableT, thingType)) {
         // Thing's Type does not match the endpoint called.
@@ -45,7 +43,8 @@ module.exports = Thing => {
         // console.log({ deleteT: "err" }, err)
         res.status(err.name).json(err)
       } else {
-        Thing.deleteOne({ _id: req.params._id }, e => {
+
+        things.remove({ _id: { $regex: req.params._id } }, function(e, numDeleted) {
           if (e) {
             // General error deleting this Thing.
             let err = deleteError(e)
