@@ -6,7 +6,7 @@
 * ============================================================================ *
 const { Router } = require('express')
 const { JSON } = require('JSON')
-const logoutT = require('@elioway/JSON-bones/crudities/logoutT')
+const logoutT = require('@elioway/bones/simple-json/logoutT')
 const Thing = JSON.Model("Thing", { name: String })
 
 let crudRouter = Router()
@@ -19,8 +19,8 @@ apiRouter.use(`/Thing`, crudRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-var Datastore = require('nedb');
-var things = new Datastore();
+const JSONdb = require('simple-json-db');
+const db = new JSONdb('../database.json');
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const { logoutSuccess } = require("../utils/responseMessages")
@@ -28,11 +28,7 @@ const { JWT_SECRET } = process.env
 
 module.exports = Thing => {
   return async (req, res) => {
-    // log.debug({ logoutT: "reqBody" }, req.body)
-    // log.debug({ logoutT: "reqParams" }, req.params)
-    // log.debug({ createT: "localsThing" }, res.locals.engagedThing)
     res.clearCookie("access_token")
-    // Logout success.
     let err = logoutSuccess()
     res.status(err.name).json(err)
   }

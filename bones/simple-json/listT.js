@@ -6,11 +6,12 @@
 * ============================================================================ *
 const { Router } = require('express')
 const { JSON } = require('JSON')
-const listT = require('@elioway/JSON-bones/bones/crudities/listT')
-const ThingModel = JSON.Model("Thing", { name: String })
+const listT = require('@elioway/bones/bones/simple-json/listT')
+let T = {  thing: "Thing" }
 
 let crudRouter = Router()
-crudRouter.get('/', listT(ThingModel, { "get": PUBLIC }))
+crudRouter.get("/:engage/:_id/list/", permitTo("get", T), listT(T))
+crudRouter.get('/', listT(T, { "get": PUBLIC }))
 
 let apiRouter = Router()
 apiRouter.use(`/Thing`, crudRouter)
@@ -19,10 +20,16 @@ apiRouter.use(`/Thing`, crudRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-const Cakebase = require('cakebase')("../database.json");
+const JSONdb = require('simple-json-db');
+const db = new JSONdb('../database.json');
+const { getError } = require("../utils/responseMessages")
+const settings = require("../settings")
 
 module.exports = Thing => {
   return async (req, res) => {
-   res.status(200).send(Cakebase.getAll())
+    let thingType = req.params.T
+    let engagedThing = res.locals.engagedThing
+    const thingList = db.JSON().filter(t => thing.list.includes(t._id) );
+    res.status(200).send(thingList)
   }
 }

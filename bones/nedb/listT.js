@@ -7,10 +7,10 @@
 const { Router } = require('express')
 const { JSON } = require('JSON')
 const listT = require('@elioway/JSON-bones/bones/crudities/listT')
-const ThingModel = JSON.Model("Thing", { name: String })
+let T = {  thing: "Thing" }
 
 let crudRouter = Router()
-crudRouter.get('/', listT(ThingModel, { "get": PUBLIC }))
+crudRouter.get('/', listT(T, { "get": PUBLIC }))
 
 let apiRouter = Router()
 apiRouter.use(`/Thing`, crudRouter)
@@ -27,7 +27,7 @@ const settings = require("../settings")
 module.exports = Thing => {
   return async (req, res) => {
     let thingType = req.params.T
-    let thing = res.locals.thing
+    let engagedThing = res.locals.engagedThing
 
     await things.find({ _id: { $in: thing.list }}, function(e, thingList) {
       if (e) {

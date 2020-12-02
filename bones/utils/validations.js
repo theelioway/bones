@@ -1,5 +1,5 @@
 module.exports = {
-  thingTypeMatched: (body, thingType) => {
+  thingIsTypeT: (body, thingType) => {
     // Checks whether the endpoint matches the package engage, e.g.
     // POST to /Place has Place data in the `engage` property.
     if (body.hasOwnProperty("engage")) {

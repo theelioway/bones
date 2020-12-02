@@ -5,24 +5,23 @@
 * @usage
 * ============================================================================ *
 const { Router } = require('express')
-const { JSON } = require('JSON')
-const getT = require('@elioway/JSON-bones/bones/crudities/getT')
+
+const getT = require('@elioway/bones/bones/ribs/getT')
 let T = {  thing: "Thing" }
 
-let crudRouter = Router()
-crudRouter.get('/:_id', getT(T, { "create": PUBLIC }))
+let ribsRouter = Router()
+ribsRouter.get('/:_id', getT(T, { "create": PUBLIC }))
 
 let apiRouter = Router()
-apiRouter.use(`/Thing`, crudRouter)
+apiRouter.use(`/Thing`, ribsRouter)
 * ============================================================================ *
-* @param {JSON.Model} Thing JSON Model object.
+* @param {Object} Thing schema.
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
 
 module.exports = Thing => {
   return async (req, res) => {
-    console.log({ ______GET______: "res.locals.engagedThing"}, res.locals.engagedThing)
     res.status(200).send(res.locals.engagedThing)
   }
 }

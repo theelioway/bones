@@ -1,29 +1,28 @@
 /**
-* @file Express Route DELETE/id handler, the elioWay.
+* @file Express Route PATCH handler, the elioWay.
 * @author Tim Bushell
 *
 * @usage
 * ============================================================================ *
 const { Router } = require('express')
 const { JSON } = require('JSON')
-const deleteT = require('@elioway/JSON-bones/bones/crudities/deleteT')
-const ThingModel = JSON.Model("Thing", { name: String })
+const updateT = require('@elioway/bones/bones/cakebase/updateT')
+let T = {  thing: "Thing" }
 
-let crudRouter = Router()
-crudRouter.delete('/:_id', deleteT(ThingModel, { "delete": OWNER }))
+let ribsRouter = Router()
+ribsRouter.patch('/:_id', updateT(T, { "update": OWNER }))
 
 let apiRouter = Router()
-apiRouter.use(`/Thing`, crudRouter)
+apiRouter.use(`/Thing`, ribsRouter)
 * ============================================================================ *
 * @param {JSON.Model} Thing JSON Model object.
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
 const Cakebase = require('cakebase')("../database.json");
-var things = new Datastore();
 const {
-  deleteError,
-  deleteSuccess,
+  updateError,
+  updateSuccess,
   thingTypeError,
 } = require("../utils/responseMessages")
 const { thingTypeMatched } = require("../utils/validations")
@@ -31,9 +30,12 @@ const { thingTypeMatched } = require("../utils/validations")
 module.exports = Thing => {
   return async (req, res) => {
     let thingType = req.params.engage
-    const deletedableT = Cakebase.get(e => e._id === req.params._id)
-    Cakebase.remove(deletedableT)
-    let success = deleteSuccess(thingType)
-    res.status(success.name).json(success)
+    let engagedThing = res.locals.engagedThing
+    let updateT = req.body
+    updateT.updated = Date.now()
+    updateT.updatedBy = req.user._id
+    let updatedT = Cakebase.update(e => e._id === req.params._id, updateT);
+    let success = updateSuccess(thingType)
+    res.status(success.name).send(updatedT)
   }
 }

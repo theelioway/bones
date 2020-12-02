@@ -12,14 +12,13 @@ const jwtOpts = {
   secretOrKey: JWT_SECRET,
 }
 module.exports = T => {
-  // console.log({ jwtAuthGuard: "jwtOpts"}, jwtOpts)
   passport.use(
     new passportJWT.Strategy(jwtOpts, (jwtPayload, callback) => {
-    await things.findOne({ _id: jwtPayload.id }, function(e, thing) {
+    await things.findOne({ _id: jwtPayload.id }, function(e, guardedThing) {
       if (e) {
         return callback(e)
       } else {
-        return callback(null, thing)
+        return callback(null, guardedThing)
       }
     })
   )

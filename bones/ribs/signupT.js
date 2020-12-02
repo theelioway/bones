@@ -5,22 +5,20 @@
 * @usage
 * ============================================================================ *
 const { Router } = require('express')
-const { JSON } = require('JSON')
-const signupT = require('@elioway/JSON-bones/bones/crudities/signupT')
-const T = JSON.Model("Thing", { name: String, ...etc })
 
-let crudRouter = Router()
-crudRouter.post('/', signupT(T))
+const signupT = require('@elioway/bones/bones/ribs/signupT')
+const T = mongoose.Model("Thing", { name: String, ...etc })
+
+let ribsRouter = Router()
+ribsRouter.post('/', signupT(T))
 
 let apiRouter = Router()
-apiRouter.use(`/:Thing`, crudRouter)
+apiRouter.use(`/:Thing`, ribsRouter)
 * ============================================================================ *
-* @param {JSON.Model} Thing JSON Model object.
+* @param {Object} Thing schema.
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-var Datastore = require('nedb');
-var things = new Datastore();
 const bcrypt = require("bcryptjs")
 const {
   signUpError,
@@ -31,9 +29,6 @@ const { thingTypeMatched } = require("../utils/validations")
 
 module.exports = Thing => {
   return async (req, res) => {
-    // console.log({ signupT: 'req' }, req)
-    // console.log({ signupT: "reqBody" }, req.body)
-    // console.log({ signupT: "reqParams" }, req.params)
     let thingType = req.params.engage
     const signupT = req.body
     const { username, password } = signupT
@@ -53,7 +48,7 @@ module.exports = Thing => {
       signupT.created = Date.now()
       signupT.password = hash
       signupT.thing = thingType
-      await things.insert(signupT, (e, signedupT) => {
+      await Thing.create(signupT, (e, signedupT) => {
         if (e) {
           // General error signing up this Thing.
           let err = signUpError(e)

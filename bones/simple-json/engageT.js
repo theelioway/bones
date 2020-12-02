@@ -1,28 +1,29 @@
 /**
-* @file Express Route GET/id handler, the elioWay.
+* @file Middleware to engage the engaged Thing.
 * @author Tim Bushell
 *
 * @usage
 * ============================================================================ *
 const { Router } = require('express')
-const { JSON } = require('JSON')
-const getT = require('@elioway/JSON-bones/bones/crudities/getT')
+const isTypeT = require("../bones/simple-json/engageT")
+const deleteT = require('../bones/simple-json/deleteT')
 let T = {  thing: "Thing" }
 
-let crudRouter = Router()
-crudRouter.get('/:_id', getT(T, { "create": PUBLIC }))
-
 let apiRouter = Router()
-apiRouter.use(`/Thing`, crudRouter)
+apiRouter.delete(`/Thing/:_id`, engageT(T), deleteT(T))
 * ============================================================================ *
 * @param {JSON.Model} Thing JSON Model object.
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
+const JSONdb = require('simple-json-db');
+const db = new JSONdb('../database.json');
+const { getError, permissionError } = require("../utils/responseMessages")
 
 module.exports = Thing => {
   return async (req, res) => {
-    console.log({ ______GET______: "res.locals.engagedThing"}, res.locals.engagedThing)
-    res.status(200).send(res.locals.engagedThing)
+    const engagedThing = db.get(req.params._id)
+    res.locals.engagedThing = engagedThing
+    next()
   }
 }

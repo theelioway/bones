@@ -1,16 +1,16 @@
 /**
-* @file Express Route GET/?q= handler, the elioWay.
+* @file Express Route DELETE/id handler, the elioWay.
 * @author Tim Bushell
 *
 * @usage
 * ============================================================================ *
 const { Router } = require('express')
 const { JSON } = require('JSON')
-const listT = require('@elioway/JSON-bones/bones/crudities/listT')
+const deleteT = require('@elioway/bones/bones/simple-json/deleteT')
 let T = {  thing: "Thing" }
 
 let crudRouter = Router()
-crudRouter.get('/', listT(T, { "get": PUBLIC }))
+crudRouter.delete('/:_id', deleteT(T, { "delete": OWNER }))
 
 let apiRouter = Router()
 apiRouter.use(`/Thing`, crudRouter)
@@ -19,22 +19,17 @@ apiRouter.use(`/Thing`, crudRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-var Datastore = require('nedb');
-var things = new Datastore();
-const { getError } = require("../utils/responseMessages")
-const settings = require("../settings")
+const JSONdb = require('simple-json-db');
+const db = new JSONdb('../database.json');
+const {
+  deleteSuccess,
+} = require("../utils/responseMessages")
 
 module.exports = Thing => {
   return async (req, res) => {
     let thingType = req.params.engage
-    let engagedThing = res.locals.engagedThing
-    await things.find({ thing: req.params.engage}, function (e, thingList) {
-     if (e) {
-       let err = getError(e)
-       res.status(err.name).json(err).end()
-     } else {
-       res.status(200).send(thingList)
-     }
-    })
+    const deletedableT = db.delete(req.params._id)
+    let success = deleteSuccess(thingType)
+    res.status(success.name).json(deletedableT)
   }
 }

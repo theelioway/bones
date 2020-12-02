@@ -6,7 +6,7 @@
 * ============================================================================ *
 const { Router } = require('express')
 const { JSON } = require('JSON')
-const signupT = require('@elioway/JSON-bones/bones/crudities/signupT')
+const signupT = require('@elioway/bones/bones/cakebase/signupT')
 const T = JSON.Model("Thing", { name: String, ...etc })
 
 let crudRouter = Router()
@@ -19,7 +19,7 @@ apiRouter.use(`/:Thing`, crudRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-var Datastore = require('nedb');
+const Cakebase = require('cakebase')("../database.json");
 var things = new Datastore();
 const bcrypt = require("bcryptjs")
 const {
@@ -53,20 +53,10 @@ module.exports = Thing => {
       signupT.created = Date.now()
       signupT.password = hash
       signupT.thing = thingType
-      await things.insert(signupT, (e, signedupT) => {
-        if (e) {
-          // General error signing up this Thing.
-          let err = signUpError(e)
-          // console.log({ signupT: "err" }, err)
-          res.status(err.name).json(err)
-        } else {
-          let rtnT = signedupT.toObject()
-          // No hashed password in response: Useless and ugly.
-          delete rtnT.password
-          rtnT.permits = Object.fromEntries(signedupT.permits)
-          res.status(201).send(rtnT)
-        }
-      })
+      let signedupT = Cakebase.set(signupT)
+      // No hashed password in response: Useless and ugly.
+      delete signedupT.password
+      res.status(201).send(signedupT)
     }
   }
 }

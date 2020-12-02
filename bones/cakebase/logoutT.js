@@ -30,7 +30,7 @@ module.exports = Thing => {
   return async (req, res) => {
     // log.debug({ logoutT: "reqBody" }, req.body)
     // log.debug({ logoutT: "reqParams" }, req.params)
-    // log.debug({ createT: "localsThing" }, res.locals.thing)
+    // log.debug({ createT: "localsThing" }, res.locals.engagedThing)
     res.clearCookie("access_token")
     // Logout success.
     let err = logoutSuccess()
