@@ -6,7 +6,7 @@
 * ============================================================================ *
 const { Router } = require('express')
 const { JSON } = require('JSON')
-const listT = require('@elioway/JSON-bones/bones/crudities/listT')
+const listT = require('@elioway/bones/bones/nedb/listT')
 let T = {  thing: "Thing" }
 
 let crudRouter = Router()
@@ -19,8 +19,8 @@ apiRouter.use(`/Thing`, crudRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-var Datastore = require('nedb');
-var things = new Datastore();
+var Datastore = require("nedb")
+var things = new Datastore()
 const { getError } = require("../utils/responseMessages")
 const settings = require("../settings")
 
@@ -28,13 +28,13 @@ module.exports = Thing => {
   return async (req, res) => {
     let thingType = req.params.engage
     let engagedThing = res.locals.engagedThing
-    await things.find({ thing: req.params.engage}, function (e, thingList) {
-     if (e) {
-       let err = getError(e)
-       res.status(err.name).json(err).end()
-     } else {
-       res.status(200).send(thingList)
-     }
+    await things.find({ thing: req.params.engage }, function (e, thingList) {
+      if (e) {
+        let err = getError(e)
+        res.status(err.name).json(err).end()
+      } else {
+        res.status(200).send(thingList)
+      }
     })
   }
 }

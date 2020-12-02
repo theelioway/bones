@@ -6,7 +6,7 @@
 * ============================================================================ *
 const { Router } = require('express')
 const { JSON } = require('JSON')
-const logoutT = require('@elioway/JSON-bones/crudities/logoutT')
+const logoutT = require('@elioway/bones/crudities/logoutT')
 const Thing = JSON.Model("Thing", { name: String })
 
 let crudRouter = Router()
@@ -19,8 +19,8 @@ apiRouter.use(`/Thing`, crudRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-const Cakebase = require('cakebase')("../database.json");
-var things = new Datastore();
+const Cakebase = require("cakebase")("../database.json")
+var things = new Datastore()
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const { logoutSuccess } = require("../utils/responseMessages")

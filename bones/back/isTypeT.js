@@ -17,9 +17,7 @@ apiRouter.delete(`/Thing/:_id`, isTypeT(T), deleteT(T))
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-const {
-  thingTypeError,
-} = require("../utils/responseMessages")
+const { thingTypeError } = require("../utils/responseMessages")
 const { thingIsTypeT } = require("../utils/validations")
 
 module.exports = Thing => {

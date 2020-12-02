@@ -4,8 +4,8 @@
 *
 * @usage
 * ============================================================================ *
-const sanitizeOptions = require("@elioway/JSON-bones/utils/sanitize-options")
-const sanitizeOptions = require("@elioway/JSON-bones/utils/sanitize-options")
+const sanitizeOptions = require("@elioway/bones/utils/sanitize-options")
+const sanitizeOptions = require("@elioway/bones/utils/sanitize-options")
 let sanitizedOptions = sanitizeOptions(req.query)
 * ============================================================================ *
 * @param {Object} queryString object being tested.

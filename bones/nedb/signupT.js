@@ -6,7 +6,7 @@
 * ============================================================================ *
 const { Router } = require('express')
 const { JSON } = require('JSON')
-const signupT = require('@elioway/JSON-bones/bones/crudities/signupT')
+const signupT = require('@elioway/bones/bones/nedb/signupT')
 const T = JSON.Model("Thing", { name: String, ...etc })
 
 let crudRouter = Router()
@@ -19,8 +19,8 @@ apiRouter.use(`/:Thing`, crudRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-var Datastore = require('nedb');
-var things = new Datastore();
+var Datastore = require("nedb")
+var things = new Datastore()
 const bcrypt = require("bcryptjs")
 const {
   signUpError,

@@ -38,10 +38,7 @@ module.exports = Thing => {
       // console.log({ loginT: "err" }, err)
       res.status(err.name).json(err).end()
     } else {
-
-
       const user = await Thing.findOne({ username: username })
-
 
       if (!user) {
         // Data missing for this request.

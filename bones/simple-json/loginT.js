@@ -19,8 +19,8 @@ apiRouter.use(`/Thing`, crudRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-const JSONdb = require('simple-json-db');
-const db = new JSONdb('../database.json');
+const JSONdb = require("simple-json-db")
+const db = new JSONdb("../database.json")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const {
@@ -42,7 +42,7 @@ module.exports = Thing => {
       // console.log({ loginT: "err" }, err)
       res.status(err.name).json(err).end()
     } else {
-      const user = db.JSON().find(t => t.username === username);
+      const user = db.JSON().find(t => t.username === username)
 
       if (!user) {
         // Data missing for this request.
@@ -87,5 +87,6 @@ module.exports = Thing => {
         // console.log({ loginT: "err" }, err)
         res.status(err.name).json(err).end()
       }
+    }
   }
 }

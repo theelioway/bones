@@ -9,10 +9,14 @@ const routerApi = require("./router")
 const routerAuth = require("./auth/router")
 const routerSchema = require("./schema/router")
 const app = express()
-// app.locals.title = "JSON-bones"
-// app.locals.email = "JSON-bones@elioway.com"
+
+// app.locals.title = "bones"
+// app.locals.email = "bones@elioway.com"
 // app.locals.fs = require("fs")
 // app.locals.log = msg => console.log(msg)
+
+app.locals.fs = require("fs")
+
 app
   .use(cors())
   .use(bodyParser.json())

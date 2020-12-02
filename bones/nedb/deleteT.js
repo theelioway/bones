@@ -6,7 +6,7 @@
 * ============================================================================ *
 const { Router } = require('express')
 const { JSON } = require('JSON')
-const deleteT = require('@elioway/JSON-bones/bones/crudities/deleteT')
+const deleteT = require('@elioway/bones/bones/nedb/deleteT')
 let T = {  thing: "Thing" }
 
 let crudRouter = Router()
@@ -19,8 +19,8 @@ apiRouter.use(`/Thing`, crudRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-var Datastore = require('nedb');
-var things = new Datastore();
+var Datastore = require("nedb")
+var things = new Datastore()
 const {
   deleteError,
   deleteSuccess,
@@ -31,7 +31,7 @@ const { thingTypeMatched } = require("../utils/validations")
 module.exports = Thing => {
   return async (req, res) => {
     let thingType = req.params.engage
-    await things.findOne({ _id: req.params._id }, function(e, deletedableT) {
+    await things.findOne({ _id: req.params._id }, function (e, deletedableT) {
       // console.log({ deleteT: "deletedableT" }, deletedableT)
       if (e) {
         // General error finding this Thing.
@@ -43,8 +43,10 @@ module.exports = Thing => {
         // console.log({ deleteT: "err" }, err)
         res.status(err.name).json(err)
       } else {
-
-        things.remove({ _id: { $regex: req.params._id } }, function(e, numDeleted) {
+        things.remove({ _id: { $regex: req.params._id } }, function (
+          e,
+          numDeleted
+        ) {
           if (e) {
             // General error deleting this Thing.
             let err = deleteError(e)

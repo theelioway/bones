@@ -19,10 +19,7 @@ apiRouter.use(`/Thing`, ribsRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-const {
-  deleteError,
-  deleteSuccess,
-} = require("../utils/responseMessages")
+const { deleteError, deleteSuccess } = require("../utils/responseMessages")
 
 module.exports = Thing => {
   return async (req, res) => {

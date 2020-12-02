@@ -5,7 +5,7 @@
 * @usage
 * ============================================================================ *
 const { Router } = require('express')
-const schemaT = require('@elioway/JSON-bones/bones/crudities/schemaT')
+const schemaT = require('@elioway/bones/bones/nedb/schemaT')
 
 let routerSchema = Router()
 routerSchema.get('/', schemaT())

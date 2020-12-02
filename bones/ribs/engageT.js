@@ -22,8 +22,8 @@ module.exports = Thing => {
   return async (req, res, next) => {
     const engagedThing = {
       _id: "GOD",
-      name: "Tim Bushell"
-    };
+      name: "Tim Bushell",
+    }
     res.locals.engagedThing = engagedThing
     next()
   }

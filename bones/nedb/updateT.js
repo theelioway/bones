@@ -6,7 +6,7 @@
 * ============================================================================ *
 const { Router } = require('express')
 const { JSON } = require('JSON')
-const updateT = require('@elioway/JSON-bones/bones/crudities/updateT')
+const updateT = require('@elioway/bones/bones/nedb/updateT')
 let T = {  thing: "Thing" }
 
 let crudRouter = Router()
@@ -19,8 +19,8 @@ apiRouter.use(`/Thing`, crudRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-var Datastore = require('nedb');
-var things = new Datastore();
+var Datastore = require("nedb")
+var things = new Datastore()
 const {
   updateError,
   updateSuccess,
@@ -42,7 +42,10 @@ module.exports = Thing => {
       updateT.updated = Date.now()
       updateT.updatedBy = req.user._id
       // console.log({ updateT: "createT" }, createT)
-      things.update({ _id: req.params._id }, updateT, {}, function (e, numReplaced) {
+      things.update({ _id: req.params._id }, updateT, {}, function (
+        e,
+        numReplaced
+      ) {
         if (e) {
           let err = updateError(e)
           // console.log({ updateT: "err" }, err)
@@ -51,8 +54,7 @@ module.exports = Thing => {
           let success = updateSuccess(thingType)
           res.status(success.name).send(success)
         }
-      });
-
+      })
     }
   }
 }

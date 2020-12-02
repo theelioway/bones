@@ -16,8 +16,8 @@ apiRouter.delete(`/Thing/:_id`, engageT(T), deleteT(T))
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-const JSONdb = require('simple-json-db');
-const db = new JSONdb('../database.json');
+const JSONdb = require("simple-json-db")
+const db = new JSONdb("../database.json")
 const { getError, permissionError } = require("../utils/responseMessages")
 
 module.exports = Thing => {

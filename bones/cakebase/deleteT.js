@@ -19,8 +19,8 @@ apiRouter.use(`/Thing`, ribsRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-const Cakebase = require('cakebase')("../database.json");
-var things = new Datastore();
+const Cakebase = require("cakebase")("../database.json")
+var things = new Datastore()
 const {
   deleteError,
   deleteSuccess,

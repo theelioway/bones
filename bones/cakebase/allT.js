@@ -19,12 +19,12 @@ apiRouter.use(`/Thing`, ribsRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-const Cakebase = require('cakebase')("../database.json");
+const Cakebase = require("cakebase")("../database.json")
 
 module.exports = Thing => {
   return async (req, res) => {
     try {
-     res.status(200).send(Cakebase.getAll())
+      res.status(200).send(Cakebase.getAll())
     } catch (e) {
       // General error creating this Thing.
       let err = createError(e)

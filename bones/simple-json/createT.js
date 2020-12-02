@@ -19,8 +19,8 @@ apiRouter.use(`/Thing`, ribsRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-const JSONdb = require('simple-json-db');
-const db = new JSONdb('../database.json');
+const JSONdb = require("simple-json-db")
+const db = new JSONdb("../database.json")
 const { createError } = require("../utils/responseMessages")
 
 module.exports = Thing => {
@@ -32,8 +32,7 @@ module.exports = Thing => {
     createT.createdBy = req.params._id
     createT.god = req.user._id
     createT.thing = thingType
-    let createdT = db.set(createT._id, createT);
+    let createdT = db.set(createT._id, createT)
     res.status(201).send(createdT)
-
   }
 }

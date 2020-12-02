@@ -6,7 +6,7 @@
 * ============================================================================ *
 const { Router } = require('express')
 const { JSON } = require('JSON')
-const loginT = require('@elioway/JSON-bones/crudities/loginT')
+const loginT = require('@elioway/bones/crudities/loginT')
 const Thing = JSON.Model("Thing", { name: String })
 
 let crudRouter = Router()
@@ -19,8 +19,8 @@ apiRouter.use(`/Thing`, crudRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-var Datastore = require('nedb');
-var things = new Datastore();
+var Datastore = require("nedb")
+var things = new Datastore()
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const {
@@ -42,7 +42,7 @@ module.exports = Thing => {
       // console.log({ loginT: "err" }, err)
       res.status(err.name).json(err).end()
     } else {
-      await things.findOne({ username: username }, function(e, user) {
+      await things.findOne({ username: username }, async function (e, user) {
         if (!user) {
           // Data missing for this request.
           let err = credentialsError()
@@ -87,5 +87,6 @@ module.exports = Thing => {
           res.status(err.name).json(err).end()
         }
       })
+    }
   }
 }

@@ -6,7 +6,7 @@
 * ============================================================================ *
 const { Router } = require('express')
 const { JSON } = require('JSON')
-const loginT = require('@elioway/JSON-bones/crudities/loginT')
+const loginT = require('@elioway/bones/crudities/loginT')
 const Thing = JSON.Model("Thing", { name: String })
 
 let crudRouter = Router()
@@ -19,7 +19,7 @@ apiRouter.use(`/Thing`, crudRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-const Cakebase = require('cakebase')("../database.json");
+const Cakebase = require("cakebase")("../database.json")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const {
@@ -41,7 +41,7 @@ module.exports = Thing => {
       // console.log({ loginT: "err" }, err)
       res.status(err.name).json(err).end()
     } else {
-      const user = Cakebase.get(e => e.username === username);
+      const user = Cakebase.get(e => e.username === username)
 
       if (!user) {
         // Data missing for this request.
@@ -86,5 +86,6 @@ module.exports = Thing => {
         // console.log({ loginT: "err" }, err)
         res.status(err.name).json(err).end()
       }
+    }
   }
 }
