@@ -1,7 +1,7 @@
 "use strict"
 const { Router } = require("express")
 
-const ThingModel = require("../ThingModel")
+const ThingModel = require("../Thing.json")
 // const jwtAuthGuard = require("./jwtAuthGuard")
 const loginT = require("../ribs/loginT")
 const logoutT = require("../ribs/logoutT")
