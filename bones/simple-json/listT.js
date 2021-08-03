@@ -10,7 +10,7 @@ const listT = require('@elioway/bones/bones/simple-json/listT')
 let T = {  thing: "Thing" }
 
 let crudRouter = Router()
-crudRouter.get("/:engage/:_id/list/", permitTo("get", T), listT(T))
+crudRouter.get("/:engage/:_id/list/", permitT("get", T), listT(T))
 crudRouter.get('/', listT(T, { "get": PUBLIC }))
 
 let apiRouter = Router()

@@ -43,20 +43,20 @@ module.exports = Thing => {
         // console.log({ deleteT: "err" }, err)
         res.status(err.name).json(err)
       } else {
-        things.remove({ _id: { $regex: req.params._id } }, function (
-          e,
-          numDeleted
-        ) {
-          if (e) {
-            // General error deleting this Thing.
-            let err = deleteError(e)
-            // console.log({ deleteT: "err" }, err)
-            res.status(err.name).json(err)
-          } else {
-            let success = deleteSuccess(thingType)
-            res.status(success.name).json(success)
+        things.remove(
+          { _id: { $regex: req.params._id } },
+          function (e, numDeleted) {
+            if (e) {
+              // General error deleting this Thing.
+              let err = deleteError(e)
+              // console.log({ deleteT: "err" }, err)
+              res.status(err.name).json(err)
+            } else {
+              let success = deleteSuccess(thingType)
+              res.status(success.name).json(success)
+            }
           }
-        })
+        )
       }
     })
   }

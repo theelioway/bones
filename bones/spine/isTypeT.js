@@ -5,7 +5,7 @@
 * @usage
 * ============================================================================ *
 const { Router } = require('express')
-const isTypeT = require("@@elioway/mongoose-bones/bones/back/isTypeT")
+const isTypeT = require("@@elioway/mongoose-bones/bones/spine/isTypeT")
 const deleteT = require('../bones/my-route/deleteT')
 let T = {
 

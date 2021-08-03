@@ -5,11 +5,11 @@
 * @usage
 * ============================================================================ *
 const { Router } = require('express')
-const permitTo = require("@@elioway/mongoose-bones/bones/back/permitTo")
+const permitT = require("@@elioway/mongoose-bones/bones/spine/permitT")
 const deleteT = require('../bones/my-route/deleteT')
 
 let apiRouter = Router()
-apiRouter.delete(`/Thing/:_id`, permitTo("delete", T), deleteT(T))
+apiRouter.delete(`/Thing/:_id`, permitT("delete", T), deleteT(T))
 * ============================================================================ *
 * @param {String} action seeking permission for.
 * @param {Object} Thing schema.

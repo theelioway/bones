@@ -16,6 +16,5 @@ module.exports = slimy => {
     return_changed_case: false,
     remove_duplicates: true,
   })
-  // turn back to string
   return unslime.join(" ")
 }
