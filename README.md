@@ -1,6 +1,8 @@
 ![](https://elioway.gitlab.io/eliobones/elio-bones-logo.png)
 
-# bones ![experimental](/artwork/icon/experimental/favicon.png "experimental")
+# bones
+
+![experimental](https://elioway.gitlab.io/eliosin/icon/devops/experimental/favicon.ico "experimental")
 
 Bare bones NodeJS API. Reusable Code for **elioBones** projects.
 
