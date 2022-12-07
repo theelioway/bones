@@ -31,11 +31,9 @@ mochaSuite("bones | crudities | listT | GET /:engage/:_id/list/listof", () => {
           // permits adon
           permits: { get: PermitLevels.GOD },
           // engage adon
-          engage: {
             Event: {
               startDate: new Date(2001, 1, 1).toISOString(),
             },
-          },
         }
       }
     )

@@ -38,7 +38,7 @@ PORT=3030
 - [bones Quickstart](https://elioway.gitlab.io/eliobones/bones/quickstart.html)
 - [bones Credits](https://elioway.gitlab.io/eliobones/bones/credits.html)
 
-![](apple-touch-icon.png)
+![](https://elioway.gitlab.io/eliobones/apple-touch-icon.png)
 
 ## License
 

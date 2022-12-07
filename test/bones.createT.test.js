@@ -37,12 +37,10 @@ mochaSuite("bones | crudities | createT | POST /:engage/:_id/:Thing/", () => {
               .send({
                 alternateName: "First student wizard",
                 disambiguatingDescription: "Apprentice1",
-                engage: {
                   Person: {
                     birthDate: "1967-03-06",
                     email: "apprentice1@eliomail.com",
                   },
-                },
                 name: "Apprentice1",
               })
               .set("Authorization", tokenBody.token)
@@ -57,9 +55,8 @@ mochaSuite("bones | crudities | createT | POST /:engage/:_id/:Thing/", () => {
                   "created",
                   "createdBy",
                   "disambiguatingDescription",
-                  "engage",
                   "god",
-                  "list",
+                  "ItemList",
                   "name",
                   "permits",
                   "thing",
@@ -67,12 +64,10 @@ mochaSuite("bones | crudities | createT | POST /:engage/:_id/:Thing/", () => {
                 fieldsShouldEqual(res.body, {
                   alternateName: "First student wizard",
                   disambiguatingDescription: "Apprentice1",
-                  engage: {
                     Person: {
                       birthDate: "1967-03-06",
                       email: "apprentice1@eliomail.com",
                     },
-                  },
                   name: "Apprentice1",
                   permits: settings.permits,
                   thing: "Person",
@@ -107,7 +102,6 @@ mochaSuite("bones | crudities | createT | POST /:engage/:_id/:Thing/", () => {
           .post(`/Thing/${tokenBody._id}/ConsumeAction/`)
           .send({
             disambiguatingDescription: "Eat victuals.",
-            engage: {
               Action: {
                 actionStatus: "ActiveActionStatus",
                 startTime: "2030-10-10T01:02:03.000Z",
@@ -115,7 +109,6 @@ mochaSuite("bones | crudities | createT | POST /:engage/:_id/:Thing/", () => {
               ConsumeAction: {
                 expectsAcceptanceOf: "Taste",
               },
-            },
             name: "Victuals",
           })
           .set("Authorization", tokenBody.token)
@@ -124,7 +117,6 @@ mochaSuite("bones | crudities | createT | POST /:engage/:_id/:Thing/", () => {
             res.should.have.status(201)
             fieldsShouldEqual(res.body, {
               disambiguatingDescription: "Eat victuals.",
-              engage: {
                 Action: {
                   actionStatus: "ActiveActionStatus",
                   startTime: "2030-10-10T01:02:03.000Z",
@@ -132,7 +124,6 @@ mochaSuite("bones | crudities | createT | POST /:engage/:_id/:Thing/", () => {
                 ConsumeAction: {
                   expectsAcceptanceOf: "Taste",
                 },
-              },
               name: "Victuals",
               thing: "ConsumeAction",
             })
@@ -186,12 +177,10 @@ mochaSuite("bones | crudities | createT | POST /:engage/:_id/:Thing/", () => {
           .post(`/Thing/${tokenBody._id}/Person`)
           .send({
             disambiguatingDescription: "Hire an apprentice.",
-            engage: {
               Action: {
                 actionStatus: "ActiveActionStatus",
                 startTime: "2030-10-10T01:02:03.000Z",
               },
-            },
             name: "Apprentices",
           })
           .set("Authorization", tokenBody.token)
