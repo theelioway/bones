@@ -12,6 +12,12 @@ Bare bones NodeJS API. Reusable Code for **elioBones** projects.
 
 ```bash
 git clone https://gitlab.com/eliobones/bones.git
+cd bones
+npm i
+npm run bones -- readT Person tim
+npm run bones -- takeupT Person tim --name="Tim Bushell"
+npm run bones -- enlistT Person tim Person trev --name="Trev Bushell"
+npm run bones -- updateT Person trev --name="Trevor Bushell"
 ```
 
 ### Config

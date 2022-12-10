@@ -1,12 +1,11 @@
-"use strict"
-const slug = require("mollusc")
-const keywordExtractor = require("keyword-extractor")
+import slug from "mollusc"
+import keywordExtractor from "keyword-extractor"
 
 /**
  * Creates a unique set of alphatized words - without stop words.
  * @param {*string} slimy Any string, but prefers it pre-striped like a slug.
  */
-exports.uniquefy = function (slimy) {
+export const uniquefy = slimy => {
   // sorted and unslugged (if slug)
   var unslime = slug(slimy).split("-").sort().join(" ")
   // no stops words and uniq
