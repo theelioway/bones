@@ -60,21 +60,92 @@ helpers.pick = (obj, propList) => {
   }, {})
 }
 
-
-helpers.camelCase = (str) => {
+helpers.camelCase = str => {
   if (!str) return ""
-  str = str.split("").reduce((a, s) => a + (s === s.toUpperCase() ? s+" " : s))
-  str = str.replace(/  /g, " ", )
+  str = str
+    .split("")
+    .reduce((a, s) => a + (s === s.toUpperCase() ? s + " " : s))
+  str = str.replace(/  /g, " ")
   // Convert the string to lower case
-  str = str.toLowerCase();
+  str = str.toLowerCase()
   // Split the string into an array of words
-  const words = str.split(' ');
+  const words = str.split(" ")
   // Convert each word to camel case
   for (let i = 0; i < words.length; i++) {
-    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1)
   }
   // Join the words back together into a single string
-  return words.join('');
+  return words.join("")
+}
+
+helpers.summariseT = obj => {
+  // Loop through all the properties in the object
+  let engage = []
+  for (const key in obj) {
+    let property = obj[key]
+    if (Array.isArray(property)) {
+      // If the property is an array return the count.
+      obj[key] = `${property.length} items`
+    } else if (key === "ItemList") {
+      // Summarise the ItemList.
+      obj[key] = `${property.itemListElement.length} items`
+    } else if (key[0] === key[0].toUpperCase()) {
+      // List which other Types are engagable by this thing.
+      engage.push(key)
+      // Delete the Type
+      delete obj[key]
+    } else if (
+      !obj[key] ||
+      (typeof obj[key] !== "string" &&
+        typeof obj[key] !== "number" &&
+        typeof obj[key] !== "boolean")
+    ) {
+      // If the property is empty or it is not a primitive value, delete it
+      delete obj[key]
+    }
+  }
+  if (engage) {
+    // Summarise the Types engagable by this thing.
+    obj.engage = engage.join(",")
+  }
+  // Return the purged object
+  return obj
+}
+
+helpers.errorPayload = (identifier, error, potentialAction) => {
+  if (potentialAction) {
+    potentialAction = {
+      identifier: potentialAction,
+      actionStatus: "PotentialActionStatus",
+    }
+  }
+  error = error ? error : identifier
+  return {
+    identifier: identifier,
+    mainEntityOfPage: "Action",
+    potentialAction,
+    Action: {
+      error: error,
+      actionStatus: "FailedActionStatus",
+    },
+  }
+}
+
+helpers.successPayload = (identifier, potentialAction) => {
+  if (potentialAction) {
+    potentialAction = {
+      identifier: potentialAction,
+      actionStatus: "PotentialActionStatus",
+    }
+  }
+  return {
+    identifier: identifier,
+    mainEntityOfPage: "Action",
+    potentialAction,
+    Action: {
+      actionStatus: "CompletedActionStatus",
+    },
+  }
 }
 
 module.exports = helpers

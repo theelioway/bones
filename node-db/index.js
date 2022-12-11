@@ -6,7 +6,7 @@ const { schemaDomainUrl } = require("@elioway/thing/utils/get-schema")
 const helpers = require("../bones/helpers")
 const db = {}
 
-db.log = (msg) => {} // console.error(msg)
+db.log = msg => {} // console.error(msg)
 
 //* Util to return the file system path. */
 db.baseDir = path.join(__dirname, "/../.data")
@@ -110,12 +110,13 @@ db.list = (things, cb) => {
     })
     .catch(err => {
       db.log("db.list", err)
-      cb("Could not `read` files for list.")
+      cb("Could not `read` files for list. " + err)
     })
 }
 
 //* Util to update a JSON record if it exists. */
 db.update = (packet, cb) => {
+  packet.ItemList.numberOfItems = packet.ItemList.itemListElement.length
   const filePath = db.makeFilePath(packet)
   fs.open(filePath, "r+", (err, fileRef) => {
     if (!err && fileRef) {
