@@ -7,29 +7,30 @@ const db = {}
 //* Util to return the file system path. */
 db.baseDir = path.join(__dirname, "/../.data")
 
-//* Util to build the path to a JSON record. */
-db.makeFilePath = (THINGTYPE, identifier) => {
-  const filePath = `${db.baseDir}/${THINGTYPE}`
-  if (!fs.existsSync(filePath)) {
-    fs.mkdirSync(filePath, { recursive: true })
+//* Util to build the mainEntityOfPage to a JSON record. */
+db.makeFilePath = packet => {
+  let { identifier } = packet
+  // const filePath = path.join(, mainEntityOfPage)
+  if (!fs.existsSync(db.baseDir)) {
+    fs.mkdirSync(db.baseDir, { recursive: true })
   }
-  return `${filePath}/${identifier}.json`
+  return path.join(db.baseDir, `${identifier}.json`)
 }
 
 //* Util to determine if a JSON record already exists or not. */
-db.exists = (THINGTYPE, identifier, cb) => {
-  const filePath = db.makeFilePath(THINGTYPE, identifier)
+db.exists = (packet, cb) => {
+  const filePath = db.makeFilePath(packet)
   fs.exists(filePath, cb)
 }
 
 //* Util to create a new JSON record if not already exists. */
-db.create = (THINGTYPE, identifier, data, cb) => {
-  db.exists(THINGTYPE, identifier, (exists, err) => {
+db.create = (packet, cb) => {
+  db.exists(packet, (exists, err) => {
     if (!exists && !err) {
-      const filePath = db.makeFilePath(THINGTYPE, identifier)
+      const filePath = db.makeFilePath(packet)
       fs.open(filePath, "wx", (err, fileRef) => {
         if (!err && fileRef) {
-          let stringData = JSON.stringify(data, null, "\t")
+          let stringData = JSON.stringify(packet, null, "\t")
           fs.writeFile(fileRef, stringData, err => {
             if (!err) {
               fs.close(fileRef, err => {
@@ -58,8 +59,8 @@ db.create = (THINGTYPE, identifier, data, cb) => {
 /** Util to read a JSON record if it exists.
  * @TODO Perhaps resolve multiaccess issue using lock field and Promise?
  */
-db.read = (THINGTYPE, identifier, cb) => {
-  const filePath = db.makeFilePath(THINGTYPE, identifier)
+db.read = (packet, cb) => {
+  const filePath = db.makeFilePath(packet)
   fs.readFile(filePath, "utf-8", (err, data) => {
     if (!err && data) {
       cb(false, helpers.parseJsonToObject(data))
@@ -72,9 +73,9 @@ db.read = (THINGTYPE, identifier, cb) => {
 
 //* Util to list all JSON records belonging to an Engaged record's list. */
 db.list = (things, cb) => {
-  var promises = things.map(item => {
+  var promises = things.map(packet => {
     return new Promise((resolve, reject) => {
-      db.read(item.mainEntityOfPage, item.identifier, (err, data) => {
+      db.read(packet, (err, data) => {
         if (!err) {
           resolve(data)
         } else {
@@ -95,18 +96,18 @@ db.list = (things, cb) => {
 }
 
 //* Util to update a JSON record if it exists. */
-db.update = (THINGTYPE, identifier, data, cb) => {
-  const filePath = db.makeFilePath(THINGTYPE, identifier)
+db.update = (packet, cb) => {
+  const filePath = db.makeFilePath(packet)
   fs.open(filePath, "r+", (err, fileRef) => {
     if (!err && fileRef) {
-      let stringData = JSON.stringify(data, null, "\t")
+      let stringData = JSON.stringify(packet, null, "\t")
       fs.ftruncate(fileRef, err => {
         if (!err) {
           fs.writeFile(fileRef, stringData, err => {
             if (!err) {
               fs.close(fileRef, err => {
                 if (!err) {
-                  cb(false, data)
+                  cb(false, packet)
                 } else {
                   console.error("db.update", err)
                   cb("Could not `close` file for update.")
@@ -128,8 +129,8 @@ db.update = (THINGTYPE, identifier, data, cb) => {
 }
 
 //* Util to delete a JSON record if it exists. */
-db.delete = (THINGTYPE, identifier, cb) => {
-  const filePath = db.makeFilePath(THINGTYPE, identifier)
+db.delete = (packet, cb) => {
+  const filePath = db.makeFilePath(packet)
   fs.unlink(filePath, err => {
     if (!err) {
       cb(false)

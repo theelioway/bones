@@ -18,8 +18,10 @@ const isLISTED = (engagedData, permitAudience) => {
   )
 }
 
+/** @TODO Add permits to your list for the ribs. You will give Permission by
+ * creating a special Permit and assigning it to a Person.  */
 const permitT = (rib, packet, db, engagedData, cb) => {
-  let { identifier, mainEntityOfPage, permit } = packet
+  let { identifier, mainEntityOfPage } = packet
   // Route auth/delete token (aka `signoutT`) should always be level GOD.
   let permittedLevel = PERMITLEVELS.GOD
   // Permits active? Else leave at default "GOD"
@@ -37,9 +39,11 @@ const permitT = (rib, packet, db, engagedData, cb) => {
     }
   }
   // Does the client have a token?
+  // engagedData.permit?
+  let permit = engagedData.permit
   if (permit) {
     // Examine the token.
-    db.read("Permit", permit, (err, tokenData) => {
+    db.read(permit, (err, tokenData) => {
       if (!err && tokenData) {
         let { permitAudience, validUntil } = tokenData.Permit
         // Check token is still valid.

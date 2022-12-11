@@ -4,16 +4,13 @@ const enlistT = require("./enlistT")
 
 const takeonT = (packet, db, cb) => {
   authT("takeonT", packet, db, (permitted, err, _) => {
-    let { mainEntityOfPage } = packet
     if (hasRequiredFields(packet, ["identifier"])) {
-      if (!packet.identifier) {
-        packet.identifier = makeIdentifier(packet)
-      }
-      db.exists(mainEntityOfPage, identifier, (exists, err) => {
+      let { identifier } = packet
+      db.exists(packet, (exists, err) => {
         if (!exists) {
-          db.create(mainEntityOfPage, identifier, packet, err => {
+          db.create(packet, err => {
             if (!err) {
-              enlistT({ ...packet, identifier }, db, cb)
+              enlistT(packet, db, cb)
             } else {
               cb(500, {
                 Error: `Could not create ${identifier} Thing.`,
@@ -22,7 +19,7 @@ const takeonT = (packet, db, cb) => {
             }
           })
         } else {
-          enlistT({ ...packet, identifier }, db, cb)
+          enlistT(packet, db, cb)
         }
       })
     } else {

@@ -60,4 +60,21 @@ helpers.pick = (obj, propList) => {
   }, {})
 }
 
+
+helpers.camelCase = (str) => {
+  if (!str) return ""
+  str = str.split("").reduce((a, x) => x + (a === a.toUpperCase() ? a+" " : a))
+  str = str.replace(/  /g, " ", )
+  // Convert the string to lower case
+  str = str.toLowerCase();
+  // Split the string into an array of words
+  const words = str.split(' ');
+  // Convert each word to camel case
+  for (let i = 0; i < words.length; i++) {
+    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+  }
+  // Join the words back together into a single string
+  return words.join('');
+}
+
 module.exports = helpers
