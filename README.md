@@ -28,7 +28,8 @@ npm run bones -- readT creation
 # todo npm run bones -- readT creation --sameAs=-ItemList,-EntryPoint
 # todo npm run bones -- creation takeonT god
 # Let there be god
-npm run bones -- takeonT creation god --mainEntityOfPage=Person --disambiguatingDescription="there is a god"
+npm run bones -- takeonT creation god
+npm run bones -- updateT god  --mainEntityOfPage=Person --disambiguatingDescription="there is a god"
 npm run bones -- listT creation
 npm run bones -- readT god
 npm run bones -- listT god
