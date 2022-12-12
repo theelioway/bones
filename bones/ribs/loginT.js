@@ -4,8 +4,6 @@ const {
   hasRequiredFields,
   makeIdentifier,
   makePermitIdentifier,
-  successPayload,
-  errorPayload,
 } = require("../helpers")
 const engageT = require("../spine/engageT")
 
@@ -13,8 +11,8 @@ const login = (packet, db, cb) => {
   if (hasRequiredFields(packet, ["identifier", "password"])) {
     /** @TODO Terrible! Do something better for Id. */
     let identifier = makeIdentifier(packet)
-    engageT({ ...packet, identifier }, db, (exists, err, engagedData) => {
-      if (exists) {
+    engageT({ ...packet, identifier }, db, (exists, engageErr, engagedData) => {
+      if (exists && db.canExist(engagedData)) {
         let password = packet.password.trim()
         let hashedPassword = hash(password)
         if (hashedPassword == engagedData.password) {
@@ -28,15 +26,15 @@ const login = (packet, db, cb) => {
               permitAudience: identifier,
             },
           }
-          db.create(permitPacket, err => {
-            if (!err) {
+          db.create(permitPacket, createErr => {
+            if (!createErr) {
               cb(200, tokenData)
             } else {
               cb(
                 400,
                 errorPayload(
                   `Error creating permit for ${identifier} Thing`,
-                  err
+                  createErr
                 )
               )
             }
@@ -45,7 +43,7 @@ const login = (packet, db, cb) => {
           cb(400, errorPayload(`${identifier} Thing's password was incorrect`))
         }
       } else {
-        cb(400, errorPayload(`Could not find ${identifier} Thing`, err))
+        cb(400, errorPayload(`Could not find ${identifier} Thing`, engageErr))
       }
     })
   } else {

@@ -24,7 +24,7 @@ describe("POST /Thing", () => {
           .post("/Thing")
           .send({ name: "Thing 20, bady", god: tokenBody._id })
           .set("Authorization", tokenBody.token)
-          .end((err, res) => {
+          .end((Err, res) => {
             res.body.name.equals("Thing 20, bady")
             done()
           })
@@ -41,8 +41,8 @@ const login = (credentials, testCallBack) => {
     .request(app)
     .post("/auth/login")
     .send(credentials)
-    .end((err, res) => {
-      should.not.exist(err)
+    .end((Err, res) => {
+      should.not.exist(Err)
       res.should.have.status(200)
       res.body.token.should.include("Bearer ")
       testCallBack(res.body)
@@ -55,7 +55,7 @@ module.exports = {
       .request(app)
       .post("/auth/Thing/signup")
       .send(credentials)
-      .end((err, res) => {
+      .end((Err, res) => {
         login(credentials, testCallBack)
       })
   },

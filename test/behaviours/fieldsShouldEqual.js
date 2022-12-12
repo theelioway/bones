@@ -11,7 +11,7 @@ it('update', done => {
     .post(`/Thing/`)
     .send({ stuff: "you expected" })
     .set('Authorization', token)
-    .end((err, res) => {
+    .end((Err, res) => {
       fieldsShouldEqual(res.body, { stuff: "you expected" })
       done()
     })

@@ -30,15 +30,15 @@ module.exports = Thing => {
     let createT = req.body
     if (!thingTypeMatched(createT, thingType)) {
       // Thing's Type does not match the endpoint called.
-      let err = thingTypeError("create", thingType)
-      // console.log({ createT: "err" }, err)
-      res.status(err.name).json(err).end()
+      let Err = thingTypeError("create", thingType)
+      // console.log({ createT: "Err" }, Err)
+      res.status(Err.name).json(Err).end()
     } else {
       createT.created = Date.now()
       createT.createdBy = req.params._id
       createT.god = req.user._id
       createT.thing = thingType
-      things.insert(createT, function (err, createdT) {
+      things.insert(createT, function (Err, createdT) {
         res.locals.engagedThing.list.push(createdT._id)
         res.status(201).send(createdT)
       })

@@ -1,29 +1,22 @@
-const { successPayload, errorPayload, summariseT } = require("../helpers")
+const { successPayload, errorPayload } = require("../helpers")
 const authT = require("../spine/authT")
-const { summariseT } = require("../helpers")
 
-/**
- * @TODO Resolve the required delay in calling this endpoint.
- * @ISSUE We're not always adding to the current list for each enlistT (e.g. if called 10 times quickly and asynchrously).
-
- */
 const enlistT = (packet, db, cb) => {
   authT(
     "enlistT",
     { identifier: packet.subjectOf },
     db,
-    (permitted, err, engagedData) => {
-      if (permitted && engagedData) {
+    (permitted, authError, engagedData) => {
+      if (permitted && db.canExist(engagedData)) {
         let { identifier } = packet
-        let engagedList = new Set(engagedData.ItemList.itemListElement || [])
-        let listKey = [...engagedList.values()].find(
-          item => item.identifier === identifier
+        let engagedList = new Set(
+          engagedData.ItemList.itemListElement.map(e => e.identifier) || []
         )
-        if (!engagedList.has(listKey)) {
-          engagedList.add(summariseT(packet))
+        if (!engagedList.has(identifier)) {
+          engagedList.add(packet)
           engagedData.ItemList.itemListElement = [...engagedList]
-          db.update(engagedData, err => {
-            if (!err) {
+          db.update(engagedData, updateErr => {
+            if (!updateErr) {
               delete engagedData.password
               cb(200, engagedData)
             } else {
@@ -31,7 +24,7 @@ const enlistT = (packet, db, cb) => {
                 500,
                 errorPayload(
                   `Could not enlist ${engagedData.identifier} Thing`,
-                  err,
+                  updateErr,
                   "Check you are using the correct `identifier`"
                 )
               )
@@ -41,7 +34,7 @@ const enlistT = (packet, db, cb) => {
           cb(200, successPayload(`${identifier} Thing already listed`))
         }
       } else {
-        cb(400, errorPayload(err))
+        cb(404, authError)
       }
     }
   )

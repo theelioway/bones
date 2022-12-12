@@ -34,9 +34,9 @@ module.exports = Thing => {
     let engagedThing = res.locals.engagedThing
     if (!thingTypeMatched(thing, thingType)) {
       // Thing's Type does not match the endpoint called.
-      let err = thingTypeError("update", thingType)
-      // console.log({ updateT: "err" }, err)
-      res.status(err.name).json(err).end()
+      let Err = thingTypeError("update", thingType)
+      // console.log({ updateT: "Err" }, Err)
+      res.status(Err.name).json(Err).end()
     } else {
       let updateT = req.body
       updateT.updated = Date.now()
@@ -48,9 +48,9 @@ module.exports = Thing => {
         {},
         function (e, numReplaced) {
           if (e) {
-            let err = updateError(e)
-            // console.log({ updateT: "err" }, err)
-            res.status(err.name).json(err).end()
+            let Err = updateError(e)
+            // console.log({ updateT: "Err" }, Err)
+            res.status(Err.name).json(Err).end()
           } else {
             let success = updateSuccess(thingType)
             res.status(success.name).send(success)

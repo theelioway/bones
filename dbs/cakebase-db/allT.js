@@ -27,9 +27,9 @@ module.exports = Thing => {
       res.status(200).send(Cakebase.getAll())
     } catch (e) {
       // General error creating this Thing.
-      let err = createError(e)
-      // console.log({ createT: "err" }, err)
-      res.status(err.name).json(err).end()
+      let Err = createError(e)
+      // console.log({ createT: "Err" }, Err)
+      res.status(Err.name).json(Err).end()
     }
   }
 }

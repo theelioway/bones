@@ -19,7 +19,7 @@ apiRouter.use(`/Thing`, crudRouter)
 * @returns {bonesApiResponse} the REST API format, the elioWay.
 */
 "use strict"
-const Cakebase = require("cakebase")("../database.json")
+var Datastore = require("nedb")
 var things = new Datastore()
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
@@ -33,7 +33,7 @@ module.exports = Thing => {
     // log.debug({ createT: "localsThing" }, res.locals.engagedThing)
     res.clearCookie("access_token")
     // Logout success.
-    let err = logoutSuccess()
-    res.status(err.name).json(err)
+    let Err = logoutSuccess()
+    res.status(Err.name).json(Err)
   }
 }

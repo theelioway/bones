@@ -21,7 +21,7 @@ mochaSuite("POST /Thing", () => {
     chai
       .request(app)
       .get("/Thing/20")
-      .end((err, res) => {
+      .end((Err, res) => {
         res.body.name.equals("Thing 20, bady")
         done()
       })

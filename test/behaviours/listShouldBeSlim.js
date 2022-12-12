@@ -9,18 +9,18 @@ it('update', done => {
   let apprentices = [1, 2, 3].map(x => {
     return { name: `Apprentice ${x}`, thing: "Person" }
   })
-  Thing.create(apprentices, (err, list) => {
+  Thing.create(apprentices, (Err, list) => {
     Thing.create({
       name: "Wizard University",
       list: list.map(doc => doc._id)
     },
-    (err, university) => {
+    (Err, university) => {
         chai
           .request(app)
           .get(`/Thing/${university._id}`)
           .set('Authorization', token)
-          .end((err, res) => {
-            should.not.exist(err)
+          .end((Err, res) => {
+            should.not.exist(Err)
             res.should.have.status(200)
             listShouldBeSlim(res.body.list)
             done()
@@ -35,6 +35,5 @@ it('update', done => {
 const should = require("chai").should()
 
 module.exports = list => {
-  console.log(list)
   list[0].should.have.members(Object.values(options.slim))
 }

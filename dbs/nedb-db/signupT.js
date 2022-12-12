@@ -39,14 +39,14 @@ module.exports = Thing => {
     const { username, password } = signupT
     if (!username || !password) {
       // Data missing for this request.
-      let err = credentialsMissingError()
-      // console.log({ signupT: "err" }, err)
-      res.status(err.name).json(err)
+      let Err = credentialsMissingError()
+      // console.log({ signupT: "Err" }, Err)
+      res.status(Err.name).json(Err)
     } else if (!thingTypeMatched(signupT, thingType)) {
       // Thing's Type does not match the endpoint called.
-      let err = thingTypeError("signup", thingType)
-      // console.log({ signupT: "err" }, err)
-      res.status(err.name).json(err)
+      let Err = thingTypeError("signup", thingType)
+      // console.log({ signupT: "Err" }, Err)
+      res.status(Err.name).json(Err)
     } else {
       const salt = await bcrypt.genSalt(10)
       const hash = await bcrypt.hash(password, salt)
@@ -56,9 +56,9 @@ module.exports = Thing => {
       await things.insert(signupT, (e, signedupT) => {
         if (e) {
           // General error signing up this Thing.
-          let err = signUpError(e)
-          // console.log({ signupT: "err" }, err)
-          res.status(err.name).json(err)
+          let Err = signUpError(e)
+          // console.log({ signupT: "Err" }, Err)
+          res.status(Err.name).json(Err)
         } else {
           let rtnT = signedupT.toObject()
           // No hashed password in response: Useless and ugly.

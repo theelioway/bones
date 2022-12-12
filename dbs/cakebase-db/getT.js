@@ -6,7 +6,7 @@
 * ============================================================================ *
 const { Router } = require('express')
 const { JSON } = require('JSON')
-const getT = require('@elioway/bones/bones/nedb/getT')
+const getT = require('@elioway/bones/bones/cakebase/getT')
 let T = {  thing: "Thing" }
 
 let crudRouter = Router()
@@ -22,10 +22,6 @@ apiRouter.use(`/Thing`, crudRouter)
 
 module.exports = Thing => {
   return async (req, res) => {
-    console.log(
-      { ______GET______: "res.locals.engagedThing" },
-      res.locals.engagedThing
-    )
     res.status(200).send(res.locals.engagedThing)
   }
 }

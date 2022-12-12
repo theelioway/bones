@@ -38,16 +38,16 @@ module.exports = Thing => {
     const { username, password } = newT
     if (!username || !password) {
       // Data missing for this request.
-      let err = credentialsMissingError()
-      // console.log({ loginT: "err" }, err)
-      res.status(err.name).json(err).end()
+      let Err = credentialsMissingError()
+      // console.log({ loginT: "Err" }, Err)
+      res.status(Err.name).json(Err).end()
     } else {
       await things.findOne({ username: username }, async function (e, user) {
         if (!user) {
           // Data missing for this request.
-          let err = credentialsError()
-          // console.log({ loginT: "err" }, err)
-          res.status(err.name).json(err).end()
+          let Err = credentialsError()
+          // console.log({ loginT: "Err" }, Err)
+          res.status(Err.name).json(Err).end()
           return
         }
         const isMatch = await bcrypt.compare(password, user.password)
@@ -63,9 +63,9 @@ module.exports = Thing => {
             (e, token) => {
               if (e) {
                 // General creating token.
-                let err = loginTokenError(e)
-                // console.log({ loginT: "err" }, err)
-                res.status(err.name).json(err).end()
+                let Err = loginTokenError(e)
+                // console.log({ loginT: "Err" }, Err)
+                res.status(Err.name).json(Err).end()
               } else {
                 res
                   .status(200)
@@ -82,9 +82,9 @@ module.exports = Thing => {
           )
         } else {
           // General error logging in to this Thing.
-          let err = credentialsError()
-          // console.log({ loginT: "err" }, err)
-          res.status(err.name).json(err).end()
+          let Err = credentialsError()
+          // console.log({ loginT: "Err" }, Err)
+          res.status(Err.name).json(Err).end()
         }
       })
     }

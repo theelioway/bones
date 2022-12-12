@@ -24,8 +24,8 @@ mochaSuite("POST /auth/Thing/signup", () => {
       })
       .set("Content-Type", "application/json")
       .set("Accept", "application/json")
-      .end((err, res) => {
-        should.not.exist(err)
+      .end((Err, res) => {
+        should.not.exist(Err)
         res.should.have.status(201)
         should.not.exist(res.body.password)
         Object.keys(res.body).should.have.members([
@@ -64,8 +64,8 @@ mochaSuite("POST /auth/Thing/signup", () => {
       })
       .set("Content-Type", "application/json")
       .set("Accept", "application/json")
-      .end((err, res) => {
-        should.not.exist(err)
+      .end((Err, res) => {
+        should.not.exist(Err)
         res.should.have.status(201)
         should.not.exist(res.body.password)
         Object.keys(res.body).should.have.members([
@@ -100,8 +100,8 @@ mochaSuite("POST /auth/Thing/signup", () => {
       .post("/auth/Thing/signup")
       .send({ name: "" })
       .set("Accept", "application/json")
-      .end((err, res) => {
-        should.not.exist(err)
+      .end((Err, res) => {
+        should.not.exist(Err)
         res.should.have.status(400)
         fieldsShouldEqual(res.body, {
           actionStatus: "FailedActionStatus",
@@ -132,8 +132,8 @@ mochaSuite("POST /auth/Thing/signup", () => {
       })
       .set("Content-Type", "application/json")
       .set("Accept", "application/json")
-      .end((err, res) => {
-        should.not.exist(err)
+      .end((Err, res) => {
+        should.not.exist(Err)
         res.should.have.status(500)
         fieldsShouldEqual(res.body, {
           actionStatus: "FailedActionStatus",
@@ -158,8 +158,8 @@ mochaSuite("POST /auth/Thing/signup", () => {
         password: "letmein",
         username: "wizard1",
       })
-      .end((err, res) => {
-        should.not.exist(err)
+      .end((Err, res) => {
+        should.not.exist(Err)
         res.should.have.status(409)
         fieldsShouldEqual(res.body, {
           actionStatus: "FailedActionStatus",

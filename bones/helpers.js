@@ -1,25 +1,25 @@
 //* A misc library of helper functions. */
 const crypto = require("crypto")
 
-let { HASHINGSECRET, HOST } = process.env
-
 var helpers = {}
 
 //* Hashes the user passwords to avoid storing them directly. */
 helpers.hash = str => {
+  let envData = fs.readFileSyync(".env", "utf8")
+  const envVars = envData
+    .split("\n")
+    .map(line => line.split("="))
+    .reduce((acc, [key, value]) => {
+      acc[key] = value
+      return acc
+    }, {})
   if (typeof str == "string" && str.length) {
-    return crypto.createHmac("sha256", HASHINGSECRET).update(str).digest("hex")
+    return crypto
+      .createHmac("sha256", envVars.HASHINGSECRET || "123")
+      .update(str)
+      .digest("hex")
   } else {
     return false
-  }
-}
-
-//* Light wrapper and error protection for `JSON.parse`. */
-helpers.parseJsonToObject = str => {
-  try {
-    return JSON.parse(str)
-  } catch (err) {
-    return {}
   }
 }
 

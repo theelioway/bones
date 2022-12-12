@@ -44,8 +44,8 @@ const permitT = (rib, packet, db, engagedData, cb) => {
   let permit = engagedData.permit
   if (permit) {
     // Examine the token.
-    db.read(permit, (err, tokenData) => {
-      if (!err && tokenData) {
+    db.read(permit, (readErr, tokenData) => {
+      if (!readErr && db.canExist(tokenData)) {
         let { permitAudience, validUntil } = tokenData.Permit
         // Check token is still valid.
         if (validUntil > Date.now()) {
@@ -74,7 +74,7 @@ const permitT = (rib, packet, db, engagedData, cb) => {
           cb(false, errorPayload("Permit not valid"))
         }
       } else {
-        cb(false, errorPayload("Permit not found", err))
+        cb(false, errorPayload("Permit not found", readErr))
       }
     })
   } else {

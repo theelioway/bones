@@ -14,10 +14,45 @@ Bare bones NodeJS API. Reusable Code for **elioBones** projects.
 git clone https://gitlab.com/eliobones/bones.git
 cd bones
 npm i
-npm run bones -- readT Person tim
-npm run bones -- takeupT Person tim --name="Tim Bushell"
-npm run bones -- enlistT Person tim Person trev --name="Trev Bushell"
-npm run bones -- updateT Person trev --name="Trevor Bushell"
+
+rm -rf .data/
+# In the beginning
+npm run bones -- takeupT creation --subjectOf=creation --mainEntityOfPage=EntryPoint
+npm run bones -- readT creation
+npm run bones -- updateT creation --name="Yahwah"
+npm run bones -- updateT creation --Intangible.name="The Mysterious One"
+npm run bones -- readT creation --sameAs=Intangible
+npm run bones -- readT creation --sameAs=EntryPoint
+npm run bones -- readT creation --sameAs=ItemList
+npm run bones -- readT creation
+# todo npm run bones -- readT creation --sameAs=-ItemList,-EntryPoint
+# todo npm run bones -- creation takeonT god
+# Let there be god
+npm run bones -- takeonT creation god --mainEntityOfPage=Person --disambiguatingDescription="there is a god"
+npm run bones -- listT creation
+npm run bones -- readT god
+npm run bones -- listT god
+# Let there be god
+npm run bones -- enlistT god creation
+npm run bones -- takeonT god lucifer --mainEntityOfPage=Person --disambiguatingDescription="god created d'evil"
+npm run bones -- takeonT god eve --mainEntityOfPage=Person --disambiguatingDescription="god created eve"
+npm run bones -- takeonT god adam --mainEntityOfPage=Person --disambiguatingDescription="god created adam"
+npm run bones -- readT god
+npm run bones -- listT god
+npm run bones -- unlistT god lucifer
+npm run bones -- listT god
+# A fall from grace
+npm run bones -- takeonT lucifer snake --mainEntityOfPage=Thing --disambiguatingDescription="lucifer used a snake"
+npm run bones -- updateT snake --alternateName=Sneaky --description="first talking snake"
+npm run bones -- enlistT snake eve
+npm run bones -- readT snake
+npm run bones -- listT snake
+npm run bones -- updateT eve --alternateName=Tempted --description="the snake tempted eve"
+npm run bones -- enlistT eve adam
+npm run bones -- updateT adam --alternateName=Seduced --description="eve seduced adam"
+npm run bones -- deleteT snake
+npm run bones -- takeonT adam sin --mainEntityOfPage=Person --disambiguatingDescription="adam and eve sinned"
+npm run bones -- enlistT eve sin
 ```
 
 ### Config
@@ -25,12 +60,29 @@ npm run bones -- updateT Person trev --name="Trevor Bushell"
 Create a `.env` file in the root directory. It should have the following settings:
 
 ```
-ENDOSKELETON='ThingOnAShoeString'
-EXOSKELETON='boney'
-DATABASENAME='elioWay'
-MONGODB='mongodb://localhost:27017/'
-ALLOWED_HOST='http://localhost:4200'
-PORT=3030
+HASHINGSECRET=123
+```
+
+Initialize engaged thing settings
+
+```
+identifier=ID123
+subjectOf=elioWay
+```
+
+Permit settings
+
+```
+deleteT=ANON
+enlistT=ANON
+listT=ANON
+pingT=ANON
+readT=ANON
+schemaT=ANON
+takeonT=ANON
+takeupT=ANON
+updateT=ANON
+unlistT=ANON
 ```
 
 ## TLDR

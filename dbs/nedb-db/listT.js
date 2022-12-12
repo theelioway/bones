@@ -32,9 +32,9 @@ module.exports = Thing => {
     await things.find({ _id: { $in: thing.list } }, function (e, thingList) {
       if (e) {
         // General error getting this Thing.
-        let err = getError(e)
-        // console.log({ loginT: "err" }, err)
-        res.status(err.name).json(err).end()
+        let Err = getError(e)
+        // console.log({ loginT: "Err" }, Err)
+        res.status(Err.name).json(Err).end()
       } else {
         // query.select(settings.slim)
         res.status(200).send(thingList)

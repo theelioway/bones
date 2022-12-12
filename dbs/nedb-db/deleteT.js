@@ -35,22 +35,22 @@ module.exports = Thing => {
       // console.log({ deleteT: "deletedableT" }, deletedableT)
       if (e) {
         // General error finding this Thing.
-        let err = deleteError(e)
-        res.status(err.name).json(err)
+        let Err = deleteError(e)
+        res.status(Err.name).json(Err)
       } else if (!thingTypeMatched(deletedableT, thingType)) {
         // Thing's Type does not match the endpoint called.
-        let err = thingTypeError("delete", thingType)
-        // console.log({ deleteT: "err" }, err)
-        res.status(err.name).json(err)
+        let Err = thingTypeError("delete", thingType)
+        // console.log({ deleteT: "Err" }, Err)
+        res.status(Err.name).json(Err)
       } else {
         things.remove(
           { _id: { $regex: req.params._id } },
           function (e, numDeleted) {
             if (e) {
               // General error deleting this Thing.
-              let err = deleteError(e)
-              // console.log({ deleteT: "err" }, err)
-              res.status(err.name).json(err)
+              let Err = deleteError(e)
+              // console.log({ deleteT: "Err" }, Err)
+              res.status(Err.name).json(Err)
             } else {
               let success = deleteSuccess(thingType)
               res.status(success.name).json(success)

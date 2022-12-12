@@ -20,8 +20,8 @@ mochaSuite("bones | crudities | logoutT | GET /auth/logout", () => {
           .request(app)
           .get("/auth/logout")
           .set("Authorization", tokenBody.token)
-          .end((err, res) => {
-            should.not.exist(err)
+          .end((Err, res) => {
+            should.not.exist(Err)
             res.should.have.status(206)
             fieldsShouldEqual(res.body, {
               actionStatus: "CompletedActionStatus",
@@ -31,8 +31,8 @@ mochaSuite("bones | crudities | logoutT | GET /auth/logout", () => {
             chai
               .request(app)
               .get("/")
-              .end((err, res) => {
-                should.not.exist(err)
+              .end((Err, res) => {
+                should.not.exist(Err)
                 res.should.have.status(401)
                 res.text.should.equal("Unauthorized")
                 done()
