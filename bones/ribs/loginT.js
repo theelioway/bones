@@ -7,11 +7,14 @@ const {
 } = require("../helpers")
 const engageT = require("../spine/engageT")
 
-const login = (packet, db, cb) => {
+const loginT = (packet, db, cb) => {
   if (hasRequiredFields(packet, ["identifier", "password"])) {
-    /** @TODO Terrible! Do something better for Id. */
-    let identifier = makeIdentifier(packet)
-    engageT({ ...packet, identifier }, db, (exists, engageErr, engagedData) => {
+    /** @TODO Terrible! Do something better for Id.
+    * @DONE: Do nothing - the client decides the identifier.
+    * Deprecated: let identifier = makeIdentifier(packet)
+    engageT({ ...packet, identifier } */
+
+    engageT(packet, db, (exists, engageErr, engagedData) => {
       if (exists && db.canExist(engagedData)) {
         let password = packet.password.trim()
         let hashedPassword = hash(password)
@@ -33,6 +36,7 @@ const login = (packet, db, cb) => {
               cb(
                 400,
                 errorPayload(
+                  "loginT",
                   `Error creating permit for ${identifier} Thing`,
                   createErr
                 )
@@ -40,15 +44,28 @@ const login = (packet, db, cb) => {
             }
           })
         } else {
-          cb(400, errorPayload(`${identifier} Thing's password was incorrect`))
+          cb(
+            400,
+            errorPayload(
+              "loginT",
+              `${identifier} Thing's password was incorrect`
+            )
+          )
         }
       } else {
-        cb(400, errorPayload(`Could not find ${identifier} Thing`, engageErr))
+        cb(
+          400,
+          errorPayload(
+            "loginT",
+            `Could not find ${identifier} Thing`,
+            engageErr
+          )
+        )
       }
     })
   } else {
-    cb(400, errorPayload(`Thing missing required fields for login`))
+    cb(400, errorPayload("loginT", `Thing missing required fields for login`))
   }
 }
 
-module.exports = login
+module.exports = loginT

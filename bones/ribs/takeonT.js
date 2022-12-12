@@ -29,6 +29,7 @@ const takeonT = (packet, db, cb) => {
                     cb(
                       500,
                       errorPayload(
+                        "takeonT",
                         `Could not create ${identifier} Thing`,
                         createErr
                       )
@@ -43,7 +44,10 @@ const takeonT = (packet, db, cb) => {
         } else {
           cb(
             400,
-            errorPayload(`${identifier} Thing is missing the required fields`)
+            errorPayload(
+              "takeonT",
+              `${identifier} Thing is missing the required fields`
+            )
           )
         }
       } else {

@@ -51,6 +51,7 @@ db.create = (packet, cb) => {
       fs.open(filePath, "wx", (openErr, fileRef) => {
         if (!openErr && fileRef) {
           // Wrap the whole `thing` up,
+          /** @TODO Move out of data layer. */
           let thingBuilder = new ThingBuilder(
             "schemaorg/data/releases/9.0/schemaorg-all-http",
             schemaDomainUrl
@@ -107,6 +108,7 @@ db.read = (packet, cb) => {
       /** @TODO Controversial. Do we allow no-reads? Just return the JSON block
        * listed! How do you updateT? You can't. Or if you do, will it create
        * the file.       */
+      console.log({ packet })
       let subjectOf = packet.subjectOf
       if (subjectOf) {
         db.read({ identifier: subjectOf }, (readParentErr, parentThing) => {
