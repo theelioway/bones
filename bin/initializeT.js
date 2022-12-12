@@ -9,7 +9,6 @@ const initializeT = (argv, ribs, envVars) => {
   // Defaults!
   thing.mainEntityOfPage = thing.mainEntityOfPage || "Thing"
   thing.additionalType = camelCase(thing.identifier)
-  thing.subjectOf = subjectOf
   thing.ItemList = {}
   thing.ItemList.itemListElement = []
   // Object.entries(ribs).map(

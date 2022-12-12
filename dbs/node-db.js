@@ -107,8 +107,8 @@ db.read = (packet, cb) => {
       /** @TODO Controversial. Do we allow no-reads? Just return the JSON block
        * listed! How do you updateT? You can't. Or if you do, will it create
        * the file.       */
-      let subjectOf = packet.subjectOf || db.envVars.identifier
-      if (packet.identifier !== subjectOf) {
+      let subjectOf = packet.subjectOf
+      if (subjectOf) {
         db.read({ identifier: subjectOf }, (readParentErr, parentThing) => {
           if (!readParentErr && db.canExist(parentThing)) {
             let readIndex = parentThing.ItemList.itemListElement.findIndex(
@@ -123,6 +123,8 @@ db.read = (packet, cb) => {
             cb("Nothing to read. Neither record nor parent could be found")
           }
         })
+      } else {
+        cb("Nothing to read.  No record found and it has no parent")
       }
     }
   })
@@ -186,43 +188,47 @@ db.update = (packet, cb) => {
       // cb("Could not `open` file for update.")
       /** @TODO Controversial. Do we allow no-reads? How do you updateT? You can
        * return the original listed JSON block updated! */
-      let subjectOf = packet.subjectOf || db.envVars.identifier
-      db.read({ identifier: subjectOf }, (readParentErr, parentThing) => {
-        if (!readParentErr && db.canExist(parentThing)) {
-          let updateIndex = parentThing.ItemList.itemListElement.findIndex(
-            p => p.identifier === packet.identifier
-          )
-          if (updateIndex > -1) {
-            parentThing.ItemList.itemListElement[updateIndex] = {
-              ...parentThing.ItemList.itemListElement[updateIndex],
-              ...packet,
-            }
-            db.update(parentThing, (updateParentErr, updatedParent) => {
-              if (!updateParentErr && db.canExist(updatedParent)) {
-                cb(
-                  WITHNOERROR,
-                  updatedParent.ItemList.itemListElement[updateIndex]
-                )
-              } else {
-                db.log("db.update", updateParentErr)
-                cb(
-                  "Could not even update this record directly in the parent",
-                  updateParentErr
-                )
+      let subjectOf = packet.subjectOf
+      if (subjectOf) {
+        db.read({ identifier: subjectOf }, (readParentErr, parentThing) => {
+          if (!readParentErr && db.canExist(parentThing)) {
+            let updateIndex = parentThing.ItemList.itemListElement.findIndex(
+              p => p.identifier === packet.identifier
+            )
+            if (updateIndex > -1) {
+              parentThing.ItemList.itemListElement[updateIndex] = {
+                ...parentThing.ItemList.itemListElement[updateIndex],
+                ...packet,
               }
-            })
+              db.update(parentThing, (updateParentErr, updatedParent) => {
+                if (!updateParentErr && db.canExist(updatedParent)) {
+                  cb(
+                    WITHNOERROR,
+                    updatedParent.ItemList.itemListElement[updateIndex]
+                  )
+                } else {
+                  db.log("db.update", updateParentErr)
+                  cb(
+                    "Could not even update this record directly in the parent",
+                    updateParentErr
+                  )
+                }
+              })
+            } else {
+              db.log("db.update", updateIndex)
+              cb("Nothing to update. No record found and not listed in parent")
+            }
           } else {
-            db.log("db.update", updateIndex)
-            cb("Nothing to update. No record found and not listed in parent")
+            db.log("db.update", readParentErr)
+            cb(
+              "Nothing to update. Neither record nor parent could be found",
+              readParentErr
+            )
           }
-        } else {
-          db.log("db.update", readParentErr)
-          cb(
-            "Nothing to update. Neither record nor parent could be found",
-            readParentErr
-          )
-        }
-      })
+        })
+      } else {
+        cb("Nothing to update.  No record found and it has no parent")
+      }
     }
   })
 }

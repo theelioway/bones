@@ -33,11 +33,12 @@ npm run bones -- updateT god  --mainEntityOfPage=Person --disambiguatingDescript
 npm run bones -- listT creation
 npm run bones -- readT god
 npm run bones -- listT god
-# Let there be god
+# God gets to work
 npm run bones -- enlistT god creation
 npm run bones -- takeonT god lucifer --mainEntityOfPage=Person --disambiguatingDescription="god created d'evil"
 npm run bones -- takeonT god eve --mainEntityOfPage=Person --disambiguatingDescription="god created eve"
 npm run bones -- takeonT god adam --mainEntityOfPage=Person --disambiguatingDescription="god created adam"
+# A few days later...
 npm run bones -- readT god
 npm run bones -- listT god
 npm run bones -- unlistT god lucifer
