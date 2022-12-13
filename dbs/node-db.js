@@ -16,7 +16,7 @@ db.canExist = packet => typeof packet === "object" && packet.identifier
 db.log = (...msg) => {} // console.error({ error: [...msg] })
 
 //* Util to return the file system path. */
-db.baseDir = path.join(__dirname, "/../.data")
+db.baseDir = path.join(__dirname, $DATADIR)
 
 //* Util to build the mainEntityOfPage to a JSON record. */
 db.makeFilePath = packet => {

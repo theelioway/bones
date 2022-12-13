@@ -6,7 +6,7 @@ const db = {}
 db.log = msg => {} // console.error(msg)
 
 //* Util to return the file system path. */
-db.baseDir = path.join(__dirname, "/../.data")
+db.baseDir = path.join(__dirname, $DATADIR)
 
 //* Util to build the mainEntityOfPage to a JSON record. */
 db.makeFilePath = packet => {
