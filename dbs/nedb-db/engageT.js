@@ -6,11 +6,11 @@
 * ============================================================================ *
 const { Router } = require('express')
 const isTypeT = require("../bones/cakebase/engageT")
-const deleteT = require('../bones/cakebase/deleteT')
+const destroyT = require('../bones/cakebase/destroyT')
 let T = {  thing: "Thing" }
 
 let apiRouter = Router()
-apiRouter.delete(`/Thing/:_id`, engageT(T), deleteT(T))
+apiRouter.delete(`/Thing/:_id`, engageT(T), destroyT(T))
 * ============================================================================ *
 * @param {String} action seeking permission for.
 * @param {JSON.Model} Thing JSON Model object.

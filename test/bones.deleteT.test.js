@@ -14,7 +14,7 @@ chai.use(chaiHttp)
 
 let Thing = mongoose.models.Thing
 
-mochaSuite("bones | crudities | deleteT | DELETE /:engage/:_id", () => {
+mochaSuite("bones | crudities | destroyT | DELETE /:engage/:_id", () => {
   it("returns 206 and deletes successfully", done => {
     signupLogin(
       { name: "Wizard", username: "tester", password: "letmein" },

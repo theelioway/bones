@@ -10,7 +10,7 @@ const flesh = require("../flesh")
 const initializeT = require("./initializeT")
 
 const ribs = {
-  deleteT: { aliases: ["delete"], positionals: ["identifier"] },
+  destroyT: { aliases: ["delete"], positionals: ["identifier"] },
   enlistT: {
     aliases: ["add", "addTolist"],
     positionals: ["subjectOf", "identifier"],

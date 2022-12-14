@@ -6,11 +6,11 @@
 * ============================================================================ *
 const { Router } = require('express')
 const isTypeT = require("../bones/simple-json/engageT")
-const deleteT = require('../bones/simple-json/deleteT')
+const destroyT = require('../bones/simple-json/destroyT')
 let T = {  thing: "Thing" }
 
 let apiRouter = Router()
-apiRouter.delete(`/Thing/:_id`, engageT(T), deleteT(T))
+apiRouter.delete(`/Thing/:_id`, engageT(T), destroyT(T))
 * ============================================================================ *
 * @param {JSON.Model} Thing JSON Model object.
 * @returns {bonesApiResponse} the REST API format, the elioWay.

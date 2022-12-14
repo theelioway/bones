@@ -35,7 +35,7 @@ You can play some more with the following commands... get a feel for how an **el
 # Everything is permitted for everyone.
 "HASHINGSECRET=123
 identifier=GOD
-deleteT=ANON
+destroyT=ANON
 enlistT=ANON
 listT=ANON
 pingT=ANON
@@ -80,7 +80,7 @@ npm run bones -- listT shopping
 npm run bones -- enlistT shopping milk
 npm run bones -- listT shopping
 
-npm run bones -- deleteT milk
+npm run bones -- destroyT milk
 npm run bones -- listT shopping
 
 npm run bones -- unlistT shopping milk

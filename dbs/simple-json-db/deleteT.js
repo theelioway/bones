@@ -6,11 +6,11 @@
 * ============================================================================ *
 const { Router } = require('express')
 const { JSON } = require('JSON')
-const deleteT = require('@elioway/bones/bones/simple-json/deleteT')
+const destroyT = require('@elioway/bones/bones/simple-json/destroyT')
 let T = {  thing: "Thing" }
 
 let crudRouter = Router()
-crudRouter.delete('/:_id', deleteT(T, { "delete": OWNER }))
+crudRouter.delete('/:_id', destroyT(T, { "delete": OWNER }))
 
 let apiRouter = Router()
 apiRouter.use(`/Thing`, crudRouter)

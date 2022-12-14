@@ -37,7 +37,7 @@ The following set up, for instance, mean "READONLY" unless authenticated.
 This implies the owner of this app wants to authorize others to help build the data, but not change the app.
 
 ```
-deleteT=GOD
+destroyT=GOD
 enlistT=AUTH
 listT=ANON
 pingT=ANON
@@ -99,7 +99,7 @@ Breakdown:
 
   It helps to group them mentally like this:
 
-  - `takeupT` `updateT` `readT` `deleteT` affects a thing's direct or subclassed properties.
+  - `takeupT` `updateT` `readT` `destroyT` affects a thing's direct or subclassed properties.
 
     - These require the `identifier` parameter.
     - `identifier` is the only required field.
@@ -113,7 +113,7 @@ Breakdown:
 Notes:
 
 - `takeupT` is always the entry point. It serves like the "SignUp" page of traditional apps. It's used as in "I'm taking up a hobby/blogging/a lemonade stand" .
-- `updateT` `deleteT` permanently change data but there is backup feature described above.
+- `updateT` `destroyT` permanently change data but there is backup feature described above.
 - `readT` `listT` `schemaT` `pingT` commands can be run at any time.
 - `enlistT` `unlistT` are non destructive. Each reverses the state left by the other.
 - `takeonT` is a shortcut to _takeupT_+_enlistT_. It's like "take onboard".
