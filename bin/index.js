@@ -5,7 +5,7 @@ const yargs = require("yargs")
 const process = require("process")
 
 const db = require("../dbs/node-db")
-const bones = require("../bones")
+const bones = require("../src")
 const flesh = require("../flesh")
 const initializeT = require("./initializeT")
 
