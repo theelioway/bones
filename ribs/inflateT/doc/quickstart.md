@@ -5,4 +5,6 @@
 
 ## Nutshell
 
-- Do inflateT the **elioWay**.
+- Do inflateWikipedia
+- Do inflateGutenberg
+- Do inflateMP3s

@@ -11,9 +11,8 @@ const takeupT = require("./takeupT")
 const unlistT = require("./unlistT")
 const updateT = require("./updateT")
 
-
 const inflateT = require("./inflateT")
-const relistT = require("./relistT")
+// const relistT = require("./relistT")
 const optimizeT = require("./optimizeT")
 const undoT = require("./undoT")
 
@@ -25,6 +24,7 @@ module.exports = {
   listT,
   loginT,
   logoutT,
+  optimizeT,
   pingT,
   readT,
   schemaT,

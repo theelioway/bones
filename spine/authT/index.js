@@ -3,7 +3,7 @@ const engageT = require("../engageT")
 const permitT = require("../permitT")
 
 const authT = (rib, packet, db, cb) => {
-  // console.log({ rib, packet })
+  console.log({ rib, packet })
   engageT(packet, db, (exists, engageErr, engagedData) => {
     // console.log({ exists, engageErr, engagedData })
     if (exists) {

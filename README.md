@@ -6,9 +6,6 @@
 
 Bare bones, NodeJS only, reusable elioWay _endpoints_ for your API, desktop or web client.
 
-
-We'll share any more we write. Share yours!
-
 ## BTW
 
 Fun contest. The Best Three endpoints Win a listing here.
