@@ -43,7 +43,7 @@ helpers.makeIdentifier = packet => {
     .replace(/[^a-z0-9]/gi, "")
 }
 
-//* Make the `Permit.identifier`; An access token, the elioWay. */
+//* Make the `Permit.identifier`; An access token, **the elioWay**. */
 helpers.makePermitIdentifier = () => {
   let tokenLen = 20
   let tokets = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"

@@ -1,5 +1,5 @@
 /**
-* @file Express Route POST handler, the elioWay.
+* @file Express Route POST handler, **the elioWay**.
 * @author Tim Bushell
 *
 * @usage
@@ -14,7 +14,7 @@ let apiRouter = Router()
 apiRouter.use(`/:engage`, metaRouter)
 * ============================================================================ *
 * @param {JSON.Model} Thing JSON Model object.
-* @returns {bonesApiResponse} the REST API format, the elioWay.
+* @returns {bonesApiResponse} the REST API format, **the elioWay**.
 */
 "use strict"
 const fs = require("fs")

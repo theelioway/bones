@@ -107,7 +107,6 @@ db.read = (packet, cb) => {
       /** @TODO Controversial. Do we allow no-reads? Just return the JSON block
        * listed! How do you updateT? You can't. Or if you do, will it create
        * the file.       */
-      console.log({ packet })
       let subjectOf = packet.subjectOf
       if (subjectOf) {
         db.read({ identifier: subjectOf }, (readParentErr, parentThing) => {

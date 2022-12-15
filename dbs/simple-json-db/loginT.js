@@ -1,5 +1,5 @@
 /**
-* @file Express Route POST handler, the elioWay.
+* @file Express Route POST handler, **the elioWay**.
 * @author Tim Bushell | [C. K. Tang](https://github.com/cktang88)
 *
 * @usage
@@ -16,7 +16,7 @@ let apiRouter = Router()
 apiRouter.use(`/Thing`, crudRouter)
 * ============================================================================ *
 * @param {JSON.Model} Thing JSON Model object.
-* @returns {bonesApiResponse} the REST API format, the elioWay.
+* @returns {bonesApiResponse} the REST API format, **the elioWay**.
 */
 "use strict"
 const JSONdb = require("simple-json-db")

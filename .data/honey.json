@@ -1,9 +1,9 @@
 {
-	"additionalType": "Milk",
+	"additionalType": "Honey",
 	"alternateName": "",
 	"description": "",
 	"disambiguatingDescription": "",
-	"identifier": "milk",
+	"identifier": "honey",
 	"image": "",
 	"mainEntityOfPage": "Thing",
 	"name": "",
@@ -12,7 +12,11 @@
 	"subjectOf": "shopping",
 	"url": "",
 	"ItemList": {
-		"itemListElement": []
+		"itemListElement": [],
+		"numberOfItems": 0
+	},
+	"Action": {
+		"actionStatus": "CompletedActionStatus"
 	},
 	"permits": {
 		"destroyT": "ANON",

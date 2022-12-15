@@ -13,7 +13,7 @@ let apiRouter = Router()
 apiRouter.delete(`/Thing/:_id`, engageT(T), destroyT(T))
 * ============================================================================ *
 * @param {JSON.Model} Thing JSON Model object.
-* @returns {bonesApiResponse} the REST API format, the elioWay.
+* @returns {bonesApiResponse} the REST API format, **the elioWay**.
 */
 "use strict"
 const JSONdb = require("simple-json-db")
