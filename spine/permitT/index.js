@@ -20,7 +20,8 @@ const isLISTED = (engagedData, permitAudience) => {
 
 /** @TODO Add permits to your list for the ribs. You will give Permission by
  * creating a special Permit and assigning it to a Person.  */
-const permitT = (rib, packet, ribs, db, engagedData, cb) => {
+const permitT = (rib, packet, ribs, db, cb, engagedData) => {
+  console.log("the real permitT")
   let { identifier, mainEntityOfPage } = packet
   // Route auth/destroy token (aka `signoutT`) should always be level GOD.
   let permittedLevel = PERMITLEVELS.GOD
@@ -52,15 +53,14 @@ const permitT = (rib, packet, ribs, db, engagedData, cb) => {
         if (validUntil > Date.now()) {
           // Check permission level + relationship of token owner to Engaged Thing:
           // - token owner is GOD to Engaged Thing OR
-          // - token owner is LISTED in Engaged Thing OR
-          // - token proves authenticated owner.
+          // - token owner covered by PERMIT LISTED in Engaged Thing
           if (
             isGOD(engagedData, permitAudience) ||
             (isLISTED(engagedData, permitAudience) &&
               PERMITLEVELS.LISTED === permittedLevel) ||
             PERMITLEVELS.AUTH === permittedLevel
           ) {
-            cb(true)
+            cb(true, "", engagedData)
           } else {
             cb(
               false,
@@ -83,7 +83,7 @@ const permitT = (rib, packet, ribs, db, engagedData, cb) => {
     if (permittedLevel === PERMITLEVELS.ANON) {
       // then Token is not required to perform this action...
       // AKA... allow anonymous client access.
-      cb(true)
+      cb(true, "", engagedData)
     } else {
       cb(
         false,
