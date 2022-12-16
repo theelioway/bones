@@ -74,7 +74,7 @@ npm run bones -- listT god
 
 ### A few days later...
 
-# Just remove something from the list, but it isn't deleted.
+# Just remove something from the list, but it isn't destroyed.
 npm run bones -- unlistT god lucifer
 npm run bones -- listT god
 
@@ -117,10 +117,10 @@ npm run bones -- listT god
 
 ### God blames the victims
 
-# NB: Record deleted, from DB.
+# NB: Record destroyed, from DB.
 npm run bones -- destroyT adam
 
-# This won't work: adam is deleted.
+# This won't work: adam is destroyed.
 npm run bones -- updateT adam
   --potentialAction="kicked out the garden"
 

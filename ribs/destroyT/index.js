@@ -4,14 +4,14 @@ const destroyT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("destroyT", packet, ribs, db, (permitted, authError, _) => {
     if (permitted) {
-      db.delete(packet, deleteError => {
+      db.destroy(packet, destroyError => {
         let { identifier } = packet
-        if (!deleteError) {
+        if (!destroyError) {
           cb(
             200,
             successPayload(
               "destroyT",
-              `${identifier} Thing deleted`,
+              `${identifier} Thing destroyed`,
               `unlist ${identifier}`
             )
           )
@@ -20,8 +20,8 @@ const destroyT = (packet, ribs, db, cb) => {
             500,
             errorPayload(
               "destroyT",
-              `Could not delete ${identifier} Thing`,
-              deleteError
+              `Could not destroy ${identifier} Thing`,
+              destroyError
             )
           )
         }

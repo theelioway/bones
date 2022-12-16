@@ -3,7 +3,7 @@ const PERMITLEVELS = require("../src/permits")
 const DAY = 1000 * 60 * 60 * 24
 
 /** Make a Action object tuned to provide a UX button that can call an action
-* and then complete itself *can count it's operations - we can todoT with it!). */
+ * and then complete itself *can count it's operations - we can todoT with it!). */
 const makeEndpointAction = () => {}
 
 const initializeT = (argv, ribsConfig, envVars) => {

@@ -22,7 +22,7 @@ const isLISTED = (engagedData, permitAudience) => {
  * creating a special Permit and assigning it to a Person.  */
 const permitT = (rib, packet, ribs, db, engagedData, cb) => {
   let { identifier, mainEntityOfPage } = packet
-  // Route auth/delete token (aka `signoutT`) should always be level GOD.
+  // Route auth/destroy token (aka `signoutT`) should always be level GOD.
   let permittedLevel = PERMITLEVELS.GOD
   // Permits active? Else leave at default "GOD"
   if (engagedData.hasOwnProperty("permits")) {

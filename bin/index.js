@@ -11,7 +11,6 @@ const flesh = require("../flesh")
 const initializeT = require("./initializeT")
 
 fs.readFile(".env", "utf8", (Err, envData) => {
-
   // Parse the file's contents and store them in an object
   const envVars = envData
     .trim()
@@ -48,7 +47,10 @@ fs.readFile(".env", "utf8", (Err, envData) => {
     listT: { aliases: ["list"], positionals: ["identifier"] },
     pingT: { aliases: ["ping"], positionals: [] },
     readT: { aliases: ["get"], positionals: ["identifier"] },
-    schemaT: { aliases: ["schema", "scheme","meta"], positionals: ["mainEntityOfPage"] },
+    schemaT: {
+      aliases: ["schema", "scheme", "meta"],
+      positionals: ["mainEntityOfPage"],
+    },
     takeonT: {
       aliases: ["createAdd"],
       positionals: ["subjectOf", "identifier"],
@@ -75,7 +77,13 @@ fs.readFile(".env", "utf8", (Err, envData) => {
       aliases: aliases,
       desc: `${aliases.join(" ")} a thing`,
       handler: argv =>
-        boneUp(ribName, initializeT(argv, ribsConfig, envVars), {...ribs, ...spine}, db, flesh),
+        boneUp(
+          ribName,
+          initializeT(argv, ribsConfig, envVars),
+          { ...ribs, ...spine },
+          db,
+          flesh
+        ),
     })
   })
   // Final chance to **yarg** some settings.

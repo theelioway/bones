@@ -1,4 +1,4 @@
-![](https://elioway.gitlab.io/ribs/destroyT/elio-delete-t-logo.png)
+![](https://elioway.gitlab.io/ribs/destroyT/elio-destroy-t-logo.png)
 
 > DeleteT, **the elioWay**
 
