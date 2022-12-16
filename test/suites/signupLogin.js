@@ -1,11 +1,8 @@
 const chai = require("chai")
-const chaiHttp = require("chai-http")
-const request = require("supertest")
 
-const app = require("../../bones/app")
+const { ribT } = require("../../ribs")
 
 const should = chai.should()
-chai.use(chaiHttp)
 
 /**
 * @file Sign Up, Log In then pass the token back into the "called-back" test.

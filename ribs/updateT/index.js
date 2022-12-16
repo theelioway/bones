@@ -1,8 +1,8 @@
 const { errorPayload, hash } = require("../../src/helpers")
-const { authT } = require("../../spine")
 
-const updateT = (packet, db, cb) => {
-  authT("updateT", packet, db, (permitted, authError, engagedData) => {
+const updateT = (packet, ribs, db, cb) => {
+  const { authT } = ribs
+  authT("updateT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canExist(engagedData)) {
       // Rehash password if being changed.
       if (packet.password) {

@@ -1,6 +1,6 @@
 const { errorPayload } = require("../../src/helpers")
 
-const schemaT = (packet, db, cb) => {
+const schemaT = (packet, ribs, db, cb) => {
   let { mainEntityOfPage } = packet
   mainEntityOfPage = mainEntityOfPage || "Thing"
   try {

@@ -12,24 +12,23 @@ const unlistT = require("./unlistT")
 const updateT = require("./updateT")
 
 const inflateT = require("./inflateT")
-// const relistT = require("./relistT")
 const optimizeT = require("./optimizeT")
 const undoT = require("./undoT")
 
 module.exports = {
-  takeonT,
   destroyT,
   enlistT,
-  inflateT,
   listT,
   loginT,
   logoutT,
-  optimizeT,
   pingT,
   readT,
   schemaT,
+  takeonT,
   takeupT,
   updateT,
   unlistT,
+  inflateT,
+  optimizeT,
   undoT,
 }

@@ -1,40 +1,22 @@
-const { camelCase } = require("../src/helpers")
+const { CamelCase } = require("../src/helpers")
 const PERMITLEVELS = require("../src/permits")
 const DAY = 1000 * 60 * 60 * 24
 
-const initializeT = (argv, ribs, envVars) => {
+/** Make a Action object tuned to provide a UX button that can call an action
+* and then complete itself *can count it's operations - we can todoT with it!). */
+const makeEndpointAction = () => {}
+
+const initializeT = (argv, ribsConfig, envVars) => {
   let thing = { ...argv } || {}
   let { subjectOf } = envVars
   // Defaults!
   thing.mainEntityOfPage = thing.mainEntityOfPage || "Thing"
-  thing.additionalType = camelCase(thing.identifier)
+  // For now, suggest the CamelCase version of the name.
+  thing.additionalType = CamelCase(thing.identifier)
+  // Every thing gets an item list.
   thing.ItemList = {}
   thing.ItemList.itemListElement = []
-  // Object.entries(ribs).map(
-  //   ([ribName, ribConfig]) =>
-  //     new Object({
-  //       identifier: ribName,
-  //       mainEntityOfPage: "Permit",
-  //       subjectOf: thing.identifier,
-  //       Permit: {
-  //         validUntil: new Date(Date.now() + DAY * 90),
-  //         permitAudience: envVars[ribName],
-  //       },
-  //     })
-  // )
-  thing.permits = {
-    destroyT: PERMITLEVELS.ANON,
-    enlistT: PERMITLEVELS.ANON,
-    listT: PERMITLEVELS.ANON,
-    listOfT: PERMITLEVELS.ANON,
-    readT: PERMITLEVELS.ANON,
-    schemaT: PERMITLEVELS.ANON,
-    takeonT: PERMITLEVELS.ANON,
-    takeupT: PERMITLEVELS.ANON, // Usually you'll allow people to takeupT.
-    updateT: PERMITLEVELS.ANON,
-    unlistT: PERMITLEVELS.ANON,
-    optimizeT: PERMITLEVELS.ANON,
-  }
+  // Everything gets its own permissions? Hmm... only when takeupT perhaps!
   delete thing._
   delete thing.$0
   return thing

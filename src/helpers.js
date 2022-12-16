@@ -1,7 +1,43 @@
 //* A misc library of helper functions. */
 const crypto = require("crypto")
+const ThingBuilder = require("@elioway/thing/thing-builder")
+const { schemaDomainUrl } = require("@elioway/thing/utils/get-schema")
 
 var helpers = {}
+
+helpers.bigUp = thing => {
+  let thingBuilder = new ThingBuilder(
+    "schemaorg/data/releases/9.0/schemaorg-all-http",
+    schemaDomainUrl
+  )
+  let Thing = thingBuilder.Thing([packet.mainEntityOfPage])
+  let thinglet = thingBuilder.thinglet(
+    Thing[packet.mainEntityOfPage],
+    packet.mainEntityOfPage
+  )
+  return {
+    ...thinglet,
+    ...packet,
+  }
+}
+
+helpers.CamelCase = str => {
+  if (!str) return ""
+  str = str
+    .split("")
+    .reduce((a, s) => a + (s === s.toUpperCase() ? s + " " : s))
+  str = str.replace(/  /g, " ")
+  // Convert the string to lower case
+  str = str.toLowerCase()
+  // Split the string into an array of words
+  const words = str.split(" ")
+  // Convert each word to camel case
+  for (let i = 0; i < words.length; i++) {
+    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1)
+  }
+  // Join the words back together into a single string
+  return words.join("")
+}
 
 //* Hashes the user passwords to avoid storing them directly. */
 helpers.hash = str => {
@@ -22,10 +58,6 @@ helpers.hash = str => {
     return false
   }
 }
-
-//* Uses `Thing.identifier` to build a `Thing.url` field for this application. */
-helpers.url = (mainEntityOfPage, identifier) =>
-  `http://${HOST}/engage/${mainEntityOfPage}/${identifier}`
 
 //* Test for required fields in a data packet (presence and content). */
 helpers.hasRequiredFields = (packet, fields) => {
@@ -60,25 +92,7 @@ helpers.pick = (obj, propList) => {
   }, {})
 }
 
-helpers.camelCase = str => {
-  if (!str) return ""
-  str = str
-    .split("")
-    .reduce((a, s) => a + (s === s.toUpperCase() ? s + " " : s))
-  str = str.replace(/  /g, " ")
-  // Convert the string to lower case
-  str = str.toLowerCase()
-  // Split the string into an array of words
-  const words = str.split(" ")
-  // Convert each word to camel case
-  for (let i = 0; i < words.length; i++) {
-    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1)
-  }
-  // Join the words back together into a single string
-  return words.join("")
-}
-
-helpers.summariseT = obj => {
+helpers.summarizeT = obj => {
   // Loop through all the properties in the object
   let engage = []
   for (const key in obj) {
@@ -87,7 +101,7 @@ helpers.summariseT = obj => {
       // If the property is an array return the count.
       obj[key] = `${property.length} items`
     } else if (key === "ItemList") {
-      // Summarise the ItemList.
+      // Summarize the ItemList.
       obj[key] = `${property.itemListElement.length} items`
     } else if (key[0] === key[0].toUpperCase()) {
       // List which other Types are engagable by this thing.
@@ -105,7 +119,7 @@ helpers.summariseT = obj => {
     }
   }
   if (engage) {
-    // Summarise the Types engagable by this thing.
+    // Summarize the Types engagable by this thing.
     obj.engage = engage.join(",")
   }
   // Return the purged object
@@ -149,5 +163,9 @@ helpers.successPayload = (rib, identifier, potentialAction) => {
     },
   }
 }
+
+//* Uses `Thing.identifier` to build a `Thing.url` field for this application. */
+helpers.url = (mainEntityOfPage, identifier) =>
+  `http://${HOST}/engage/${mainEntityOfPage}/${identifier}`
 
 module.exports = helpers

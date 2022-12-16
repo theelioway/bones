@@ -8,7 +8,7 @@ Run them, and see what changes. The database for this prototype are simple, pret
 
 - You can run commands in groups, or one at a time.
 - Run them in order is best, the first time...
-- ...but as you get used to it, rearrange the creation order for fun. See if you can get a positive `optimiseT` by creating eve first! What if adam tempted the snake to eat eve?
+- ...but as you get used to it, rearrange the creation order for fun. See if you can get a positive `optimizeT` by creating eve first! What if adam tempted the snake to eat eve?
 
 ```bash
 ### In the beginning

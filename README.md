@@ -58,7 +58,7 @@ Run 1 at a time, or in suggested groupings.
 ```
 npm run bones -- pingT
 
-npm run bones -- takeupT shopping --name="Today's Shopping List" --alternateName="Don't forget the milk!"
+npm run bones -- takeupT shopping --name="Today's Shopping List" --alternateName="Don't forget the milk"
 
 npm run bones -- takeonT shopping milk  --mainEntityOfPage=Action  --Action.actionStatus=PotentialActionStatus
 
@@ -93,6 +93,16 @@ npm run bones -- optimizeT shopping
 npm run bones -- takeonT shopping milk  --mainEntityOfPage=Action  --Action.actionStatus=CompletedActionStatus
 
 npm run bones -- optimizeT shopping
+
+
+for D in sugar biscuits banana thoseCrispsYouLike
+   mkdir -p $D
+   echo '{ "identifier": "'$D'" }' > ./$D/thing.json
+end
+
+
+
+npm run bones -- inflateT shopping
 ```
 
 - [Play around more using godly examples](https://elioway.gitlab.io/eliobones/bones/playing-god.html)

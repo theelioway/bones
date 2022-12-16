@@ -1,8 +1,8 @@
 const { errorPayload } = require("../../src/helpers")
-const { authT } = require("../../spine")
 
-const readT = (packet, db, cb) => {
-  authT("readT", packet, db, (permitted, authError, engagedData) => {
+const readT = (packet, ribs, db, cb) => {
+  const { authT } = ribs
+  authT("readT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted) {
       if (db.canExist(engagedData)) {
         delete engagedData.password

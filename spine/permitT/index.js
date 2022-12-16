@@ -2,7 +2,6 @@ const { errorPayload } = require("../../src/helpers")
 const PERMITLEVELS = require("../../src/permits")
 
 const isGOD = (engagedData, permitAudience) => {
-  /** @TODO APP.god? */
   return (
     engagedData.identifier === permitAudience ||
     engagedData.subjectOf === permitAudience
@@ -21,7 +20,7 @@ const isLISTED = (engagedData, permitAudience) => {
 
 /** @TODO Add permits to your list for the ribs. You will give Permission by
  * creating a special Permit and assigning it to a Person.  */
-const permitT = (rib, packet, db, engagedData, cb) => {
+const permitT = (rib, packet, ribs, db, engagedData, cb) => {
   let { identifier, mainEntityOfPage } = packet
   // Route auth/delete token (aka `signoutT`) should always be level GOD.
   let permittedLevel = PERMITLEVELS.GOD
