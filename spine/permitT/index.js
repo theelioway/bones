@@ -2,54 +2,69 @@ const { errorPayload } = require("../../src/helpers")
 
 const permitT = (rib, packet, ribs, db, cb, permit) => {
   console.log("the real permitT")
-  if (!Array.isArray(packet.ItemList?.itemListElement)) {
-    packet.ItemList = { itemListElement: [] }
-  }
+  console.assert("packet", packet.ItemList.itemListElement, "permit", permit)
+  // Get relevant things from list
   let actionAccessSpecifications = packet.ItemList.itemListElement
     // `Permit` endpoints are `ActionAccessSpecification`
-    .filter(t => t.mainEntityOfPage === "ActionAccessSpecification")
+    .filter(spec => spec.mainEntityOfPage === "ActionAccessSpecification")
     // Just those covering endpoints because that's all `permitT` covers.
     .filter(
-      t =>
-        t.ActionAccessSpecification &&
-        t.ActionAccessSpecification.category === "endpointT"
+      spec =>
+        spec.ActionAccessSpecification &&
+        spec.ActionAccessSpecification.category === "endpointT"
     )
-
+  // Get passes which meet the Permit.
+  // - Spec `identifier` === `Permit.issuedThrough`
+  // - packet `identifier` === `Permit.issuedBy`
+  // - ActionAccessSpecification.eligibleRegion === Permit?.permitAudience
+  // - ActionAccessSpecification.ineligibleRegion !== Permit?.permitAudience
   let passingActionAccessSpecifications = actionAccessSpecifications
     // Permit was issued to user.
     .filter(
-      t =>
-        t.identifier === permit?.Permit?.issuedThrough ||
+      spec =>
+        spec.identifier === permit?.Permit?.issuedThrough ||
         !permit?.Permit.issuedThrough
     )
     // For this packet.
     .filter(
-      t =>
+      spec =>
         packet.identifier === permit?.Permit?.issuedBy ||
         !permit?.Permit.issuedBy
     )
     // Permits for this user.
     .filter(
-      t =>
-        t.ActionAccessSpecification.eligibleRegion ===
+      spec =>
+        spec.ActionAccessSpecification.eligibleRegion ===
           permit?.Permit?.permitAudience ||
-        t.ActionAccessSpecification.eligibleRegion === "*"
+        spec.ActionAccessSpecification.eligibleRegion === "*"
     )
     // Which are valid for this endpoint.
-    .filter(t => {
-      let endpoints = t.ItemList.itemListElement.map(i => i.identifier)
+    .filter(spec => {
+      let endpoints =
+        spec.ActionAccessSpecification.requiresSubscription.split(",")
       return endpoints.includes(rib) || endpoints.includes("*")
     })
+  // Get block which meet the Permit audience.
   let blockingActionAccessSpecifications = actionAccessSpecifications
     // Where blocked for this endpoint.
     .filter(
-      t => t.ActionAccessSpecification.ineligibleRegion === permit?.identifier
+      spec =>
+        spec.ActionAccessSpecification.ineligibleRegion === permit?.identifier
     )
     // Which are valid for this endpoint.
-    .filter(t => {
-      let endpoints = t.ItemList.itemListElement.map(i => i.identifier)
+    .filter(spec => {
+      // let endpoints = spec.ItemList.itemListElement.map(i => i.identifier)
+      let endpoints =
+        spec.ActionAccessSpecification.requiresSubscription.split(",")
       return endpoints.includes(rib) || endpoints.includes("*")
     })
+
+  console.assert(
+    "passingActionAccessSpecifications.length",
+    passingActionAccessSpecifications.length,
+    "blockingActionAccessSpecifications.length",
+    blockingActionAccessSpecifications.length
+  )
   if (
     passingActionAccessSpecifications.length &&
     !blockingActionAccessSpecifications.length

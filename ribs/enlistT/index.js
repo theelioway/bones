@@ -25,7 +25,6 @@ const enlistT = (packet, ribs, db, cb) => {
                   ...engagedData.ItemList.itemListElement,
                   engagedListItem,
                 ]
-
                 db.update(engagedData, updateErr => {
                   if (!updateErr) {
                     delete engagedData.password
