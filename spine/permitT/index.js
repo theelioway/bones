@@ -1,10 +1,9 @@
 const { errorPayload } = require("../../src/helpers")
 
-const permitT = (rib, packet, ribs, db, cb, permit) => {
-  console.log("the real permitT")
-  console.assert("packet", packet.ItemList.itemListElement, "permit", permit)
+const permitT = (rib, engagedData, ribs, db, cb, packet) => {
+  console.count("the real permitT")
   // Get relevant things from list
-  let actionAccessSpecifications = packet.ItemList.itemListElement
+  let actionAccessSpecifications = engagedData.ItemList.itemListElement
     // `Permit` endpoints are `ActionAccessSpecification`
     .filter(spec => spec.mainEntityOfPage === "ActionAccessSpecification")
     // Just those covering endpoints because that's all `permitT` covers.
@@ -15,27 +14,27 @@ const permitT = (rib, packet, ribs, db, cb, permit) => {
     )
   // Get passes which meet the Permit.
   // - Spec `identifier` === `Permit.issuedThrough`
-  // - packet `identifier` === `Permit.issuedBy`
+  // - engagedData `identifier` === `Permit.issuedBy`
   // - ActionAccessSpecification.eligibleRegion === Permit?.permitAudience
   // - ActionAccessSpecification.ineligibleRegion !== Permit?.permitAudience
   let passingActionAccessSpecifications = actionAccessSpecifications
     // Permit was issued to user.
     .filter(
       spec =>
-        spec.identifier === permit?.Permit?.issuedThrough ||
-        !permit?.Permit.issuedThrough
+        spec.identifier === packet?.Permit?.issuedThrough ||
+        !packet?.Permit.issuedThrough
     )
-    // For this packet.
+    // For this engagedData.
     .filter(
       spec =>
-        packet.identifier === permit?.Permit?.issuedBy ||
-        !permit?.Permit.issuedBy
+        engagedData.identifier === packet?.Permit?.issuedBy ||
+        !packet?.Permit.issuedBy
     )
     // Permits for this user.
     .filter(
       spec =>
         spec.ActionAccessSpecification.eligibleRegion ===
-          permit?.Permit?.permitAudience ||
+          packet?.Permit?.permitAudience ||
         spec.ActionAccessSpecification.eligibleRegion === "*"
     )
     // Which are valid for this endpoint.
@@ -49,7 +48,7 @@ const permitT = (rib, packet, ribs, db, cb, permit) => {
     // Where blocked for this endpoint.
     .filter(
       spec =>
-        spec.ActionAccessSpecification.ineligibleRegion === permit?.identifier
+        spec.ActionAccessSpecification.ineligibleRegion === packet?.identifier
     )
     // Which are valid for this endpoint.
     .filter(spec => {
@@ -69,7 +68,7 @@ const permitT = (rib, packet, ribs, db, cb, permit) => {
     passingActionAccessSpecifications.length &&
     !blockingActionAccessSpecifications.length
   ) {
-    cb(true, "", packet)
+    cb(true, "", engagedData)
   } else {
     cb(false, errorPayload("permitT", "Permission not granted"))
   }

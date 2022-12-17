@@ -1,17 +1,15 @@
 const { errorPayload, hash } = require("../../src/helpers")
+const { assign, merge } = require("lodash")
 
 const updateT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("updateT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canExist(engagedData)) {
-      // The ultimate merge/update data... probably need a whole layer here!
-      let updatePacket = {
-        ...engagedData,
-        ...packet,
-      }
-      db.update(updatePacket, (updateErr, updatedThing) => {
+      // @TODO: Write `trackT`: ultimate merge/update data... list changes... can undo!
+      delete packet.ItemList.itemListElement /** @TODO probably best? */
+      let normalLodashMerge = merge(engagedData, packet)
+      db.update(normalLodashMerge, (updateErr, updatedThing) => {
         if (!updateErr) {
-          delete updatedThing.password
           cb(200, updatedThing)
         } else {
           let { identifier } = packet

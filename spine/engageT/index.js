@@ -1,7 +1,7 @@
 /** Take an identifier. Seek the record.
  * @usage
  * > let cb = (wasSuccessfullyEngaged, ifFailErrMessage, engagedData) => {
- * >   console.log({ wasSuccessfullyEngaged, ifFailErrMessage })
+ * >   console.assert( wasSuccessfullyEngaged, ifFailErrMessage )
  *> }
  * > engageT(rib, packet, ribs, db, cb)
  */
@@ -9,7 +9,7 @@ const { errorPayload } = require("../../src/helpers")
 
 const engageT = (rib, packet, ribs, db, cb) => {
   // Turning this to `log` can add help for tests.
-  console.log("the real engageT")
+  console.count("the real engageT")
   let { identifier } = packet
   if (identifier) {
     db.read(packet, (readErr, engagedData) => {

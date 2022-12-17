@@ -41,7 +41,7 @@ const inflateT = (packet, ribs, db, cb) => {
             // Rewrite.
             updateT(engagedThingPath, db, () => readT(200, db, db))
           })
-          .catch(err => console.log({ err })) // promises
+          .catch(err => console.assert(!err, err)) // promises
       }) // read dir
     } else {
       cb(404, authError)
