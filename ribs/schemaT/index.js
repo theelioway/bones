@@ -1,5 +1,7 @@
 const { errorPayload } = require("../../src/helpers")
 
+const STATUSCODE = 201
+
 const schemaT = (packet, ribs, db, cb) => {
   let { mainEntityOfPage } = packet
   mainEntityOfPage = mainEntityOfPage || "Thing"
@@ -18,3 +20,5 @@ const schemaT = (packet, ribs, db, cb) => {
 }
 
 module.exports = schemaT
+exports = module.exports
+exports.STATUSCODE = STATUSCODE

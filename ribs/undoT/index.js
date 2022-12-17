@@ -1,5 +1,7 @@
 const { errorPayload, hash } = require("../../src/helpers")
 
+const STATUSCODE = 201
+
 // Add a "gitdiff" record of every changed
 const undoT = (packet, ribs, db, cb) => {
   const { authT } = ribs
@@ -28,9 +30,6 @@ const savePointT = (packet, ribs, db, cb) => {
     }
   })
 }
-
 module.exports = undoT
-// {
-//   undoT,
-//   savePointT,
-// }
+exports = module.exports
+exports.STATUSCODE = STATUSCODE

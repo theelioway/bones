@@ -4,6 +4,8 @@ const {
   summarizeT,
 } = require("../../src/helpers")
 
+const STATUSCODE = 201
+
 const listT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("listT", packet, ribs, db, (permitted, authError, engagedData) => {
@@ -43,3 +45,5 @@ const listT = (packet, ribs, db, cb) => {
 }
 
 module.exports = listT
+exports = module.exports
+exports.STATUSCODE = STATUSCODE

@@ -1,8 +1,12 @@
 const { errorPayload, hash } = require("../../src/helpers")
 const { assign, merge } = require("lodash")
 
+const STATUSCODE = 201
+
 const updateT = (packet, ribs, db, cb) => {
   const { authT } = ribs
+  // OH WOW `authT` SHOULD MOVE TO THE CLIENT AND BE OPTIONALLY USED TO
+  // WRAP EACH `rib`.
   authT("updateT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canExist(engagedData)) {
       // @TODO: Write `trackT`: ultimate merge/update data... list changes... can undo!
@@ -30,3 +34,5 @@ const updateT = (packet, ribs, db, cb) => {
 }
 
 module.exports = updateT
+exports = module.exports
+exports.STATUSCODE = STATUSCODE

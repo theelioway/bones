@@ -1,5 +1,7 @@
 const { errorPayload, makePermitIdentifier } = require("../../src/helpers")
 
+const STATUSCODE = 201
+
 const permitMaker = (permitIdentifier, packet) => {
   return new Object({
     identifier: permitIdentifier,
@@ -76,3 +78,5 @@ module.exports = inviteT
 exports = module.exports // re-assign exports to point it to the updated location.
 exports.accessSpecsMaker = accessSpecsMaker // now you can use named export as usual
 exports.permitMaker = permitMaker // now you can use named export as usual
+exports = module.exports
+exports.STATUSCODE = STATUSCODE

@@ -1,5 +1,7 @@
 const { errorPayload } = require("../../src/helpers")
 
+const STATUSCODE = 201
+
 const unlistT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT(
@@ -44,3 +46,5 @@ const unlistT = (packet, ribs, db, cb) => {
 }
 
 module.exports = unlistT
+exports = module.exports
+exports.STATUSCODE = STATUSCODE

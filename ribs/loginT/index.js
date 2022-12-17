@@ -6,6 +6,8 @@ const {
   makePermitIdentifier,
 } = require("../../src/helpers")
 
+const STATUSCODE = 201
+
 const loginT = (packet, ribs, db, cb) => {
   const { engageT } = ribs
   if (hasRequiredFields(packet, ["identifier", "password"])) {
@@ -64,3 +66,5 @@ const loginT = (packet, ribs, db, cb) => {
 }
 
 module.exports = loginT
+exports = module.exports
+exports.STATUSCODE = STATUSCODE
