@@ -8,6 +8,7 @@
 const { errorPayload } = require("../../src/helpers")
 
 const engageT = (rib, packet, ribs, db, cb) => {
+  // Turning this to `log` can add help for tests.
   console.log("the real engageT")
   let { identifier } = packet
   if (identifier) {

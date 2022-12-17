@@ -1,5 +1,6 @@
 const { errorPayload, hash } = require("../../src/helpers")
 
+// Add a "gitdiff" record of every changed
 const undoT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("undoT", packet, ribs, db, (permitted, authError, engagedData) => {

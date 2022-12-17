@@ -4,10 +4,6 @@ const updateT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("updateT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canExist(engagedData)) {
-      // Rehash password if being changed.
-      if (packet.password) {
-        packet.password = hash(password)
-      }
       // The ultimate merge/update data... probably need a whole layer here!
       let updatePacket = {
         ...engagedData,
