@@ -4,8 +4,8 @@ const mockRibs = require("../mocks/mockRibs.js")
 const takeonT = require("../../ribs/takeonT")
 const { authT, engageT } = require("../../spine")
 
-const OK = 302
-const NOTOK = 304
+const OK = 201
+const NOTOK = 406
 
 describe("takeonT", () => {
   it.only("takeonTs", () => {
