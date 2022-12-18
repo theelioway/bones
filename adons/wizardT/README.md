@@ -1,20 +1,20 @@
-![](https://elioway.gitlab.io/ribs/boilerT/elio-boiler-t-logo.png)
+![](https://elioway.gitlab.io/ribs/wizardT/elio-boiler-t-logo.png)
 
 > BoilerT, **the elioWay**
 
-# boilerT
+# wizardT
 
 Starter pack for an **elioWay** app using `yo thing`(<https://www.npmjs.com/package/generator-thing>)
 
-- [boilerT Documentation](https://elioway.gitlab.io/ribs/boilerT/)
+- [wizardT Documentation](https://elioway.gitlab.io/ribs/wizardT/)
 
 ## Prerequisites
 
-- [boilerT Prerequisites](https://elioway.gitlab.io/ribs/boilerT/installing.html)
+- [wizardT Prerequisites](https://elioway.gitlab.io/ribs/wizardT/installing.html)
 
 ## Installing
 
-- [Installing boilerT](https://elioway.gitlab.io/ribs/boilerT/installing.html)
+- [Installing wizardT](https://elioway.gitlab.io/ribs/wizardT/installing.html)
 
 ## Seeing is Believing
 
@@ -23,14 +23,14 @@ You're seeing it.
 ```
 
 - [ribs Quickstart](https://elioway.gitlab.io/ribs/quickstart.html)
-- [boilerT Quickstart](https://elioway.gitlab.io/ribs/boilerT/quickstart.html)
+- [wizardT Quickstart](https://elioway.gitlab.io/ribs/wizardT/quickstart.html)
 
 # Credits
 
-- [boilerT Credits](https://elioway.gitlab.io/ribs/boilerT/credits.html)
+- [wizardT Credits](https://elioway.gitlab.io/ribs/wizardT/credits.html)
 
 ## License
 
 [MIT](license)
 
-![](https://elioway.gitlab.io/ribs/boilerT/apple-touch-icon.png)
+![](https://elioway.gitlab.io/ribs/wizardT/apple-touch-icon.png)

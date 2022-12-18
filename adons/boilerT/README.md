@@ -1,6 +1,6 @@
 ![](https://elioway.gitlab.io/ribs/boilerT/elio-boiler-t-logo.png)
 
-> BoilerT, **the elioWay**
+> Will there be paradise or will there be loss?, **the elioWay**
 
 # boilerT
 

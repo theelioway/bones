@@ -1,4 +1,4 @@
-# wizardT Credits
+# paradiseLosterT Credits
 
 ## Core Thanks!
 

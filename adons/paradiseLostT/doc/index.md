@@ -1,4 +1,4 @@
-# wizardT
+# paradiseLosterT
 
 <figure>
   <img src="star.png" alt="">
@@ -10,4 +10,4 @@
 
 ## WTF
 
-wizardT the **elioWay**
+paradiseLosterT the **elioWay**
