@@ -1,9 +1,8 @@
-
-
-const STATUSCODE = 201
+const OK = 103
+const NOTOK = 406
 
 const pingT = (packet, ribs, db, cb) => {
-  cb(200, {
+  cb(OK, {
     description: "Hello! Will you stay and be my friend?",
     mainEntityOfPage: "Action",
     Action: { actionStatus: "CompletedActionStatus" },
@@ -13,4 +12,5 @@ const pingT = (packet, ribs, db, cb) => {
 
 module.exports = pingT
 exports = module.exports
-exports.STATUSCODE = STATUSCODE
+exports.OK = OK
+exports.NOTOK = NOTOK

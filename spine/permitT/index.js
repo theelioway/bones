@@ -1,5 +1,8 @@
 const { errorPayload } = require("../../src/helpers")
 
+const OK = true
+const NOTOK = false
+
 const permitT = (rib, engagedData, ribs, db, cb, packet) => {
   console.count("the real permitT")
   // Get relevant things from list
@@ -68,10 +71,13 @@ const permitT = (rib, engagedData, ribs, db, cb, packet) => {
     passingActionAccessSpecifications.length &&
     !blockingActionAccessSpecifications.length
   ) {
-    cb(true, "", engagedData)
+    cb(OK, "", engagedData)
   } else {
-    cb(false, errorPayload("permitT", "Permission not granted"))
+    cb(NOTOK, errorPayload("permitT", "Permission not granted"))
   }
 }
 
 module.exports = permitT
+exports = module.exports
+exports.OK = OK
+exports.NOTOK = NOTOK

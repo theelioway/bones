@@ -1,5 +1,8 @@
 const { errorPayload } = require("../../src/helpers")
 
+const OK = true
+const NOTOK = false
+
 const authT = (rib, packet, ribs, db, cb) => {
   console.count("the real authT")
   const { engageT, permitT } = ribs
@@ -7,15 +10,15 @@ const authT = (rib, packet, ribs, db, cb) => {
     if (exists) {
       const permitCb = (permitted, permitErr, permittedData) => {
         if (permitted && db.canExist(permittedData)) {
-          cb(true, "", engagedData)
+          cb(OK, "", engagedData)
         } else {
-          cb(false, errorPayload("authT", permitErr))
+          cb(NOTOK, errorPayload("authT", permitErr))
         }
       }
       permitT(rib, engagedData, ribs, db, permitCb, packet)
     } else {
       cb(
-        false,
+        NOTOK,
         errorPayload("authT", "The thing could not be found", engageErr)
       )
     }
@@ -23,3 +26,6 @@ const authT = (rib, packet, ribs, db, cb) => {
 }
 
 module.exports = authT
+exports = module.exports
+exports.OK = OK
+exports.NOTOK = NOTOK

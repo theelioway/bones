@@ -1,4 +1,3 @@
-/** Agnostic, non interfering **ribs** */
 const path = require("path")
 const WITHNOERROR = false
 const mockDb = {}

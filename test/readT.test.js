@@ -4,6 +4,9 @@ const mockRibs = require("./mockRibs.js")
 const readT = require("../ribs/readT")
 const { authT, engageT } = require("../spine")
 
+const OK = 200
+const NOTOK = 404
+
 describe("readT", () => {
   it("reads the original", () => {
     let spareRibs = new Object({ ...mockRibs, authT, engageT, readT })
@@ -20,7 +23,10 @@ describe("readT", () => {
       ...mockDb,
       read: mockDb.readBackWhatWasGiven(original),
     })
-    let cb = (code, data) => data.should.eql(original)
+    let cb = (code, data) => {
+      code.should.equal(OK)
+      data.should.eql(original)
+    }
     spareRibs.readT(fragment, spareRibs, spareDb, cb)
   })
 })

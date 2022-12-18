@@ -1,7 +1,8 @@
 const fs = require("fs")
 const path = require("path")
 
-const STATUSCODE = 201
+const OK = 206
+const NOTOK = 417
 
 const inflateT = (packet, ribs, db, cb) => {
   const { authT, updateT } = ribs
@@ -53,4 +54,5 @@ const inflateT = (packet, ribs, db, cb) => {
 
 module.exports = inflateT
 exports = module.exports
-exports.STATUSCODE = STATUSCODE
+exports.OK = OK
+exports.NOTOK = NOTOK

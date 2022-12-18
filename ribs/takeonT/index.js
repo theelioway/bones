@@ -5,7 +5,8 @@ const {
   makeIdentifier,
 } = require("../../src/helpers")
 
-const STATUSCODE = 201
+const OK = 201
+const NOTOK = 406
 
 const takeonT = (packet, ribs, db, cb) => {
   const { authT, enlistT } = ribs
@@ -25,11 +26,22 @@ const takeonT = (packet, ribs, db, cb) => {
                 subjectOf: engagedData.identifier,
               }
               db.create(createPacket, (createErr, createPacket) => {
+                console.log("createErr", createErr, "db.create", {
+                  OK,
+                  enlistCode,
+                })
                 if (!createErr) {
-                  enlistT(createPacket, ribs, db, cb)
+                  enlistT(
+                    createPacket,
+                    ribs,
+                    db,
+                    (enlistCode, enlistedPacket) => {
+                      cb(OK, enlistedPacket)
+                    }
+                  )
                 } else {
                   cb(
-                    500,
+                    NOTOK,
                     errorPayload(
                       "takeonT",
                       `Could not create ${identifier} Thing`,
@@ -44,7 +56,7 @@ const takeonT = (packet, ribs, db, cb) => {
           })
         } else {
           cb(
-            400,
+            NOTOK,
             errorPayload(
               "takeonT",
               `${identifier} Thing is missing the required fields`
@@ -52,7 +64,7 @@ const takeonT = (packet, ribs, db, cb) => {
           )
         }
       } else {
-        cb(404, authError)
+        cb(NOTOK, authError)
       }
     }
   )
@@ -60,4 +72,5 @@ const takeonT = (packet, ribs, db, cb) => {
 
 module.exports = takeonT
 exports = module.exports
-exports.STATUSCODE = STATUSCODE
+exports.OK = OK
+exports.NOTOK = NOTOK

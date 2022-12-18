@@ -1,6 +1,7 @@
 const { errorPayload } = require("../../src/helpers")
 
-const STATUSCODE = 201
+const OK = 301
+const NOTOK = 304
 
 const unlistT = (packet, ribs, db, cb) => {
   const { authT } = ribs
@@ -23,10 +24,10 @@ const unlistT = (packet, ribs, db, cb) => {
           db.update(engagedData, updateErr => {
             if (!updateErr) {
               delete engagedData.password
-              cb(200, engagedData)
+              cb(OK, engagedData)
             } else {
               cb(
-                500,
+                NOTOK,
                 errorPayload(
                   "unlistT",
                   `Could not unlistT ${engagedIdentifier} Thing`,
@@ -36,10 +37,13 @@ const unlistT = (packet, ribs, db, cb) => {
             }
           })
         } else {
-          cb(200, errorPayload("unlistT", `${identifier} Thing wasn't listed`))
+          cb(
+            NOTOK,
+            errorPayload("unlistT", `${identifier} Thing wasn't listed`)
+          )
         }
       } else {
-        cb(404, authError)
+        cb(NOTOK, authError)
       }
     }
   )
@@ -47,4 +51,5 @@ const unlistT = (packet, ribs, db, cb) => {
 
 module.exports = unlistT
 exports = module.exports
-exports.STATUSCODE = STATUSCODE
+exports.OK = OK
+exports.NOTOK = NOTOK

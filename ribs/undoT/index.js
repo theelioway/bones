@@ -1,18 +1,19 @@
 const { errorPayload, hash } = require("../../src/helpers")
 
-const STATUSCODE = 201
+const OK = 206
+const NOTOK = 417
 
 // Add a "gitdiff" record of every changed
 const undoT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("undoT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canExist(engagedData)) {
-      cb(200, {
+      cb(OK, {
         identifier: "undoT",
         name: "Coming Soon",
       })
     } else {
-      cb(404, authError)
+      cb(NOTOK, authError)
     }
   })
 }
@@ -21,15 +22,16 @@ const savePointT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("savePointT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canExist(engagedData)) {
-      cb(200, {
+      cb(OK, {
         identifier: "savePointT",
         name: "Coming Soon",
       })
     } else {
-      cb(404, authError)
+      cb(NOTOK, authError)
     }
   })
 }
 module.exports = undoT
 exports = module.exports
-exports.STATUSCODE = STATUSCODE
+exports.OK = OK
+exports.NOTOK = NOTOK
