@@ -16,8 +16,6 @@ describe("mockRibs | TURDy and LUTEy endpoints which Never Fail", () => {
     "takeupT",
     "unlistT",
     "updateT",
-    "inflateT",
-    "optimizeT",
     "undoT"
   ).forEach(ribName => {
     it(`mock rib \`${ribName}\` should never fail`, () => {

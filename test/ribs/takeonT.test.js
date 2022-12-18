@@ -1,15 +1,15 @@
 const should = require("chai").should()
 const mockDb = require("../mocks/mockDB.js")
 const mockRibs = require("../mocks/mockRibs.js")
-const enlistT = require("../../ribs/enlistT")
+const takeonT = require("../../ribs/takeonT")
 const { authT, engageT } = require("../../spine")
 
 const OK = 302
 const NOTOK = 304
 
-describe("enlistT", () => {
-  it("enlistTs", () => {
-    let spareRibs = new Object({ ...mockRibs, authT, engageT, enlistT })
+describe("takeonT", () => {
+  it.only("takeonTs", () => {
+    let spareRibs = new Object({ ...mockRibs, authT, engageT, takeonT })
     let god = { identifier: "god", mainEntityOfPage: "Person" }
     let eden = {
       identifier: "eden",
@@ -20,13 +20,13 @@ describe("enlistT", () => {
       ...mockDb,
       read: mockDb.readById({ god, eden }),
     })
-    let cb = (wasSuccessfullyEngaged, ifFailErrMessage, enlistedData) => {
+    let cb = (wasSuccessfullyEngaged, ifFailErrMessage, takenonData) => {
       wasSuccessfullyEngaged.should.equal(OK)
       ifFailErrMessage.should.equal("")
-      enlistedData.ItemList.numberOfItems.should.equal(1)
-      enlistedData.ItemList.itemListElement.length.should.equal(1)
-      enlistedData.ItemList.itemListElement[0].identifier.should.equal("eden")
-      enlistedData.should.eql({
+      takenonData.ItemList.numberOfItems.should.equal(1)
+      takenonData.ItemList.itemListElement.length.should.equal(1)
+      takenonData.ItemList.itemListElement[0].identifier.should.equal("eden")
+      takenonData.should.eql({
         ...god,
         mainEntityOfPage: "Person",
         ItemList: {
@@ -42,6 +42,6 @@ describe("enlistT", () => {
         },
       })
     }
-    spareRibs.enlistT(eden, spareRibs, spareDb, cb)
+    spareRibs.takeonT(eden, spareRibs, spareDb, cb)
   })
 })

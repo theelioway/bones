@@ -5,6 +5,32 @@ const { summarizeT } = require("../../src/helpers")
 const OK = 201
 const NOTOK = 417
 
+/**
+let exampleSiteShape = {
+  mainEntityOfPage: Restaurent,
+  ItemList: { itemListElement: [
+    {
+      mainEntityOfPage: Menu,
+      ItemList: { itemListElement: [
+        {
+          mainEntityOfPage: MenuItem,
+          ItemList: { numberOfItems: 10 }
+        }
+      ]}
+    },
+    {
+      mainEntityOfPage: Person,
+      ItemList: { numberOfItems: 10}
+    },
+    {
+      mainEntityOfPage: Review,
+      ItemList: { numberOfItems: 30}
+    }
+  ]}
+}
+The data will be checked against the `exampleSiteShape`
+*/
+
 const optimizeT = (packet, ribs, db, cb) => {
   const { authT, listT } = ribs
   authT("optimizeT", packet, ribs, db, (permitted, authError, engagedData) => {
