@@ -20,7 +20,7 @@ const destroyT = (packet, ribs, db, cb) => {
           )
         } else {
           cb(
-            500,
+            NOTOK,
             errorPayload(
               "destroyT",
               `Could not destroy ${identifier} Thing`,
@@ -30,7 +30,7 @@ const destroyT = (packet, ribs, db, cb) => {
         }
       })
     } else {
-      cb(400, authError)
+      cb(NOTOK, authError)
     }
   })
 }

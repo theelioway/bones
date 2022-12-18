@@ -9,7 +9,7 @@ const updateT = (packet, ribs, db, cb) => {
   // OH WOW `authT` SHOULD MOVE TO THE CLIENT AND BE OPTIONALLY USED TO
   // WRAP EACH `rib`.
   authT("updateT", packet, ribs, db, (permitted, authError, engagedData) => {
-    if (permitted && db.canExist(engagedData)) {
+    if (permitted && db.canStore(engagedData)) {
       // @TODO: Write `trackT`: ultimate merge/update data... list changes... can undo!
       delete packet.ItemList.itemListElement /** @TODO probably best? */
       let normalLodashMerge = merge(engagedData, packet)

@@ -6,7 +6,7 @@ const authT = require("../spine/authT")
 describe("authT", () => {
   it("authTs if permitT permits", () => {
     let spareRibs = new Object({ ...mockRibs, authT: authT })
-    let mock = { identifier: 1, mainEntityOfPage: "Person" }
+    let mock = { identifier: "god", mainEntityOfPage: "Person" }
     let cb = (wasSuccessfullyAuthed, ifFailErrMessage, authData) => {
       wasSuccessfullyAuthed.should.be.true
       ifFailErrMessage.should.eql("")
@@ -20,7 +20,7 @@ describe("authT", () => {
       authT: authT,
       permitT: mockRibs.notPermittedT,
     })
-    let mock = { identifier: 1, mainEntityOfPage: "Person" }
+    let mock = { identifier: "god", mainEntityOfPage: "Person" }
     let cb = (wasSuccessfullyAuthed, ifFailErrMessage, authData) => {
       wasSuccessfullyAuthed.should.be.false
       ifFailErrMessage.should.eql({

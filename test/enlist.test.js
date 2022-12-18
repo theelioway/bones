@@ -41,6 +41,6 @@ describe("enlistT", () => {
         },
       })
     }
-    spareRibs.enlistT(eden, spareRibs, mockDb, cb)
+    spareRibs.enlistT(eden, spareRibs, spareDb, cb)
   })
 })

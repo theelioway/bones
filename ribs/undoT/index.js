@@ -7,7 +7,7 @@ const NOTOK = 417
 const undoT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("undoT", packet, ribs, db, (permitted, authError, engagedData) => {
-    if (permitted && db.canExist(engagedData)) {
+    if (permitted && db.canStore(engagedData)) {
       cb(OK, {
         identifier: "undoT",
         name: "Coming Soon",
@@ -21,7 +21,7 @@ const undoT = (packet, ribs, db, cb) => {
 const savePointT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("savePointT", packet, ribs, db, (permitted, authError, engagedData) => {
-    if (permitted && db.canExist(engagedData)) {
+    if (permitted && db.canStore(engagedData)) {
       cb(OK, {
         identifier: "savePointT",
         name: "Coming Soon",
