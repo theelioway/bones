@@ -1,9 +1,9 @@
 const should = require("chai").should()
-const mockDb = require("./mockDB.js")
-const mockRibs = require("./mockRibs.js")
-const takeupT = require("../ribs/takeupT")
-const { authT, engageT } = require("../spine")
-const { accessSpecsMaker, permitMaker } = require("../ribs/takeupT")
+const mockDb = require("../mocks/mockDB.js")
+const mockRibs = require("../mocks/mockRibs.js")
+const takeupT = require("../../ribs/takeupT")
+const { authT, engageT } = require("../../spine")
+const { accessSpecsMaker, permitMaker } = require("../../ribs/takeupT")
 
 const OK = 201
 const NOTOK = 406

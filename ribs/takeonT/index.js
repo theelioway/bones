@@ -26,10 +26,6 @@ const takeonT = (packet, ribs, db, cb) => {
                 subjectOf: engagedData.identifier,
               }
               db.create(createPacket, (createErr, createPacket) => {
-                console.log("createErr", createErr, "db.create", {
-                  OK,
-                  enlistCode,
-                })
                 if (!createErr) {
                   enlistT(
                     createPacket,
