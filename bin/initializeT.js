@@ -9,13 +9,8 @@ const makeEndpointAction = () => {}
 const initializeT = (argv, ribsConfig, envVars) => {
   let thing = { ...argv } || {}
   let { subjectOf } = envVars
-  // Defaults!
-  thing.mainEntityOfPage = thing.mainEntityOfPage || "Thing"
   // For now, suggest the CamelCase version of the name.
   thing.additionalType = CamelCase(thing.identifier)
-  // Every thing gets an item list.
-  thing.ItemList = {}
-  thing.ItemList.itemListElement = []
   // Everything gets its own permissions? Hmm... only when takeupT perhaps!
   delete thing._
   delete thing.$0

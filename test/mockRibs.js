@@ -1,9 +1,11 @@
+const { cultify } = require("../src/helpers")
+
 const mockRibs = {}
 
 mockRibs.authT = (rib, packet, ribs, db, cb) => {
   const { OK } = require("../spine/authT")
   console.count("the Mock authT")
-  cb(OK, "", packet)
+  cb(OK, "", cultify(packet))
 }
 mockRibs.noAuthT = (rib, packet, ribs, db, cb) => {
   const { NOTOK } = require("../spine/authT")
@@ -14,16 +16,12 @@ mockRibs.noAuthT = (rib, packet, ribs, db, cb) => {
 mockRibs.engageT = (rib, packet, ribs, db, cb) => {
   const { OK } = require("../spine/engageT")
   console.count("the Mock engageT")
-  /** @TODO Figure out whether to do this in the real endpoint
-   * if (!Array.isArray(packet.ItemList?.itemListElement)) {
-   *    packet.ItemList = { itemListElement: [] }
-   * } */
-  cb(OK, "", packet)
+  cb(OK, "", cultify(packet))
 }
 mockRibs.notEngagedT = (rib, packet, ribs, db, cb) => {
   console.count("the Mock notEngagedT")
   const { NOTOK } = require("../spine/engageT")
-  console.log({ NOTOK  })
+  console.log({ NOTOK })
   cb(NOTOK, "notEngagedT Mock")
 }
 

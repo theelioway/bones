@@ -10,15 +10,21 @@ helpers.bigUp = thing => {
     "schemaorg/data/releases/9.0/schemaorg-all-http",
     schemaDomainUrl
   )
-  let Thing = thingBuilder.Thing([packet.mainEntityOfPage])
+  let Thing = thingBuilder.Thing([thing.mainEntityOfPage])
   let thinglet = thingBuilder.thinglet(
-    Thing[packet.mainEntityOfPage],
-    packet.mainEntityOfPage
+    Thing[thing.mainEntityOfPage],
+    thing.mainEntityOfPage
   )
-  return {
-    ...thinglet,
-    ...packet,
-  }
+  return thinglet
+}
+
+helpers.BigUp = thing => {
+  let thingBuilder = new ThingBuilder(
+    "schemaorg/data/releases/9.0/schemaorg-all-http",
+    schemaDomainUrl
+  )
+  let Thing = thingBuilder.Thing([thing.mainEntityOfPage])
+  return Thing
 }
 
 helpers.CamelCase = str => {
@@ -37,6 +43,15 @@ helpers.CamelCase = str => {
   }
   // Join the words back together into a single string
   return words.join("")
+}
+
+helpers.cultify = engagedThing => {
+  // Defaults!
+  if (!Array.isArray(engagedThing.ItemList?.itemListElement)) {
+    engagedThing.ItemList = { itemListElement: [] }
+  }
+  engagedThing.mainEntityOfPage = engagedThing.mainEntityOfPage || "Thing"
+  return engagedThing
 }
 
 //* Hashes the user passwords to avoid storing them directly. */
