@@ -122,4 +122,4 @@ npm run bones -- inflateT shopping
 
 ## License
 
-MIT [Tim Bushell](mailto:tcbushell@gmail.com)
+MIT [Tim Bushell](mailto:theElioWay@gmail.com)
