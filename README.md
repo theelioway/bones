@@ -16,13 +16,12 @@ Fun contest. Writers of the Best Three _endpoints_ in 2023 win a listing here.
 
 - [bones Documentation](https://elioway.gitlab.io/eliobones/bones)
 
-## Seeing is believing
+## Seeing is Believing
 
 ```bash
 git clone https://gitlab.com/eliobones/bones.git
 cd bones
 npm i
-node demBones.js
 identifier=dembones npm run bones -- pingT
 ```
 
