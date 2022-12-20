@@ -1,4 +1,4 @@
-const { errorPayload, hasRequiredFields } = require("../../src/helpers")
+const { bigUp, errorPayload, hasRequiredFields } = require("../../src/helpers")
 
 const OK = 201
 const NOTOK = 406
@@ -9,8 +9,8 @@ const takeupT = (packet, ribs, db, cb) => {
     db.exists(packet, exists => {
       if (!exists) {
         let createPacket = {
-          ...bigUp(packet),
-          subjectOf: engagedData.identifier,
+          ...packet, // bigUp(packet)
+          subjectOf: packet.identifier,
         }
         db.create(packet, (createErr, createPacket) => {
           if (!createErr) {

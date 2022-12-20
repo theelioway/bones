@@ -1,14 +1,14 @@
 ![](https://elioway.gitlab.io/eliobones/elio-bones-logo.png)
 
-# bones
+> "Can you get this done by Wednesday?" **Rosalind Codrington**
 
-![experimental](https://elioway.gitlab.io/eliosin/icon/devops/experimental/favicon.ico "experimental")
+# bones ![beta](https://elioway.gitlab.io/eliosin/icon/devops/beta/favicon.ico "beta")
 
 Bare bones, NodeJS only, reusable elioWay _endpoints_ for your API, desktop or web client.
 
 ## BTW
 
-Fun contest. The Best Three endpoints Win a listing here.
+Fun contest. Writers of the Best Three _endpoints_ in 2023 win a listing here.
 
 - `bestT`
 - `threeT`

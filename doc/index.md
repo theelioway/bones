@@ -1,27 +1,25 @@
-# bones
+<aside>
+  <dl>
+  <dd>Thither let us bend all our thoughts, to learn</dd>
+  <dd>What creatures there inhabit, of what mould</dd>
+  <dd>Or substance, how endued</dd>
+</dl>
+</aside>
 
-> "Can you get this done by Wednesday?" **Rosalind Codrington**
-
-**bones** REST API for <https://schema.org> mongoose schema spidered **the elioWay**.
-
-![experimental](/eliosin/icon/devops/experimental/favicon.ico "experimental")
-
-## WTF
-
-Reusable endpoints for **elioBones** projects.
+Reusable _endpoints_ for **elioBones** projects.
 
 [elioBones Dogma](/eliobones/dogma.html)
 
-## Ribs
+# Ribs
 
-Its ribs are 12 endpoints. Thet are the beating heart of **elioWay** projects. You will engage them a lot!
+Its ribs are 12 _endpoints_. Thet are the beating heart of **elioWay** projects. You will engage them a lot!
 
-### The TURDs
+## The TURDs
 
 Four **elioEngage** operations - for working with the top level object - the **engaged** "thing":
 
 <article>
-  <a href="/eliobones/bones/ribs/takeupT/">
+  <a href="/eliobones/bones/ribs/takeupT/star.png" target="_splash">
   <img src="/eliobones/bones/ribs/takeupT/favicon.png">
   <div>
   <h4>
@@ -33,7 +31,7 @@ Four **elioEngage** operations - for working with the top level object - the **e
 </article>
 
 <article>
-  <a href="/eliobones/bones/ribs/updateT/">
+  <a href="/eliobones/bones/ribs/updateT/star.png" target="_splash">
   <img src="/eliobones/bones/ribs/updateT/favicon.png">
   <div>
   <h4>
@@ -45,7 +43,7 @@ Four **elioEngage** operations - for working with the top level object - the **e
 </article>
 
 <article>
-  <a href="/eliobones/bones/ribs/readT/">
+  <a href="/eliobones/bones/ribs/readT/star.png" target="_splash">
   <img src="/eliobones/bones/ribs/readT/favicon.png">
   <div>
   <h4>
@@ -57,7 +55,7 @@ Four **elioEngage** operations - for working with the top level object - the **e
 </article>
 
 <article>
-  <a href="/eliobones/bones/ribs/destroyT/">
+  <a href="/eliobones/bones/ribs/destroyT/star.png" target="_splash">
   <img src="/eliobones/bones/ribs/destroyT/favicon.png">
   <div>
   <h4>
@@ -68,12 +66,12 @@ Four **elioEngage** operations - for working with the top level object - the **e
 </a>
 </article>
 
-### The LUTEs
+## The LUTEs
 
 Four **elioList** endpoints:
 
 <article>
-  <a href="/eliobones/bones/ribs/listT/">
+  <a href="/eliobones/bones/ribs/listT/star.png" target="_splash">
   <img src="/eliobones/bones/ribs/listT/favicon.png">
   <div>
   <h4>
@@ -85,7 +83,7 @@ Four **elioList** endpoints:
 </article>
 
 <article>
-  <a href="/eliobones/bones/ribs/unlistT/">
+  <a href="/eliobones/bones/ribs/unlistT/star.png" target="_splash">
   <img src="/eliobones/bones/ribs/unlistT/favicon.png">
   <div>
   <h4>
@@ -97,7 +95,7 @@ Four **elioList** endpoints:
 </article>
 
 <article>
-  <a href="/eliobones/bones/ribs/takeonT/">
+  <a href="/eliobones/bones/ribs/takeonT/star.png" target="_splash">
   <img src="/eliobones/bones/ribs/takeonT/favicon.png">
   <div>
   <h4>
@@ -109,7 +107,7 @@ Four **elioList** endpoints:
 </article>
 
 <article>
-  <a href="/eliobones/bones/ribs/enlistT/">
+  <a href="/eliobones/bones/ribs/enlistT/star.png" target="_splash">
   <img src="/eliobones/bones/ribs/enlistT/favicon.png">
   <div>
   <h4>
@@ -120,12 +118,12 @@ Four **elioList** endpoints:
 </a>
 </article>
 
-### PS
+## PS
 
 Two **elioSchema** endpoints:
 
 <article>
-  <a href="/eliobones/bones/ribs/pingT/">
+  <a href="/eliobones/bones/ribs/pingT/star.png" target="_splash">
   <img src="/eliobones/bones/ribs/pingT/favicon.png">
   <div>
   <h4>
@@ -137,7 +135,7 @@ Two **elioSchema** endpoints:
 </article>
 
 <article>
-  <a href="/eliobones/bones/ribs/schemaT/">
+  <a href="/eliobones/bones/ribs/schemaT/star.png" target="_splash">
   <img src="/eliobones/bones/ribs/schemaT/favicon.png">
   <div>
   <h4>
@@ -148,14 +146,14 @@ Two **elioSchema** endpoints:
 </a>
 </article>
 
-## Other bones
+# Other bones
 
-## Spine
+# Spine
 
 These are called internally by the endpoints, but could be called independently for other purposes:
 
 <article>
-  <a href="/eliobones/bones/spine/engageT/">
+  <a href="/eliobones/bones/spine/engageT/star.png" target="_splash">
   <img src="/eliobones/bones/spine/engageT/favicon.png">
   <div>
   <h4>
@@ -167,7 +165,7 @@ These are called internally by the endpoints, but could be called independently 
 </article>
 
 <article>
-  <a href="/eliobones/bones/spine/authT/">
+  <a href="/eliobones/bones/spine/authT/star.png" target="_splash">
   <img src="/eliobones/bones/spine/authT/favicon.png">
   <div>
   <h4>
@@ -179,7 +177,7 @@ These are called internally by the endpoints, but could be called independently 
 </article>
 
 <article>
-  <a href="/eliobones/bones/spine/permitT/">
+  <a href="/eliobones/bones/spine/permitT/star.png" target="_splash">
   <img src="/eliobones/bones/spine/permitT/favicon.png">
   <div>
   <h4>
@@ -193,12 +191,12 @@ These are called internally by the endpoints, but could be called independently 
 
 As long as the endpoint acts upon a complete `thing`, with or without a list, and returns the payload correctly formatted, it is an **elioBone**.
 
-### IOU
+## IOU
 
 Here are, for instance, three **elioOptimize** endpoints, the very least we could do. We expect you'll need more. You'll have to write those yourself and share them. We'll share any we write here as well. But for now... We feel it's the least we owe.
 
 <article>
-  <a href="/eliobones/bones/ribs/xxxT/">
+  <a href="/eliobones/bones/inflateT/xxxT/star.png" target="_splash">
   <img src="/eliobones/bones/ribs/inflateT/favicon.png">
   <div>
   <h4>
@@ -210,7 +208,7 @@ Here are, for instance, three **elioOptimize** endpoints, the very least we coul
 </article>
 
 <article>
-  <a href="/eliobones/bones/ribs/optimizeT/">
+  <a href="/eliobones/bones/ribs/optimizeT/star.png" target="_splash">
   <img src="/eliobones/bones/ribs/optimizeT/favicon.png">
   <div>
   <h4>
@@ -222,7 +220,7 @@ Here are, for instance, three **elioOptimize** endpoints, the very least we coul
 </article>
 
 <article>
-  <a href="/eliobones/bones/ribs/undoT/">
+  <a href="/eliobones/bones/ribs/undoT/star.png" target="_splash">
   <img src="/eliobones/bones/ribs/undoT/favicon.png">
   <div>
   <h4>
