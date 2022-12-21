@@ -36,7 +36,6 @@ const boilerT = (packet, ribs, db, cb) => {
               ),
           })
         })
-
         cb(OK, boil(nowFullyEngagedData))
       } else {
         cb(NOTOK, authError)

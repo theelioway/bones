@@ -25,25 +25,26 @@ const permitT = (rib, engagedData, ribs, db, cb, packet) => {
     .filter(
       spec =>
         spec.identifier === packet?.Permit?.issuedThrough ||
-        !packet?.Permit.issuedThrough
+        !packet?.Permit?.issuedThrough
     )
     // For this engagedData.
     .filter(
       spec =>
         engagedData.identifier === packet?.Permit?.issuedBy ||
-        !packet?.Permit.issuedBy
+        !packet?.Permit?.issuedBy
     )
     // Permits for this user.
     .filter(
       spec =>
         spec.ActionAccessSpecification.eligibleRegion ===
           packet?.Permit?.permitAudience ||
-        spec.ActionAccessSpecification.eligibleRegion === "*"
+        spec.ActionAccessSpecification?.eligibleRegion === "*"
     )
     // Which are valid for this endpoint.
     .filter(spec => {
-      let endpoints =
-        spec.ActionAccessSpecification.requiresSubscription.split(",")
+      let requiresSubscription = spec.ActionAccessSpecification?.requiresSubscription
+      console.log(requiresSubscription)
+      let endpoints = requiresSubscription ? requiresSubscription.split(",") : []
       return endpoints.includes(rib) || endpoints.includes("*")
     })
   // Get block which meet the Permit audience.
@@ -51,13 +52,13 @@ const permitT = (rib, engagedData, ribs, db, cb, packet) => {
     // Where blocked for this endpoint.
     .filter(
       spec =>
-        spec.ActionAccessSpecification.ineligibleRegion === packet?.identifier
+        spec.ActionAccessSpecification?.ineligibleRegion === packet?.identifier
     )
     // Which are valid for this endpoint.
     .filter(spec => {
       // let endpoints = spec.ItemList.itemListElement.map(i => i.identifier)
       let endpoints =
-        spec.ActionAccessSpecification.requiresSubscription.split(",")
+        spec.ActionAccessSpecification?.requiresSubscription.split(",")
       return endpoints.includes(rib) || endpoints.includes("*")
     })
 
