@@ -8,7 +8,7 @@ const OK = 201
 const NOTOK = 406
 
 describe("takeonT", () => {
-  it.only("takeonTs", () => {
+  it("takeonTs", () => {
     let spareRibs = new Object({ ...mockRibs, authT, engageT, takeonT })
     let god = { identifier: "god", mainEntityOfPage: "Person" }
     let eden = {

@@ -25,7 +25,7 @@ npm i
 identifier=dembones npm run bones -- pingT
 ```
 
-You can play some more with the following commands... get a feel for how an **elioWay** app operates. You'll need a .env file at some point:
+You can play some more with the following commands... get a feel for how an **elioWay** app operates. You'll need a `.env` file at some point:
 
 ```
 # Everything is permitted for everyone.
