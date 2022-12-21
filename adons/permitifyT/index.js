@@ -13,14 +13,13 @@ const boilerT = (packet, ribs, db, cb) => {
     db,
     (permitted, authError, nowFullyEngagedData) => {
       if (permitted && db.canStore(nowFullyEngagedData)) {
-
-
         // Use the envVars to build some initial permissions.
         Object.entries(ribsConfig).forEach(([ribName, ribConfig]) => {
           let { aliases, positionals } = ribConfig
           let commandPositionals = ""
           if (positionals && positionals.length) {
-            commandPositionals = " " + positionals.map(pos => `[${pos}]`).join(" ")
+            commandPositionals =
+              " " + positionals.map(pos => `[${pos}]`).join(" ")
           }
           ribsConfig[ribName].permit = envVars[ribName]
           yargs.command({
@@ -37,7 +36,6 @@ const boilerT = (packet, ribs, db, cb) => {
               ),
           })
         })
-
 
         cb(OK, boil(nowFullyEngagedData))
       } else {

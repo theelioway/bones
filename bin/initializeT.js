@@ -10,7 +10,7 @@ const initializeT = (argv, ribsConfig, envVars) => {
   let thing = { ...argv } || {}
   let { subjectOf } = envVars
   // For now, suggest the CamelCase version of the name.
-  thing.additionalType = CamelCase(thing.identifier)
+  thing.mainEntityOfPage = CamelCase(thing.identifier)
   // Everything gets its own permissions? Hmm... only when takeupT perhaps!
   delete thing._
   delete thing.$0

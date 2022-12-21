@@ -12,7 +12,7 @@ const initializeT = require("./initializeT")
 
 fs.readFile(".env", "utf8", (readEnvErr, envData) => {
   // Parse the file's contents and store them in an object
-  let envVars = { DATADIR: "./"}
+  let envVars = { DATADIR: "./" }
   if (!readEnvErr) {
     let envVars = envData
       .trim()
@@ -66,6 +66,29 @@ fs.readFile(".env", "utf8", (readEnvErr, envData) => {
     optimizeT: { aliases: ["actionStatusOfT"], positionals: ["identifier"] },
     undoT: { aliases: ["undo"], positionals: ["identifier"] },
   }
+
+  // Use the envVars to build some initial permissions.
+  Object.entries(ribsConfig).forEach(([ribName, ribConfig]) => {
+    let { aliases, positionals } = ribConfig
+    let commandPositionals = ""
+    if (positionals && positionals.length) {
+      commandPositionals = " " + positionals.map(pos => `[${pos}]`).join(" ")
+    }
+    yargs.command({
+      command: `${ribName}${commandPositionals}`,
+      aliases: aliases,
+      desc: `${aliases.join(" ")} a thing`,
+      handler: argv =>
+        boneUp(
+          ribName,
+          initializeT(argv, ribsConfig, envVars),
+          { ...ribs, ...spine },
+          db,
+          flesh
+        ),
+    })
+  })
+
   // Final chance to **yarg** some settings.
   yargs.demandCommand().help().argv
 }) // end read and objectify file `.env`
