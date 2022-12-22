@@ -4,6 +4,7 @@ const OK = 308
 const NOTOK = 423
 
 const destroyT = (packet, ribs, db, cb) => {
+  console.count("the Real inviteT")
   const { authT } = ribs
   authT("destroyT", packet, ribs, db, (permitted, authError, _) => {
     if (permitted) {

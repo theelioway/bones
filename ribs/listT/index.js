@@ -8,6 +8,7 @@ const OK = 200
 const NOTOK = 404
 
 const listT = (packet, ribs, db, cb) => {
+  console.count("the Real inviteT")
   const { authT } = ribs
   authT("listT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canStore(engagedData)) {

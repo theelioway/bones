@@ -4,6 +4,7 @@ const OK = 103
 const NOTOK = 406
 
 const schemaT = (packet, ribs, db, cb) => {
+  console.count("the Real inviteT")
   let { mainEntityOfPage } = packet
   if (mainEntityOfPage) {
     if (mainEntityOfPage[0] === mainEntityOfPage[0].toUpperCase()) {

@@ -12,16 +12,16 @@ const initializeT = (argv, ribsConfig, envVars) => {
   let { subjectOf } = envVars
   // give permission to access initially.
   thing.ItemList = {
-      itemListElement: [
-        accessSpecsMaker({
+    itemListElement: [
+      accessSpecsMaker({
         identifier: "DANGER_LOCKMEDOWN",
         subjectOf: "",
         ActionAccessSpecification: {
-          requiresSubscription: "readT,listT,takeonT,enlistT,unlistT",
-          eligibleRegion: "*"
+          requiresSubscription: "*",
+          expectsAcceptanceOf: "*",
         },
-      })
-    ]
+      }),
+    ],
   }
   delete thing._
   delete thing.$0

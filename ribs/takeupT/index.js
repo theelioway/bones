@@ -4,6 +4,7 @@ const OK = 201
 const NOTOK = 406
 
 const takeupT = (packet, ribs, db, cb) => {
+  console.count("the Real inviteT")
   if (hasRequiredFields(packet, ["identifier"])) {
     let { identifier } = packet
     db.exists(packet, exists => {
