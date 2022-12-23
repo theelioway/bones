@@ -32,7 +32,7 @@ The data will be checked against the `exampleSiteShape`
 */
 
 const optimizeT = (packet, ribs, db, cb) => {
-  console.count("the Real inviteT")
+  console.count("the Real optimizeT")
   const { authT, listT } = ribs
   authT("optimizeT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canStore(engagedData)) {

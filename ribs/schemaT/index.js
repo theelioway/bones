@@ -4,13 +4,15 @@ const OK = 103
 const NOTOK = 406
 
 const schemaT = (packet, ribs, db, cb) => {
-  console.count("the Real inviteT")
+  console.count("the Real schemaT")
   let { mainEntityOfPage } = packet
   if (mainEntityOfPage) {
-    if (mainEntityOfPage[0] === mainEntityOfPage[0].toUpperCase()) {
-      cb(OK, BigUp(packet))
+    let properEntity =
+      mainEntityOfPage[0].toUpperCase() + mainEntityOfPage.slice(1)
+    if (mainEntityOfPage === properEntity) {
+      cb(OK, BigUp({ ...packet, mainEntityOfPage: properEntity }))
     } else {
-      cb(OK, bigUp(packet))
+      cb(OK, bigUp({ ...packet, mainEntityOfPage: properEntity }))
     }
   } else {
     cb(
@@ -18,7 +20,7 @@ const schemaT = (packet, ribs, db, cb) => {
       errorPayload(
         "schemaT",
         `${mainEntityOfPage} Schema could not be found`,
-        schemaError
+        "Try `schemaT Thing` or `schemaT action` or `schemaT --mainEntityOfPage=creativeWork`"
       )
     )
   }

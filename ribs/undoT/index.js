@@ -5,7 +5,7 @@ const NOTOK = 417
 
 // Add a "gitdiff" record of every changed
 const undoT = (packet, ribs, db, cb) => {
-  console.count("the Real inviteT")
+  console.count("the Real undoT")
   const { authT } = ribs
   authT("undoT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canStore(engagedData)) {

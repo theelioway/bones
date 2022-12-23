@@ -9,7 +9,6 @@ const OK = 201
 const NOTOK = 406
 
 const takeonT = (packet, ribs, db, cb) => {
-  console.count("the Real inviteT")
   const { authT, enlistT } = ribs
   authT(
     "takeonT",
@@ -26,10 +25,10 @@ const takeonT = (packet, ribs, db, cb) => {
                 ...bigUp(packet),
                 subjectOf: engagedData.identifier,
               }
-              db.create(createPacket, (createErr, createPacket) => {
+              db.create(createPacket, (createErr, createdPacket) => {
                 if (!createErr) {
                   enlistT(
-                    createPacket,
+                    createdPacket,
                     ribs,
                     db,
                     (enlistCode, enlistedPacket) => {
