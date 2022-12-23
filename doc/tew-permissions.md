@@ -1,6 +1,6 @@
 # Permissions TEW
 
-TEW is a pattern not a feature set. We made some features for it and Permissions is an important part.
+TEW is a _design_pattern_ not a feature set. But we made plenty features you can use, and Permissions is an important part.
 
 This document does not describe the TEW _design_pattern_, which is described by [dogma](/dogma.html).
 
@@ -10,56 +10,20 @@ It should - in most cases - suffice during development, demonstration, and even 
 
 The relationship between a `GovernmentPermit` and a `Permit` is as follows:
 
-# GovernmentPermit
+The `GovernmentPermit` [GP] is **listed** by the **engaged** thing for which Permission is being given. During the `authT` process, the `GovernmentPermit` is compared to the user submitted `Permit` [USP] and permission is given when:
 
-The `GovernmentPermit` is **listed** by the **engaged** thing for which Permission is being given. During the `authT` process, the `GovernmentPermit` is compared to the given `Permit` and permission is given when:
+1. Permitted by identity:
 
-- `aT.identifier` `===` `pT.Permit.issuedThrough`
+- `issuedBy` `issuedThrough` `permitAudience` `validFor` are the same between `GovernmentPermit` and `Permit`
+- `GP.Permit.permitAudience` `===` [a password passed by `--Permit`]
 
-  - This is the `identifier` of `GovernmentPermit` which the "Permit" is "issued through"
+  - No permit needed this way.
 
-- `aT.subjectOf` `===` `pT.Permit.issuedBy`
+2. Permitted by range:
 
-  - just happens to be the "thing" being given access to... `aT` is listed by this "thing".
+- `GP.Permit.validFor` particular endpoints separated by commas or "\*"
+- `GP.Permit.validIn` leave as intended and limit geozones or IP ranges or something ...
+- `GP.Permit.validFrom` `<` `USP.Permit.validFrom`
+- `GP.Permit.validUntil` `>` `USP.Permit.validUntil`
 
-  - because this is the "thing" issuing it.
-
-- `aT.GovernmentPermit.availabilityEnds` `>` `pT.Permit.validUntil`
-
-  `&&`
-
-- `aT.GovernmentPermit.availabilityStarts` `<` `pT.Permit.validFrom`
-
-- `aT.GovernmentPermit.category` spare
-
-- `aT.GovernmentPermit.eligibleRegion` sensible to leave as intended and limit geozones or IP ranges or something.
-
-- `aT.GovernmentPermit.permitAudience` `===` `pT.identifier`
-
-  - It could be a password.
-
-- `aT.GovernmentPermit.ineligibleRegion` sensible to leave as intended and limit geozones or IP ranges or something.
-
-- `aT.GovernmentPermit.requiresSubscription` `===` `<endpoint>[,<endpoint[n]>]`
-
-# From Permit perspective:
-
-- `pT.identifier` `===` `aT.GovernmentPermit.permitAudience`
-
-  - Is a unique identifier.
-  - It doesn't have to be a `Permit` - only have the `Permit` subtype.
-  - It could be a password.
-
-- `pT.Permit.issuedBy` === `aT.GovernmentPermit.subjectOf`
-
-- `pT.Permit.issuedThrough` === `aT.identifier`
-
-- `pT.Permit.permitAudience` === ???
-
-- `pT.Permit.validFor` it's for duration but has a semantic similarity
-
-- `pT.Permit.validFrom` `>` `aT.GovernmentPermit.availabilityStarts`
-
-- `pT.Permit.validIn` sensible to leave as intended and limit geozones or IP ranges or something ...
-
-- `pT.Permit.validUntil` `<` `aT.GovernmentPermit.availabilityEnds`
+NB: You can easily issue correctly formatted `Permit`s to users and list corresponding `GovernmentPermit`s using the `inviteT` endpoint.
