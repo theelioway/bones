@@ -50,14 +50,14 @@ helpers.CamelCase = str => {
   return words.join("")
 }
 
-helpers.cultify = engagedThing => {
-  // Defaults!
-  if (!Array.isArray(engagedThing.ItemList?.itemListElement)) {
-    engagedThing.ItemList = { itemListElement: [] }
-  }
-  engagedThing.mainEntityOfPage = engagedThing.mainEntityOfPage || "Thing"
-  return engagedThing
-}
+// helpers.cultify = engagedThing => {
+//   // Defaults!
+//   if (!Array.isArray(engagedThing.ItemList?.itemListElement)) {
+//     engagedThing.ItemList = { itemListElement: [] }
+//   }
+//   engagedThing.mainEntityOfPage = engagedThing.mainEntityOfPage || "Thing"
+//   return engagedThing
+// }
 
 //* Hashes the user passwords to avoid storing them directly. */
 helpers.hash = str => {

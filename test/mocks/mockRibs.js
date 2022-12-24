@@ -1,11 +1,11 @@
-const { cultify } = require("../../src/helpers")
+const { bigUp } = require("../../src/helpers")
 
 const mockRibs = {}
 
 mockRibs.authT = (rib, packet, ribs, db, cb) => {
   const { OK } = require("../../spine/authT")
   console.count("the Mock authT")
-  cb(OK, "", cultify(packet))
+  cb(OK, "", bigUp(packet))
 }
 mockRibs.noAuthT = (rib, packet, ribs, db, cb) => {
   const { NOTOK } = require("../../spine/authT")
@@ -16,7 +16,7 @@ mockRibs.noAuthT = (rib, packet, ribs, db, cb) => {
 mockRibs.engageT = (rib, packet, ribs, db, cb) => {
   const { OK } = require("../../spine/engageT")
   console.count("the Mock engageT")
-  cb(OK, "", cultify(packet))
+  cb(OK, "", bigUp(packet))
 }
 mockRibs.notEngagedT = (rib, packet, ribs, db, cb) => {
   console.count("the Mock notEngagedT")

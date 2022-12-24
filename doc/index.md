@@ -12,7 +12,7 @@ Reusable _endpoints_ for **elioBones** projects.
 
 # Ribs
 
-Its ribs are 12 _endpoints_. Thet are the beating heart of **elioWay** projects. You will engage them a lot!
+Its ribs are 12 _endpoints_. They enclose the beating heart of **elioWay** projects. You will engage them a lot!
 
 ## The TURDs
 
@@ -118,7 +118,7 @@ Four **elioList** endpoints:
 </a>
 </article>
 
-## PS
+### PS
 
 Two **elioSchema** endpoints:
 
@@ -146,9 +146,9 @@ Two **elioSchema** endpoints:
 </a>
 </article>
 
-# Other bones
+## The Rest
 
-# Spine
+### Spine
 
 These are called internally by the endpoints, but could be called independently for other purposes:
 
@@ -191,7 +191,7 @@ These are called internally by the endpoints, but could be called independently 
 
 As long as the endpoint acts upon a complete `thing`, with or without a list, and returns the payload correctly formatted, it is an **elioBone**.
 
-## IOU
+### IOU
 
 Here are, for instance, three **elioOptimize** endpoints, the very least we could do. We expect you'll need more. You'll have to write those yourself and share them. We'll share any we write here as well. But for now... We feel it's the least we owe.
 

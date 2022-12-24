@@ -4,17 +4,10 @@
 
 # bones ![beta](https://elioway.gitlab.io/eliosin/icon/devops/beta/favicon.ico "beta")
 
-Bare bones, NodeJS only, reusable elioWay _endpoints_ for your API, desktop or web client.
+1. "Bare" bones, reusable, NodeJS (with lodash dependencies) **elioWay** _endpoints_ to use in your API, desktop or web client.
+2. A CLI to try the _endpoints_ directly in your filesystem.
 
-## BTW
-
-Fun contest. Writers of the Best Three _endpoints_ in 2023 win a listing here.
-
-- `bestT`
-- `threeT`
-- `winT`
-
-- [bones Documentation](https://elioway.gitlab.io/eliobones/bones)
+[bones Documentation](https://elioway.gitlab.io/eliobones/bones)
 
 ## Seeing is Believing
 
@@ -22,89 +15,35 @@ Fun contest. Writers of the Best Three _endpoints_ in 2023 win a listing here.
 git clone https://gitlab.com/eliobones/bones.git
 cd bones
 npm i
-identifier=dembones npm run bones -- pingT
-```
-
-You can play some more with the following commands... get a feel for how an **elioWay** app operates. You'll need a `.env` file at some point:
-
-```
-# Everything is permitted for everyone.
-"HASHINGSECRET=123
-identifier=GOD
-destroyT=ANON
-enlistT=ANON
-listT=ANON
-pingT=ANON
-readT=ANON
-schemaT=ANON
-takeonT=ANON
-takeupT=ANON
-updateT=ANON
-unlistT=ANON" > .env
-```
-
-Between sessions:
-
-```
-# Preserve test data
-mv $DATADIR $DATADIRbu
-# or just clear any test data
-rm -rf $DATADIR
-```
-
-Run 1 at a time, or in suggested groupings.
-
-```
 npm run bones -- pingT
+npm run bones -- takeupT shoppinglist --mainEntityOfPage=ItemList --name="Today's Shopping List" --alternateName="Don't forget the milk!"
 
-npm run bones -- takeupT shopping --name="Today's Shopping List" --alternateName="Don't forget the milk"
+# check the `shoppinglist.json` file!
+cat  shoppinglist.json
 
-npm run bones -- takeonT shopping milk  --mainEntityOfPage=Action  --Action.actionStatus=PotentialActionStatus
+set POTENTIALACTION --mainEntityOfPage=Action  --potentialAction="bones updateT <this> --Action.actionStatus=CompletedActionStatus"  --Action.actionStatus=PotentialActionStatus
 
-npm run bones -- takeonT shopping honey  --mainEntityOfPage=Action
-npm run bones -- updateT honey --Action.actionStatus=PotentialActionStatus
+npm run bones -- takeupT milk $POTENTIALACTION --name="Milk" --disambiguatingDescription="If you forget this children WILL die"
 
-npm run bones -- readT shopping
-npm run bones -- listT shopping
+cat  milk.json
 
-npm run bones -- updateT honey --Action.actionStatus=CompletedActionStatus
-npm run bones -- listT shopping
+npm run bones -- takeonT shoppinglist bread $POTENTIALACTION
+npm run bones -- takeonT shoppinglist eggs $POTENTIALACTION
+npm run bones -- takeonT shoppinglist cheese $POTENTIALACTION
+npm run bones -- enlistT shoppinglist milk
 
-npm run bones -- unlistT shopping milk
-npm run bones -- listT shopping
+npm run bones -- readT shoppinglist
+npm run bones -- listT shoppinglist
 
-npm run bones -- enlistT shopping milk
-npm run bones -- listT shopping
+set COMPLETEDACTION --Action.actionStatus=CompletedActionStatus
+npm run bones -- updateT bread $COMPLETEDACTION
 
-npm run bones -- destroyT milk
-npm run bones -- listT shopping
-
-npm run bones -- unlistT shopping milk
-npm run bones -- listT shopping
-
-npm run bones -- unlistT shopping milk
-npm run bones -- listT shopping
-
-npm run bones -- enlistT shopping milk
-
-npm run bones -- optimizeT shopping
-
-npm run bones -- takeonT shopping milk  --mainEntityOfPage=Action  --Action.actionStatus=CompletedActionStatus
-
-npm run bones -- optimizeT shopping
-
-
-for D in sugar biscuits banana thoseCrispsYouLike
-   mkdir -p $D
-   echo '{ "identifier": "'$D'" }' > ./$D/thing.json
-end
-
-
-
-npm run bones -- inflateT shopping
+npm run bones -- listT shoppinglist
 ```
 
-- [Play around more using godly examples](https://elioway.gitlab.io/eliobones/bones/playing-god.html)
+- [bones Quickstart](https://elioway.gitlab.io/eliobones/bones/quickstart.html)
+- [Play around more using godly examples](https://elioway.gitlab.io/eliobones
+    /bones/playing-god.html)
 
 ## TLDR
 
@@ -112,7 +51,27 @@ npm run bones -- inflateT shopping
 
 ### `npm test`
 
-### `node demBones.js`
+### `npm run bones -- takeupT bones`
+
+### `npm run bones -- readT bones`
+
+### `npm run bones -- updateT bones --name="This is cool"`
+
+### `npm run bones -- takeonT bones hipbone`
+
+### `npm run bones -- updateT hipbone --name="Connected to legbone"`
+
+### `npm run bones -- unlistT bones hipbone`
+
+### `npm run bones -- enlistT bones hipbone`
+
+### `npm run bones -- listT bones`
+
+### `npm run bones -- destroyT bones`
+
+### `npm run bones -- schemaT thing`
+
+### `npm run bones -- schemaT Thing`
 
 - [bones Quickstart](https://elioway.gitlab.io/eliobones/bones/quickstart.html)
 - [bones Credits](https://elioway.gitlab.io/eliobones/bones/credits.html)
