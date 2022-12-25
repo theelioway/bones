@@ -140,7 +140,7 @@ helpers.summarizeT = obj => {
   }
   if (engage) {
     // Summarize the Types engagable by this thing.
-    obj.engage = engage.join(",")
+    obj._has = engage.join(",")
   }
   // Return the purged object
   return obj

@@ -21,11 +21,15 @@ npm run bones -- takeupT shoppinglist --mainEntityOfPage=ItemList --name="Today'
 # check the `shoppinglist.json` file!
 cat  shoppinglist.json
 
+# fish
 set POTENTIALACTION --mainEntityOfPage=Action  --potentialAction="bones updateT <this> --Action.actionStatus=CompletedActionStatus"  --Action.actionStatus=PotentialActionStatus
+# bash
+POTENTIALACTION=$POTENTIALACTION
+# ha!
 
-npm run bones -- takeupT milk $POTENTIALACTION --name="Milk" --disambiguatingDescription="If you forget this children WILL die"
+npm run bones -- takeupT milk $POTENTIALACTION --name="Milk" --alternateName="If you forget the milk children WILL die"
 
-cat  milk.json
+cat milk.json
 
 npm run bones -- takeonT shoppinglist bread $POTENTIALACTION
 npm run bones -- takeonT shoppinglist eggs $POTENTIALACTION
@@ -33,17 +37,26 @@ npm run bones -- takeonT shoppinglist cheese $POTENTIALACTION
 npm run bones -- enlistT shoppinglist milk
 
 npm run bones -- readT shoppinglist
-npm run bones -- listT shoppinglist
+npm run bones -- listT shoppinglist --mainEntityOfPage=Action
 
 set COMPLETEDACTION --Action.actionStatus=CompletedActionStatus
+# bash
+COMPLETEDACTION=$COMPLETEDACTION
+# ha!
+
 npm run bones -- updateT bread $COMPLETEDACTION
 
-npm run bones -- listT shoppinglist
+npm run bones -- listT shoppinglist --Action.actionStatus=CompletedActionStatus
+
+npm run bones -- updateT eggs $COMPLETEDACTION
+npm run bones -- updateT cheese $COMPLETEDACTION
+
+npm run bones -- optimizeT shoppinglist
 ```
 
 - [bones Quickstart](https://elioway.gitlab.io/eliobones/bones/quickstart.html)
 - [Play around more using godly examples](https://elioway.gitlab.io/eliobones
-    /bones/playing-god.html)
+  /bones/playing-god.html)
 
 ## TLDR
 
