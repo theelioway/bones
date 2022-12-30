@@ -4,7 +4,7 @@ const OK = 302
 const NOTOK = 304
 
 const enlistT = (packet, ribs, db, cb) => {
-  console.count("the Real enlistT")
+  console.assert("the Real enlistT")
   const { authT, engageT } = ribs
   authT(
     "enlistT",
