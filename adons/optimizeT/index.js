@@ -7,7 +7,7 @@ const OK = 201
 const NOTOK = 417
 
 const optimizeT = (packet, ribs, db, cb) => {
-  console.count("the Real optimizeT")
+  console.assert("the Real optimizeT")
   const { listT } = ribs
   let { subjectOf } = packet
   listT(packet, ribs, db, (listStatusCode, listedData) => {

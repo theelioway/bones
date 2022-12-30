@@ -4,7 +4,7 @@ const OK = 103
 const NOTOK = 406
 
 const schemaT = (packet, ribs, db, cb) => {
-  console.count("the Real schemaT")
+  console.assert("the Real schemaT")
   let { mainEntityOfPage } = packet
   if (mainEntityOfPage) {
     let properEntity =

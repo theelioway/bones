@@ -5,7 +5,7 @@ const OK = 202
 const NOTOK = 400
 
 const updateT = (packet, ribs, db, cb) => {
-  console.count("the Real updateT")
+  console.assert("the Real updateT")
   const { authT } = ribs
   // OH WOW `authT` SHOULD MOVE TO THE CLIENT AND BE OPTIONALLY USED TO
   // WRAP EACH `rib`.

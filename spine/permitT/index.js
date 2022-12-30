@@ -4,7 +4,7 @@ const OK = true
 const NOTOK = false
 
 const permitT = (rib, engagedData, ribs, db, cb, packet) => {
-  console.count("the Real permitT")
+  console.assert("the Real permitT")
   let { engageT } = ribs
   // Internal function to handle the cb, regardless of whether we are dealing
   // with the target object's permissions.

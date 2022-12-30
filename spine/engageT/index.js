@@ -12,7 +12,7 @@ const NOTOK = false
 
 const engageT = (rib, packet, ribs, db, cb) => {
   // Turning this to `log` can add help for tests.
-  console.count("the Real engageT")
+  console.assert("the Real engageT")
   let { identifier } = packet
   if (identifier) {
     db.read(packet, (readErr, engagedData) => {

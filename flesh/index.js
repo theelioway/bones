@@ -3,6 +3,6 @@
  * `payload` to the command line. */
 
 module.exports = function flesh(statusCode, payload) {
-  console.count("statusCode:", statusCode)
+  console.assert("statusCode:", statusCode)
   console.log(payload)
 }
