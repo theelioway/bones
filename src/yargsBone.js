@@ -1,6 +1,7 @@
 const yargs = require("yargs")
 
 const yargsBone = (ribsConfig, commandHandler) => {
+  console.log("yargsBone")
   yargs
     .scriptName("bones")
     .usage("$0 <rib>T [identifier] [listIdentifier] --schemaProps")

@@ -6,9 +6,9 @@ const adons = require("../adons")
 const ribs = require("../ribs")
 const spine = require("../spine")
 const flesh = require("../flesh")
-const { boneUp, ribsConfig } = require("../src")
+const { boneUp,envVarsLoader, ribsConfig, yargsBone } = require("../src")
 
-export const allDefaultRibs = { ...ribs, ...spine, ...adons }
+const allDefaultRibs = { ...ribs, ...spine, ...adons }
 
 fs.readFile(".env", "utf8", (readEnvErr, envData) => {
   // Parse the file's contents and store them in an object
@@ -16,7 +16,12 @@ fs.readFile(".env", "utf8", (readEnvErr, envData) => {
   if (!readEnvErr) {
     envVars = envVarsLoader(envData)
   }
-  let commandHandler = packet =>
-    boneUp(ribName, packet, allDefaultRibs, db, flesh)
-  db.initialize(envVars, () => yargsBone(ribsConfig, commandHandler))
+  let commandHandler = (packet) =>{
+    let ribName = packet._[0]
+    boneUp(ribName, packet, allDefaultRibs, db, flesh)}
+
+  console.log({ envVars })
+
+  db.initialize(envVars)
+  yargsBone(ribsConfig, commandHandler)
 })

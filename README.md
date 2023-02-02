@@ -16,10 +16,13 @@ git clone https://gitlab.com/eliobones/bones.git
 cd bones
 npm i
 npm run bones -- pingT
-npm run bones -- takeupT shoppinglist --mainEntityOfPage=ItemList --name="Today's Shopping List" --alternateName="Don't forget the milk!"
+npm run bones -- readT shoppinglist
+npm run bones -- listT shoppinglist
 
-# check the `shoppinglist.json` file!
-cat  shoppinglist.json
+npm run bones -- takeupT myshopping --mainEntityOfPage=ItemList --name="Today's Shopping List" --alternateName="Don't forget the milk!"
+
+# check the `myshopping.json` file!
+cat  myshopping.json
 
 # fish
 set POTENTIALACTION --mainEntityOfPage=Action  --potentialAction="bones updateT <this> --Action.actionStatus=CompletedActionStatus"  --Action.actionStatus=PotentialActionStatus
@@ -31,13 +34,13 @@ npm run bones -- takeupT milk $POTENTIALACTION --name="Milk" --alternateName="If
 
 cat milk.json
 
-npm run bones -- takeonT shoppinglist bread $POTENTIALACTION
-npm run bones -- takeonT shoppinglist eggs $POTENTIALACTION
-npm run bones -- takeonT shoppinglist cheese $POTENTIALACTION
-npm run bones -- enlistT shoppinglist milk
+npm run bones -- takeonT myshopping bread $POTENTIALACTION
+npm run bones -- takeonT myshopping eggs $POTENTIALACTION
+npm run bones -- takeonT myshopping cheese $POTENTIALACTION
+npm run bones -- enlistT myshopping milk
 
-npm run bones -- readT shoppinglist
-npm run bones -- listT shoppinglist --mainEntityOfPage=Action
+npm run bones -- readT myshopping
+npm run bones -- listT myshopping --mainEntityOfPage=Action
 
 set COMPLETEDACTION --Action.actionStatus=CompletedActionStatus
 # bash
@@ -46,12 +49,12 @@ COMPLETEDACTION=$COMPLETEDACTION
 
 npm run bones -- updateT bread $COMPLETEDACTION
 
-npm run bones -- listT shoppinglist --Action.actionStatus=CompletedActionStatus
+npm run bones -- listT myshopping --Action.actionStatus=CompletedActionStatus
 
 npm run bones -- updateT eggs $COMPLETEDACTION
 npm run bones -- updateT cheese $COMPLETEDACTION
 
-npm run bones -- optimizeT shoppinglist
+npm run bones -- optimizeT myshopping
 ```
 
 - [bones Quickstart](https://elioway.gitlab.io/eliobones/bones/quickstart.html)
