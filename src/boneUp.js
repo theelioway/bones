@@ -1,7 +1,8 @@
 const { errorPayload } = require("./helpers")
 const initializeT = require("./initializeT")
 
-const boneUp = (rib, packet, ribs, db, cb) => {
+const boneUp = (packet, ribs, db, cb) => {
+  const rib = packet._[0]
   if (!ribs.hasOwnProperty(rib)) {
     cb(
       404,

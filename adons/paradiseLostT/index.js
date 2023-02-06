@@ -1,4 +1,4 @@
-const { errorPayload, hash } = require("../../src/helpers")
+const { errorPayload, saveT } = require("../../src/helpers")
 
 const OK = 3
 const NOTOK = 666
@@ -13,7 +13,7 @@ const paradiseLosterT = (packet, ribs, db, cb) => {
     db,
     (permitted, authError, nowFullyEngagedData) => {
       if (permitted && db.canStore(nowFullyEngagedData)) {
-        cb(OK, paradiseLost(nowFullyEngagedData))
+        saveT("inflateT", paradiseLost(nowFullyEngagedData), db, cb)
       } else {
         cb(NOTOK, authError)
       }

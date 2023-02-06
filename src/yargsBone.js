@@ -1,9 +1,8 @@
 const yargs = require("yargs")
 
-const yargsBone = (ribsConfig, commandHandler) => {
-  console.log("yargsBone")
+const yargsBone = (commandName, ribsConfig, commandHandler) => {
   yargs
-    .scriptName("bones")
+    .scriptName(commandName)
     .usage("$0 <rib>T [identifier] [listIdentifier] --schemaProps")
     .parserConfiguration({
       "short-option-groups": true,

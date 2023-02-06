@@ -6,7 +6,7 @@ TURDS operate on the fields of the **engaged** thing, and only take the **engage
 
 ```
 const should = require("chai").should()
-const mockDb = require("../mocks/mockDB.js")
+const mockDb = require("../mocks/mockDb.js")
 const mockRibs = require("../mocks/mockRibs.js")
 const turdT = require("../../ribs/turdT")
 
@@ -38,7 +38,7 @@ Differences from TURD test:
 
 ```
 const should = require("chai").should()
-const mockDb = require("../mocks/mockDB.js")
+const mockDb = require("../mocks/mockDb.js")
 const mockRibs = require("../mocks/mockRibs.js")
 const luteT = require("../../ribs/luteT")
 const { authT, engageT } = require("../../spine")
