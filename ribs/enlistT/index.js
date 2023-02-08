@@ -29,8 +29,7 @@ const enlistT = (packet, ribs, db, cb) => {
                 engagedData.ItemList.itemListElement = [
                   ...engagedData.ItemList.itemListElement,
                   engagedListItem,
-                ]
-
+                ]                
                 saveT("enlistT", engagedData, db, cb, OK, NOTOK)
               } else {
                 cb(
