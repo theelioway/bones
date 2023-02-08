@@ -5,11 +5,11 @@ const { schemaDomainUrl } = require("@elioway/thing/utils/get-schema")
 
 var helpers = {}
 
-helpers.saveT = (rib, thing, db, cb) => {
+helpers.saveT = (rib, thing, db, cb, OK, NOTOK) => {
   db.update(thing, (updateErr, updatedThing) => {
-    const { identifier }= thing
+    const { identifier } = thing
     if (!updateErr) {
-      cb(200, {
+      cb(OK, {
         identifier: rib + "_" + identifier,
         subjectOf: identifier,
         mainEntityOfPage: "Action",
@@ -17,12 +17,8 @@ helpers.saveT = (rib, thing, db, cb) => {
       })
     } else {
       cb(
-        500,
-        errorPayload(
-          rib,
-          `Could not clean ${identifier} Thing`,
-          updateErr
-        )
+        NOTOK,
+        errorPayload(rib, `Could not clean ${identifier} Thing`, updateErr)
       )
     }
   })

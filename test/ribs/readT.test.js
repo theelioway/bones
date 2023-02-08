@@ -1,7 +1,6 @@
 const should = require("chai").should()
 const mockDb = require("../mocks/mockDb.js")
 const mockRibs = require("../mocks/mockRibs.js")
-const Person = require("../mocks/Person.js")
 const readT = require("../../ribs/readT")
 const { authT, engageT } = require("../../spine")
 
@@ -12,7 +11,6 @@ describe("readT", () => {
   it("reads the original", () => {
     let spareRibs = new Object({ ...mockRibs, authT, engageT, readT })
     let original = {
-      ...Person,
       identifier: "god",
       mainEntityOfPage: "Person",
       alternateName: "The Almighty",
@@ -24,10 +22,15 @@ describe("readT", () => {
     let spareDb = new Object({
       ...mockDb,
       read: mockDb.readBackWhatWasGiven(original),
+      Original: {
+        changed: false,
+      },
     })
     let cb = (code, data) => {
       code.should.equal(OK)
-      data.should.eql(original)
+      data.alternateName.should.equal("The Almighty")
+      data.identifier.should.equal("god")
+      data.mainEntityOfPage.should.eql("Person")
     }
     spareRibs.readT(fragment, spareRibs, spareDb, cb)
   })

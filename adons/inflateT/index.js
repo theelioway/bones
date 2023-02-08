@@ -41,7 +41,7 @@ const inflateT = (packet, ribs, db, cb) => {
                   engagedData.ItemList.itemListElement.push(listedThing)
                 }
               })
-            // Rewrite.            
+            // Rewrite.
             saveT("inflateT", engagedData, db, () => {})
           })
           .catch(err => console.assert(!err, err)) // promises

@@ -1,7 +1,6 @@
 const should = require("chai").should()
 const mockDb = require("../mocks/mockDb.js")
 const mockRibs = require("../mocks/mockRibs.js")
-const Person = require("../mocks/Person.js")
 const updateT = require("../../ribs/updateT")
 const { authT, engageT } = require("../../spine")
 
@@ -52,26 +51,11 @@ describe("updateT", () => {
     let cb = (code, data) => {
       code.should.equal(OK)
       data.should.eql({
-        ...Person,
-        identifier: "god",
-        mainEntityOfPage: "Place",
-        ItemList: {
-          itemListElement: [],
-          itemListOrder: "",
-          numberOfItems: 0, // because db.update sets this every save.
-        },
-        ActionAccessSpecification: {
-          identifier: "eveCanTakeABone",
-        },
-        Something: {
-          complicated: {
-            here: "be careful",
-            changed: true,
-            added: true,
-          },
-          notSoComplicated: {
-            here: "its fine",
-          },
+        identifier: "updateT_god",
+        mainEntityOfPage: "Action",
+        subjectOf: "god",
+        Action: {
+          actionStatus: "CompletedActionStatus",
         },
       })
     }
@@ -111,19 +95,11 @@ describe("updateT", () => {
     let cb = (code, data) => {
       code.should.equal(OK)
       data.should.eql({
-        ...Person,
-        identifier: "god",
-        mainEntityOfPage: "Place",
-        ItemList: {
-          itemListElement: [],
-          itemListOrder: "",
-          numberOfItems: 0, // because db.update sets this every save.
-        },
-        Something: {
-          complicated: {
-            here: "",
-            changed: false,
-          },
+        identifier: "updateT_god",
+        mainEntityOfPage: "Action",
+        subjectOf: "god",
+        Action: {
+          actionStatus: "CompletedActionStatus",
         },
       })
     }
