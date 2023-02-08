@@ -1,8 +1,8 @@
 > The development CRUD... All the TURDs... Do them one. last. time. Squeeze out a bunch of world record, Randy Marsh sized CRAPs. Do them well. **Tim Bushell**
 
-**elioBones** provides reusable endpoints for manipulating a "thing"s data, according to the _design_pattern_.
+**eliobones** provides reusable endpoints for manipulating a "thing"s data, according to the _design_pattern_.
 
-[elioBones Dogma](/eliobones/dogma.html)
+[eliobones Dogma](/eliobones/dogma.html)
 
 # Ribs
 
