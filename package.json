@@ -1,18 +1,12 @@
 {
-  "author": {
-    "name": "Tim Bushell",
-    "email": "theElioWay@gmail.com",
-    "url": "https://gitlab.com/elioway"
-  },
-  "description": "Reusable Code for eliobones projects, **the elioWay**.",
+  "alternateName": "Bone of my bone, the elioWay",
+  "description": "A library of server-side APIs, CLIs, middleware, code, and more, the elioWay.",
+  "disambiguatingDescription": "Giants of mighty bone and bold emprise, the elioWay",
+  "identifier": "bones",
+  "mainEntityOfPage": "SoftwareSourceCode",
   "name": "@elioway/bones",
+  "subjectOf": "eliobones",
   "version": "2.1.14",
-  "tew": {
-    "lifecycle": "alpha",
-    "chisel": {
-      "Home": "eliobones"
-    }
-  },
   "bin": "./bin/index.js",
   "dependencies": {
     "@elioway/dbhell": "^1.0.0",
@@ -30,10 +24,6 @@
     "./testutils": "./test/mocks/index.js"
   },
   "homepage": "https://elioway.gitlab.io/eliobones/bones",
-  "keywords": [
-    "schema",
-    "nodejs"
-  ],
   "license": "MIT",
   "main": "./index.js",
   "repository": {

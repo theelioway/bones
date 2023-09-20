@@ -1,2 +1,13 @@
+.cache
+.editorconfig
+.env
+.env.fish
+.private
+*.csv
+build
+dist
 node_modules
-.nyc_output
+public
+temp.db
+venv*
+ItemList/itemListElement
