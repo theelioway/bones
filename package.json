@@ -1,51 +1,40 @@
 {
-  "author": {
-    "name": "Tim Bushell",
-    "email": "theElioWay@gmail.com",
-    "url": "https://gitlab.com/elioway"
-  },
-  "description": "Reusable Code for eliobones projects, **the elioWay**.",
+  "alternateName": "to basest things, the elioWay",
+  "description": "Working with Schema.org Things, the elioWay.",
+  "disambiguatingDescription": "After their kinds; I bring them to receive, the elioWay",
+  "identifier": "bones",
+  "mainEntityOfPage": "SoftwareSourceCode",
   "name": "@elioway/bones",
-  "version": "2.1.14",
-  "tew": {
-    "lifecycle": "alpha",
-    "chisel": {
-      "Home": "eliobones"
-    }
-  },
+  "subjectOf": "eliobones",
+  "version": "1.1.8",
   "bin": "./bin/index.js",
   "dependencies": {
-    "@elioway/dbhell": "^1.0.0",
-    "@elioway/thing": "^1.1.8",
-    "lodash": "^4.17.21",
-    "yargs": "^17.6.2"
+    "@elioway/abdiel": "file:../abdiel",
+    "@elioway/michael": "file:../michael",
+    "humps": "^2.0.1",
+    "immutable": "^5.0.0-beta.4"
   },
   "devDependencies": {
-    "chai": "^4.3.7",
+    "chai": "^4.3.10",
     "mocha": "^10.2.0",
-    "prettier": "^2.8.4"
+    "prettier": "^3.1.0"
   },
   "exports": {
-    ".": "./index.js",
-    "./testutils": "./test/mocks/index.js"
+    ".": "./Thing/index.js",
+    "./Action": "./Action/index.js"
   },
   "homepage": "https://elioway.gitlab.io/eliobones/bones",
-  "keywords": [
-    "schema",
-    "nodejs"
-  ],
   "license": "MIT",
-  "main": "./index.js",
+  "main": "./Thing/index.js",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/eliobones/bones.git"
+    "url": "https://gitlab.com/eliobones/bones"
   },
   "scripts": {
     "bones": "node bin/index.js",
-    "build": "npm run clean && babel ./bones --out-dir dist",
-    "clean": "rm -rf ./dist && mkdir dist",
-    "dev": "nodemon --exec babel-node ./bones/server.js",
-    "prettier": "prettier --list-different --write \"**/*.{css,html,js,json,md,mjs,scss,ts,yaml}\" \"!package.json\"",
-    "test": "mocha ./test/* --exit --timeout 3000"
-  }
+    "beautiful": "node allThingsBrightAndBeautiful.js",
+    "test": "mocha ./test/ --recursive",
+    "prettier": "prettier . --list-different --write"
+  },
+  "type": "module"
 }
