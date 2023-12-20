@@ -1,11 +1,12 @@
 {
-  "alternateName": "Bone of my bone, the elioWay",
   "description": "A library of server-side APIs, CLIs, middleware, code, and more, the elioWay.",
   "disambiguatingDescription": "Giants of mighty bone and bold emprise, the elioWay",
   "identifier": "bones",
   "mainEntityOfPage": "SoftwareSourceCode",
   "name": "@elioway/bones",
+  "sameAs": "https://Bones.theElioWay.com/",
   "subjectOf": "Way",
+  "url": "https://bones.Bones.theElioWay.com",
   "SoftwareSourceCode": {
     "codeSampleType": "experimental",
     "targetProduct": "elioangels"
