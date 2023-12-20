@@ -1,12 +1,22 @@
 {
+<<<<<<< HEAD
   "alternateName": "to basest things, the elioWay",
   "description": "Working with Schema.org Things, the elioWay.",
   "disambiguatingDescription": "After their kinds; I bring them to receive, the elioWay",
+=======
+  "alternateName": "Bone of my bone, the elioWay",
+  "description": "A library of server-side APIs, CLIs, middleware, code, and more, the elioWay.",
+  "disambiguatingDescription": "Giants of mighty bone and bold emprise, the elioWay",
+>>>>>>> the-elio-way
   "identifier": "bones",
   "mainEntityOfPage": "SoftwareSourceCode",
   "name": "@elioway/bones",
   "subjectOf": "eliobones",
+<<<<<<< HEAD
   "version": "1.1.8",
+=======
+  "version": "2.1.14",
+>>>>>>> the-elio-way
   "bin": "./bin/index.js",
   "dependencies": {
     "@elioway/abdiel": "file:../abdiel",
