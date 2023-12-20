@@ -1,19 +1,19 @@
-import { pick } from "lodash-es"
-import ItemList from "../Intangible/ItemList.js"
+import { pick } from "lodash-es";
+import ItemList from "../Intangible/ItemList.js";
 
 function convertToPickList(obj, prefix = "") {
   return Object.keys(obj).reduce((paths, key) => {
-    const value = obj[key]
+    const value = obj[key];
 
     if (value && typeof value === "object" && !Array.isArray(value)) {
-      const nestedPaths = convertToPickList(value, prefix + key + ".")
-      paths.push(...nestedPaths)
+      const nestedPaths = convertToPickList(value, prefix + key + ".");
+      paths.push(...nestedPaths);
     } else {
-      paths.push(prefix + key)
+      paths.push(prefix + key);
     }
 
-    return paths
-  }, [])
+    return paths;
+  }, []);
 }
 
 /** MediaObject: Return a smaller `thing`.
@@ -29,7 +29,7 @@ function convertToPickList(obj, prefix = "") {
  * console.assert(result2.ItemList.itemListElement)
  */
 export const MediaObject = function MediaObject(thing) {
-  thing = ItemList(thing)
+  thing = ItemList(thing);
   let {
     Aperture,
     FileSize,
@@ -42,7 +42,7 @@ export const MediaObject = function MediaObject(thing) {
     Megapixels,
     Software,
     tz,
-  } = thing.ImageObject.exifData
+  } = thing.ImageObject.exifData;
   return pick(
     thing,
     convertToPickList({
@@ -62,7 +62,7 @@ export const MediaObject = function MediaObject(thing) {
         },
       },
     }),
-  )
-}
+  );
+};
 
-export default MediaObject
+export default MediaObject;

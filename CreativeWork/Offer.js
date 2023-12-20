@@ -2,6 +2,6 @@
  *
  *
  */
-import { pick } from "lodash-es"
+import { pick } from "lodash-es";
 
-export const Offer = (thing = pick(thing, []))
+export const Offer = (thing = pick(thing, []));

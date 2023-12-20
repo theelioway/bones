@@ -1,4 +1,4 @@
-import { join } from "lodash-es"
+import { join } from "lodash-es";
 
 /** Message: A generic error message.
  *
@@ -22,7 +22,7 @@ import { join } from "lodash-es"
  * console.assert(message1.Message.sender==="thing@theElioWay.com")
  */
 export const Message = function Message(action) {
-  const mainEntityOfPage = "Message"
+  const mainEntityOfPage = "Message";
   return new Object({
     mainEntityOfPage,
     description: join([
@@ -47,7 +47,7 @@ export const Message = function Message(action) {
       recipient: "thing@theElioWay.com",
       sender: "thing@theElioWay.com",
     },
-  })
-}
+  });
+};
 
-export default Message
+export default Message;

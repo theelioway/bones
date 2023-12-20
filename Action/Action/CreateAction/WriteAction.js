@@ -17,7 +17,7 @@ export const WriteAction = async (action) => {
     action.Action.actionStatus = "FailedActionStatus";
     action.Action.error = "Missing `action.url`";
   } else {
-    action.Action.result = JSON.stringify( action.Action.object, null, 2);
+    action.Action.result = JSON.stringify(action.Action.object, null, 2);
     await fs.writeFile(action.url, action.Action.result, "utf8");
     action.Action.actionStatus = "CompletedActionStatus";
   }

@@ -1,33 +1,30 @@
 {
-<<<<<<< HEAD
-  "alternateName": "to basest things, the elioWay",
-  "description": "Working with Schema.org Things, the elioWay.",
-  "disambiguatingDescription": "After their kinds; I bring them to receive, the elioWay",
-=======
   "alternateName": "Bone of my bone, the elioWay",
   "description": "A library of server-side APIs, CLIs, middleware, code, and more, the elioWay.",
   "disambiguatingDescription": "Giants of mighty bone and bold emprise, the elioWay",
->>>>>>> the-elio-way
   "identifier": "bones",
   "mainEntityOfPage": "SoftwareSourceCode",
   "name": "@elioway/bones",
   "subjectOf": "eliobones",
-<<<<<<< HEAD
-  "version": "1.1.8",
-=======
-  "version": "2.1.14",
->>>>>>> the-elio-way
+  "SoftwareSourceCode": {
+    "codeSampleType": "experimental",
+    "targetProduct": "elioangels"
+  },
+  "WebPage": {
+    "breadcrumb": [
+      "elioway",
+      "eliobones"
+    ]
+  },
   "bin": "./bin/index.js",
   "dependencies": {
     "@elioway/abdiel": "file:../abdiel",
-    "@elioway/michael": "file:../michael",
-    "humps": "^2.0.1",
-    "immutable": "^5.0.0-beta.4"
+    "@elioway/michael": "file:../michael"
   },
   "devDependencies": {
     "chai": "^4.3.10",
     "mocha": "^10.2.0",
-    "prettier": "^3.1.0"
+    "prettier": "^3.1.1"
   },
   "exports": {
     ".": "./Thing/index.js",
@@ -46,5 +43,6 @@
     "test": "mocha ./test/ --recursive",
     "prettier": "prettier . --list-different --write"
   },
-  "type": "module"
+  "type": "module",
+  "version": "2.1.14"
 }

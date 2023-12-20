@@ -151,9 +151,7 @@
     },
     "audience": {
       "type": "Text",
-      "enums": [
-        "Researcher"
-      ],
+      "enums": ["Researcher"],
       "comment": "An intended audience, i.e. a group for whom something was created."
     },
     "audio": {
