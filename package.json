@@ -5,7 +5,7 @@
   "identifier": "bones",
   "mainEntityOfPage": "SoftwareSourceCode",
   "name": "@elioway/bones",
-  "subjectOf": "eliobones",
+  "subjectOf": "Way",
   "SoftwareSourceCode": {
     "codeSampleType": "experimental",
     "targetProduct": "elioangels"
@@ -39,7 +39,6 @@
   },
   "scripts": {
     "bones": "node bin/index.js",
-    "beautiful": "node allThingsBrightAndBeautiful.js",
     "test": "mocha ./test/ --recursive",
     "prettier": "prettier . --list-different --write"
   },
