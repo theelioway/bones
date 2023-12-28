@@ -1,4 +1,4 @@
-import { objectPicker } from "@elioway/abdiel";
+import { objectPick } from "@elioway/abdiel";
 import Action from "../../Thing/Action.js";
 import Message from "../../Thing/CreativeWork/Message.js";
 
@@ -11,7 +11,7 @@ import Message from "../../Thing/CreativeWork/Message.js";
  *    url: "myThing.json",
  *    Action: { object: engagedThing }
  * })
- * console.log(`File written: ${result.url}`)
+ * console.assert(FileExists(result.url))
  */
 export const ConsumeAction = async function ConsumeAction(action) {
   const mainEntityOfPage = "ConsumeAction";
@@ -21,7 +21,7 @@ export const ConsumeAction = async function ConsumeAction(action) {
   action.ConsumeAction.actionAccessibilityRequirement =
     action.ConsumeAction.actionAccessibilityRequirement.split(",");
 
-  let requirementPicker = objectPicker(
+  let requirementPicker = objectPick(
     action.ConsumeAction.actionAccessibilityRequirement,
   );
   action.Action.result = requirementPicker(action.Action.object);

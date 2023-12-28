@@ -8,7 +8,7 @@ import Message from "../../../../thing/Thing/Thing/CreativeWork/Message.js";
  * let WriteAction = require("@elioway/michael/Action/WriteAction.js")
  * let engagedThing = { identifier: "myThing" }
  * const result = await WriteAction({ url: "myThing.json", Action: { object: engagedThing }})
- * console.log(`File written: ${result.url}`)
+ * console.assert(FileExists(result.url))
  */
 export const WriteAction = async (action) => {
   const mainEntityOfPage = "WriteAction";

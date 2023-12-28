@@ -11,7 +11,7 @@ import Message from "../../../Thing/CreativeWork/Message.js";
  *    url: "myThing.json",
  *    Action: { object: engagedThing }
  * })
- * console.log(`File written: ${result.url}`)
+ * console.assert(FileExists(result.url))
  */
 
 export const ViewAction = async function ViewAction(action) {

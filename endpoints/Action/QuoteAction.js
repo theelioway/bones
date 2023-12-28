@@ -1,18 +1,17 @@
-import { objectPicker } from "@elioway/abdiel";
+import { objectPick } from "@elioway/abdiel";
 import ItemList from "../Intangible/ItemList.js";
 
-/** QuoteAction: console.log a summary.
+/** QuoteAction: a summary.
  *
  * @returns {Thing}
  */
 export const QuoteAction = (fields) => (thing) => {
   thing = ItemList(thing);
-  let fieldPicker = objectPicker(fields);
+  let fieldPicker = objectPick(fields);
   thing = fieldPicker({
     mainEntityOfPage: "QuoteAction",
     ...thing,
   });
-  console.log(thing);
   return thing;
 };
 

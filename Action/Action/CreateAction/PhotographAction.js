@@ -11,7 +11,7 @@ import Message from "../../../Thing/CreativeWork/Message.js";
  *    url: "myThing.json",
  *    Action: { object: engagedThing }
  * })
- * console.log(`File written: ${result.url}`)
+ * console.assert(FileExists(result.url))
  */
 export const PhotographAction = async function PhotographAction(action) {
   const mainEntityOfPage = "PhotographAction";
@@ -46,7 +46,6 @@ export const PhotographAction = async function PhotographAction(action) {
     // const tagValue = littleEndian
     //   ? exifData.readUInt16LE(tagOffset)
     //   : exifData.readUInt16BE(tagOffset);
-    // console.log(`ApertureValue: ${tagValue}`);
   }
   return await Message(action);
 };

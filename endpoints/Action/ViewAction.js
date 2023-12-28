@@ -1,10 +1,10 @@
 import ItemList from "../Intangible/ItemList.js";
 
-/** ViewAction: console.log to screen.
+/** ViewAction: console log thing.
  *
  * @returns {Thing}
  */
-export const ViewAction = (thing) => {
+export const ViewAction = (action) => (thing) => {
   thing = ItemList(thing);
   thing = new Object({
     mainEntityOfPage: "ViewAction",
